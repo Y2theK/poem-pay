@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Frontend\PageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\PageController;
+use App\Http\Controllers\Auth\AdminLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,5 @@ Route::middleware('auth')->group(function(){
 
 
 require __DIR__.'/auth.php';
+require __DIR__.'/admin_auth.php';
+
