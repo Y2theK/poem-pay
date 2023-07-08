@@ -11,6 +11,6 @@ Route::middleware('guest:admin_user')->group(function () {
 Route::middleware('auth:admin_user')->group(function () {
     Route::get('/admin', function(){
         return view('backend.home');
-    });
+    })->name('admin');
     Route::post('admin/logout', [AdminLoginController::class, 'destroy'])->name('admin.logout');
 });
