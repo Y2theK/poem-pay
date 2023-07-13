@@ -9,8 +9,5 @@ Route::middleware('guest:admin_user')->group(function () {
     Route::post('admin/login', [AdminLoginController::class, 'store'])->name('admin.login');
 });
 Route::middleware('auth:admin_user')->group(function () {
-    Route::get('/admin', function(){
-        return view('backend.home');
-    })->name('admin');
     Route::post('admin/logout', [AdminLoginController::class, 'destroy'])->name('admin.logout');
 });
