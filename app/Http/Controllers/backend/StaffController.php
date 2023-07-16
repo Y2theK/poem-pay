@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\AdminUser;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
+use App\Http\Controllers\Controller;
 
 class StaffController extends Controller
 {
@@ -15,8 +16,12 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $staffs = AdminUser::all();
-        return view('backend.staff.index',compact('staffs'));
+        return view('backend.staff.index');
+    }
+    public function getStaffs()
+    {
+        $data = AdminUser::query();
+        return DataTables::of($data)->make(true);
     }
 
     /**

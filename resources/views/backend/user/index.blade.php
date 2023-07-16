@@ -17,17 +17,7 @@
 
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach ($users as $user)
-                        <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->created_at }}</td>
-
-                        </tr>
-                    @endforeach
-                </tbody>
+               <tbody></tbody>
 
             </table>
         </div>
@@ -38,14 +28,23 @@
 @endsection
 @section('script')
 
-    <script>
+    <script type="text/javascript">
         $(document).ready(function() {
 
             var table = $('#userDatatable').DataTable({
-                    responsive: true
+                    "responsive": true,
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": "{{ route('admin.users_ssd') }}",
+                    "columns": [
+                        {data: 'id', name: 'id'},
+                        {data: 'name', name: 'name'},
+                        {data: 'email', name: 'email'},
+                        {data: 'created_at', name: 'created_at'},
+                    ]
                 })
-                .columns.adjust()
-                .responsive.recalc();
+                //.columns.adjust()
+                //.responsive.recalc();
         });
     </script>
 @endsection

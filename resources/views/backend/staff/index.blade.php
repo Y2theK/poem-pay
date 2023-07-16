@@ -20,16 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($staffs as $staff)
-                        <tr>
-                            <td>{{ $staff->id }}</td>
-                            <td>{{ $staff->name }}</td>
-                            <td>{{ $staff->email }}</td>
-                            <td>{{ $staff->phone }}</td>
-                            <td>{{ $staff->created_at }}</td>
-                            <td>${{ rand(100000, 999999) }}</td>
-                        </tr>
-                    @endforeach
+                  
                 </tbody>
 
             </table>
@@ -45,7 +36,17 @@
         $(document).ready(function() {
 
             var table = $('#staffDataTable').DataTable({
-                    responsive: true
+                    "responsive": true,
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": "{{ route('admin.staffs_ssd') }}",
+                    "columns": [
+                        {data: 'id', name: 'id'},
+                        {data: 'name', name: 'name'},
+                        {data: 'email', name: 'email'},
+                        {data: 'phone', name: 'phone'},
+                        {data: 'created_at', name: 'created_at'},
+                    ]
                 })
                 .columns.adjust()
                 .responsive.recalc();

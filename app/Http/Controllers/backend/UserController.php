@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\backend;
 
+//use Datatables;
 use App\Models\User;
 use Illuminate\Http\Request;
+//use Yajra\Datatables\Datatables;
+use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
-
+//use Yajra\DataTables\Facades\DataTables;
 class UserController extends Controller
 {
     /**
@@ -15,8 +18,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('backend.user.index',compact('users'));
+        return view('backend.user.index');
+    }
+    
+    public function getUsers(){
+        $data = User::query();
+        return DataTables::of($data)->make(true);
     }
 
     /**
