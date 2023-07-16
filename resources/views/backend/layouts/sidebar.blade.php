@@ -26,6 +26,15 @@
                             <span class="ml-4">User Management</span>
                         </a>
                     </li>
+                    <li class="relative px-6 py-3">
+                        <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg {{ areActiveRoutes(['admin.staffs.index','admin.staffs.create','admin.staffs.edit']) }}" 
+                            aria-hidden="true"></span>
+                        <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                            href="{{ route('admin.staffs.index') }}">
+                            <i class="las la-user-lock text-xl"></i>
+                            <span class="ml-4">Staff Management</span>
+                        </a>
+                    </li>
                 </ul>
                 
             </div>
