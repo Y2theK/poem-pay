@@ -16,12 +16,10 @@
                         <th data-priority="3">Email</th>
                         <th data-priority="4">Phone</th>
                         <th data-priority="5">Joined date</th>
-                        <th data-priority="6">Salary</th>
                     </tr>
                 </thead>
-                <tbody>
-                  
-                </tbody>
+                <tbody class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800 "></tbody>
+
 
             </table>
         </div>
@@ -45,7 +43,7 @@
                         {data: 'name', name: 'name'},
                         {data: 'email', name: 'email'},
                         {data: 'phone', name: 'phone'},
-                        {data: 'created_at', name: 'created_at'},
+                        {data: 'joined_date', name: 'joined_date'},
                     ]
                 })
                 .columns.adjust()

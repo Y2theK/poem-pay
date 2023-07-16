@@ -21,7 +21,11 @@ class StaffController extends Controller
     public function getStaffs()
     {
         $data = AdminUser::query();
-        return DataTables::of($data)->make(true);
+        return DataTables::of($data)
+        ->addColumn('joined_date', function ($row) {
+            return 'Since ' .$row->created_at->format('Y, M d'); // Customize the date format as needed
+        })
+        ->make(true);
     }
 
     /**
