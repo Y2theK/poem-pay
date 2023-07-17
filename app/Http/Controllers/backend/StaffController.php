@@ -6,6 +6,8 @@ use App\Models\AdminUser;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\backend\StaffStoreRequest;
+use Illuminate\Support\Facades\Hash;
 
 class StaffController extends Controller
 {
@@ -35,7 +37,7 @@ class StaffController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.staff.create');
     }
 
     /**
@@ -44,9 +46,16 @@ class StaffController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StaffStoreRequest $request)
     {
-        //
+        $admin_user = new AdminUser();
+        $admin_user->name = $request->name;
+        $admin_user->email = $request->email;
+        $admin_user->phone = $request->phone;
+        $admin_user->password = Hash::make($request->password);
+        $admin_user->save();
+
+        return redirect()->route('admin.staffs.index')->with('created','Created Successfully');
     }
 
     /**

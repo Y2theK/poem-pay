@@ -3,8 +3,20 @@
 @section('breadcrumb', 'Staff Management')
 @section('content')
 
+    
+    
+                
+   
     <!--/container-->
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+   
+        <a href="{{ route('admin.staffs.create') }}"
+            class="px-4 inline-block mb-5 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+        >
+            <i class="las la-plus"></i>
+            {{ __('Create New Staff') }}
+        </a>
+        
         <div class="w-full overflow-x-auto">
 
             <table id="staffDataTable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
