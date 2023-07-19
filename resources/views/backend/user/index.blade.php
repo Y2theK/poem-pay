@@ -3,7 +3,7 @@
 @section('breadcrumb', 'User Management')
 @section('content')
     <!--/container-->
-    <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+    <div class="w-full mb-8 overflow-hidden rounded-lg">
         <div class="w-full overflow-x-auto">
 
             <table id="userDatatable" class=" stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">

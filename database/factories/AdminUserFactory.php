@@ -17,6 +17,8 @@ class AdminUserFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->phoneNumber(),
+            'user_agent' => $this->faker->userAgent(),
+            'ip' => $this->faker->ipv4(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             
         ];
