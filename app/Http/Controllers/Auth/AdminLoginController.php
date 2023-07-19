@@ -32,6 +32,14 @@ class AdminLoginController extends Controller
 
         $request->session()->regenerate();
 
+        //update ip and user_agent after login
+        if(Auth::guard('admin_user')->check()){
+            $admin_user = Auth::guard('admin_user')->user();
+            $admin_user->ip = $request->ip();
+            $admin_user->user_agent = $request->server('HTTP_USER_AGENT');
+            $admin_user->update();
+        }
+
         return redirect()->intended(RouteServiceProvider::ADMIN);
     }
     

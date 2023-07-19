@@ -23,7 +23,9 @@
                         <th data-priority="3">Email</th>
                         <th data-priority="4">Phone</th>
                         <th data-priority="5">Joined date</th>
-                        <th data-priority="5" class="no-sort">Action</th>
+                        <th data-priority="6">IP</th>
+                        <th data-priority="7">User Agent</th>
+                        <th data-priority="8" class="no-sort">Action</th>
                     </tr>
                 </thead>
                 <tbody class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800 "></tbody>
@@ -52,6 +54,8 @@
                         {data: 'email', name: 'email'},
                         {data: 'phone', name: 'phone'},
                         {data: 'joined_date', name: 'joined_date'},
+                        {data: 'ip', name: 'ip'},
+                        {data: 'user_agent', name: 'user_agent'},
                         {data: 'action', name: 'action'},
 
                     ],
