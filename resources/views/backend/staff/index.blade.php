@@ -22,10 +22,11 @@
                         <th data-priority="2">Name</th>
                         <th data-priority="3">Email</th>
                         <th data-priority="4">Phone</th>
-                        <th data-priority="5">Joined date</th>
+                        <th data-priority="5">Joined Date</th>
                         <th data-priority="6">IP</th>
-                        <th data-priority="7">User Agent</th>
-                        <th data-priority="8" class="no-sort">Action</th>
+                        <th data-priority="7" class="no-sort">User Agent</th>
+                        <th data-priority="8">Updated At</th>
+                        <th data-priority="9" class="no-sort">Action</th>
                     </tr>
                 </thead>
                 <tbody class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800 "></tbody>
@@ -56,12 +57,18 @@
                         {data: 'created_at', name: 'created_at'},
                         {data: 'ip', name: 'ip'},
                         {data: 'user_agent', name: 'user_agent'},
-                        {data: 'action', name: 'action'},
+                        {data: 'updated_at', name: 'updated_at'},
+                        {data: 'action', name: 'action',searchable: false},
 
                     ],
                     "columnDefs": [
-                        { targets: 'no-sort', orderable: false }
+                        { targets: 'no-sort', orderable: false },
+                        { targets: 'no-visible', visible: false },
+                    ],
+                    "order": [
+                        [7, 'desc'] //default order updated_at desc
                     ]
+                    
                 })
                 .columns.adjust()
                 .responsive.recalc();

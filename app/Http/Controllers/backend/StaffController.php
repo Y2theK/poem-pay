@@ -28,6 +28,9 @@ class StaffController extends Controller
         ->editColumn('created_at', function ($row) {
             return 'Since ' .$row->created_at->format('Y, M d'); // Customize the date format as needed
         })
+        ->editColumn('updated_at', function ($row) {
+            return $row->updated_at->format('Y, M d h:m:s a'); // Customize the date format as needed
+        })
         ->editColumn('user_agent',function($row){
             if($row->user_agent){
                 $agent = new Agent();
