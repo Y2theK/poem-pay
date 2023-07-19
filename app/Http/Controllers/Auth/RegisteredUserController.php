@@ -37,17 +37,28 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'phone' => ['required','numeric', 'unique:users']
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone,
             'password' => Hash::make($request->password),
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
+
+         //update ip and user_agent after register
+         if(Auth::guard('web')->check()){
+            $user = Auth::guard('web')->user();
+            $user->ip = $request->ip();
+            $user->user_agent = $request->server('HTTP_USER_AGENT');
+            $user->login_at = date('Y-m-d H:i:s');
+            $user->update();
+        }
 
         return redirect(RouteServiceProvider::HOME);
     }

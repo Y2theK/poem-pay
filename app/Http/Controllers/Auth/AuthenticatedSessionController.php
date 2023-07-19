@@ -32,6 +32,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        //update ip and user_agent after login
+        if(Auth::guard('web')->check()){
+            $user = Auth::guard('web')->user();
+            $user->ip = $request->ip();
+            $user->user_agent = $request->server('HTTP_USER_AGENT');
+            $user->login_at = date('Y-m-d H:i:s');
+            $user->update();
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
