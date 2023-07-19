@@ -53,7 +53,7 @@
                         {data: 'name', name: 'name'},
                         {data: 'email', name: 'email'},
                         {data: 'phone', name: 'phone'},
-                        {data: 'joined_date', name: 'joined_date'},
+                        {data: 'created_at', name: 'created_at'},
                         {data: 'ip', name: 'ip'},
                         {data: 'user_agent', name: 'user_agent'},
                         {data: 'action', name: 'action'},
