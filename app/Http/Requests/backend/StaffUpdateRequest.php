@@ -4,7 +4,7 @@ namespace App\Http\Requests\backend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StaffStoreRequest extends FormRequest
+class StaffUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,12 @@ class StaffStoreRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('staff');
         return [
             'name' => 'required|string',
-            'email' => 'required|email|unique:admin_users,email',
-            'password' => 'required|min:8|max:10',
-            'phone' => 'required|numberic|unique:admin_users,phone'
+            'email' => 'required|email|unique:admin_users,email,'.$id,
+            'phone' => 'required|numeric|unique:admin_users,phone,'.$id,
+            'password' => 'min:8|max:10|nullable'
         ];
     }
 }

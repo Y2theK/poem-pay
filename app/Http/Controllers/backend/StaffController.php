@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\backend;
 
 use App\Models\AdminUser;
-use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\backend\StaffStoreRequest;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\backend\StaffStoreRequest;
+use App\Http\Requests\backend\StaffUpdateRequest;
 
 class StaffController extends Controller
 {
@@ -24,8 +24,14 @@ class StaffController extends Controller
     {
         $data = AdminUser::query();
         return DataTables::of($data)
-        ->addColumn('joined_date', function ($row) {
+        ->editColumn('joined_date', function ($row) {
             return 'Since ' .$row->created_at->format('Y, M d'); // Customize the date format as needed
+        })
+        ->addColumn('action', function ($row) {
+            $edit_icon = '<a href="'.route('admin.staffs.edit',$row->id).'" class="text-yellow-500 mr-3 text-xl hover:text-yellow-300"> <i class="las la-edit"></i></a>';
+            $delete_icon = '<a href="'.route('admin.staffs.destroy',$row->id).'" class="text-red-500 text-xl hover:text-red-300"> <i class="las la-trash"></i></a>';
+
+            return ' <div class="action-icons">'. $edit_icon. $delete_icon.'</div> ';
         })
         ->make(true);
     }
@@ -77,7 +83,9 @@ class StaffController extends Controller
      */
     public function edit($id)
     {
-        //
+        $staff = AdminUser::findOrFail($id);
+        return view('backend.staff.edit',compact('staff'));
+
     }
 
     /**
@@ -87,9 +95,16 @@ class StaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StaffUpdateRequest $request, $id)
     {
-        //
+        $staff = AdminUser::findOrFail($id);
+        $staff->name = $request->name;
+        $staff->email = $request->email;
+        $staff->phone = $request->phone;
+        $staff->password = $request->password ? Hash::make($request->password) : $staff->password;
+        $staff->save();
+
+        return redirect()->route('admin.staffs.index')->with('updated','Successfully Updated');
     }
 
     /**

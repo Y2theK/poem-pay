@@ -7,21 +7,25 @@
     <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    {{-- line awesome --}}
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('backend/css/tailwind.output.css') }}" />
+
+	<link rel="stylesheet" href="{{ asset('backend/css/tailwind.output.css') }}" />
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="{{ asset('backend/js/init-alpine.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
     <script src="{{ asset('backend/js/charts-lines.js') }}" defer></script>
     <script src="{{ asset('backend/js/charts-pie.js') }}" defer></script>
-    <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel=" stylesheet">
-	<!--Replace with your tailwind.css once created-->
+   
+    {{-- line awesome --}}
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    
+	<link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel=" stylesheet">
+
     <!--Regular Datatables CSS-->
 	<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
 	<!--Responsive Extension Datatables CSS-->
 	<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
+	
 	<style>
 		/*Overrides for JS Validation uikit CSS  */
 		.uk-text-danger{
@@ -144,10 +148,11 @@
 	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
 
-<!-- UIkit JS -->
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.22/dist/js/uikit.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.22/dist/js/uikit-icons.min.js"></script>
+	{{-- jsvalidation --}}
 	<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+	{{-- sweetalert 2 --}}
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 	@yield('script')
 	
 	<script type="text/javascript">
@@ -155,6 +160,30 @@
 		window.history.go(-1);
 		return false;
 	});
+
+	const Toast = Swal.mixin({
+	toast: true,
+	position: 'top-end',
+	showConfirmButton: false,
+	timer: 3000,
+	timerProgressBar: true,
+	didOpen: (toast) => {
+		toast.addEventListener('mouseenter', Swal.stopTimer)
+		toast.addEventListener('mouseleave', Swal.resumeTimer)
+	}
+	})
+	@if (session('created'))
+		Toast.fire({
+		icon: 'success',
+		title: '{{ session('created') }}'
+		})
+	@elseif (session('updated'))
+		Toast.fire({
+		icon: 'success',
+		title: '{{ session('updated') }}'
+		})
+	@endif
+
 	
 	</script>
 </body>
