@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -152,6 +153,7 @@
 	<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 	{{-- sweetalert 2 --}}
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	
 
 	@yield('script')
 	
@@ -160,6 +162,19 @@
 		window.history.go(-1);
 		return false;
 	});
+
+
+	//setup csrf token for all ajax requests
+	let token = document.head.querySelector('meta[name="csrf-token"]');
+
+	if(token){
+		$.ajaxSetup({
+			headers : {
+				'X_CSRF_TOKEN' : token.content
+			}
+		});
+	}
+
 
 	const Toast = Swal.mixin({
 	toast: true,

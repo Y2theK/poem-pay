@@ -23,7 +23,7 @@
                         <th data-priority="3">Email</th>
                         <th data-priority="4">Phone</th>
                         <th data-priority="5">Joined date</th>
-                        <th data-priority="5">Action</th>
+                        <th data-priority="5" class="no-sort">Action</th>
                     </tr>
                 </thead>
                 <tbody class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800 "></tbody>
@@ -54,10 +54,45 @@
                         {data: 'joined_date', name: 'joined_date'},
                         {data: 'action', name: 'action'},
 
+                    ],
+                    "columnDefs": [
+                        { targets: 'no-sort', orderable: false }
                     ]
                 })
                 .columns.adjust()
                 .responsive.recalc();
+
+            $(document).on('click','.confirm-delete',function(e){
+                e.preventDefault();
+                var id = $(this).data('id');
+               Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: 'bg-purple-600',
+                    cancelButtonColor: 'bg-transparent',
+                    confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url : "{{ route('admin.staffs.destroy','') }}" + '/' + id,
+                            type : 'DELETE',
+                            success : function(){
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Staff has been deleted.',
+                                    'success'
+                                )
+                              
+                              table.ajax.reload();
+                            }
+                        })
+                        
+                    }
+                    })
+            })
         });
+
     </script>
 @endsection

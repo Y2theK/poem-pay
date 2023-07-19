@@ -27,7 +27,7 @@ class StaffStoreRequest extends FormRequest
             'name' => 'required|string',
             'email' => 'required|email|unique:admin_users,email',
             'password' => 'required|min:8|max:10',
-            'phone' => 'required|numberic|unique:admin_users,phone'
+            'phone' => 'required|numeric|unique:admin_users,phone'
         ];
     }
 }

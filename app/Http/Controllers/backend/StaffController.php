@@ -29,7 +29,7 @@ class StaffController extends Controller
         })
         ->addColumn('action', function ($row) {
             $edit_icon = '<a href="'.route('admin.staffs.edit',$row->id).'" class="text-yellow-500 mr-3 text-xl hover:text-yellow-300"> <i class="las la-edit"></i></a>';
-            $delete_icon = '<a href="'.route('admin.staffs.destroy',$row->id).'" class="text-red-500 text-xl hover:text-red-300"> <i class="las la-trash"></i></a>';
+            $delete_icon = '<a href="#" class="text-red-500 text-xl hover:text-red-300 confirm-delete" data-id="'.$row->id.'"> <i class="las la-trash"></i></a>';
 
             return ' <div class="action-icons">'. $edit_icon. $delete_icon.'</div> ';
         })
@@ -115,6 +115,8 @@ class StaffController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $staff = AdminUser::findOrFail($id);
+        $staff->delete();
+        return 'success';
     }
 }
