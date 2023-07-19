@@ -12,7 +12,7 @@
                 <span class="text-gray-700 dark:text-gray-400">Name</span>
                 <input type="text" name="name"
                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                  placeholder="Jane Doe" value={{ $staff->name }}
+                  placeholder="Jane Doe" value="{{ $staff->name }}"
                 />
             </label>
 
@@ -20,7 +20,7 @@
                 <span class="text-gray-700 dark:text-gray-400">Email</span>
                 <input type="text" name="email"
                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                  placeholder="johndoe@gmail.com" value={{ $staff->email }}
+                  placeholder="johndoe@gmail.com" value="{{ $staff->email }}"
                 />
             </label>
 
@@ -28,7 +28,7 @@
                 <span class="text-gray-700 dark:text-gray-400">Phone</span>
                 <input type="text" name="phone"
                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                  placeholder="09123123123" value={{ $staff->phone }}
+                  placeholder="09123123123" value="{{ $staff->phone }}"
                 />
             </label>
 
