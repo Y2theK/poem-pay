@@ -22,9 +22,11 @@
 	<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
 	<!--Responsive Extension Datatables CSS-->
 	<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
-	<!-- UIkit CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.22/dist/css/uikit.min.css" />
 	<style>
+		/*Overrides for JS Validation uikit CSS  */
+		.uk-text-danger{
+			color : red;
+		}
 		/*Overrides for Tailwind CSS */
 
 		/*Form fields*/
