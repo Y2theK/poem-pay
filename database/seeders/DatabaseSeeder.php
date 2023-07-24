@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\AdminUserSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,7 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\AdminUser::factory(10)->create();
-        \App\Models\User::factory(300)->create();
+        
+        $this->call([
+            AdminUserSeeder::class,
+            UserSeeder::class
+        ]);
     }
 }

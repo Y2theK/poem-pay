@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers\backend;
 
-//use Datatables;
 use App\Models\User;
 use App\Models\Wallet;
-//use Yajra\Datatables\Datatables;
-use Illuminate\Support\Str;
 use Jenssegers\Agent\Agent;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use PhpParser\Node\Stmt\TryCatch;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -98,7 +94,7 @@ class UserController extends Controller
                     'user_id' => $user->id
                 ],
                 [
-                    'account_number' => Str::random(16),
+                    'account_number' => rand(1111111111111111,9999999999999999),
                     'amount' => 0
                 ]
             );
