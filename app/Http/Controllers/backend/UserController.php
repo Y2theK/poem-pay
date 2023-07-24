@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 
+use App\Helpers\UUIDGenerater;
 use App\Models\User;
 use App\Models\Wallet;
 use Jenssegers\Agent\Agent;
@@ -94,7 +95,7 @@ class UserController extends Controller
                     'user_id' => $user->id
                 ],
                 [
-                    'account_number' => rand(1111111111111111,9999999999999999),
+                    'account_number' => UUIDGenerater::accountNumber(),
                     'amount' => 0
                 ]
             );

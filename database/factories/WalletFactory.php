@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Helpers\UUIDGenerater;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class WalletFactory extends Factory
@@ -14,7 +15,7 @@ class WalletFactory extends Factory
     public function definition()
     {
         return [
-            'account_number' => rand(1111111111111111,9999999999999999),
+            'account_number' => UUIDGenerater::accountNumber(),
         ];
     }
 }
