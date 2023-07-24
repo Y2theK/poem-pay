@@ -16,6 +16,7 @@ class WalletFactory extends Factory
     {
         return [
             'account_number' => UUIDGenerater::accountNumber(),
+            'amount' => rand(1000,1000000000)
         ];
     }
 }
