@@ -4,14 +4,19 @@ namespace App\Http\Controllers\backend;
 
 //use Datatables;
 use App\Models\User;
-use Jenssegers\Agent\Agent;
+use App\Models\Wallet;
 //use Yajra\Datatables\Datatables;
+use Illuminate\Support\Str;
+use Jenssegers\Agent\Agent;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\backend\UserStoreRequest;
 use App\Http\Requests\backend\UserUpdateRequest;
-use Illuminate\Support\Facades\Hash;
+
 //use Yajra\DataTables\Facades\DataTables;
 class UserController extends Controller
 {
@@ -79,14 +84,35 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        $admin_user = new User();
-        $admin_user->name = $request->name;
-        $admin_user->email = $request->email;
-        $admin_user->phone = $request->phone;
-        $admin_user->password = Hash::make($request->password);
-        $admin_user->save();
+        DB::beginTransaction();
+        try {
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->password = Hash::make($request->password);
+            $user->save();
+    
+            Wallet::firstOrCreate(
+                [
+                    'user_id' => $user->id
+                ],
+                [
+                    'account_number' => Str::random(16),
+                    'amount' => 0
+                ]
+            );
 
-        return redirect()->route('admin.users.index')->with('created','Created Successfully');
+            DB::commit();
+            return redirect()->route('admin.users.index')->with('created','Created Successfully');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->withErrors(['failed' => 'Something Wrong'])->withInput();
+
+        }
+        
+
     }
 
     /**
@@ -121,12 +147,12 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, $id)
     {
-        $staff = User::findOrFail($id);
-        $staff->name = $request->name;
-        $staff->email = $request->email;
-        $staff->phone = $request->phone;
-        $staff->password = $request->password ? Hash::make($request->password) : $staff->password;
-        $staff->save();
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->password = $request->password ? Hash::make($request->password) : $user->password;
+        $user->save();
 
         return redirect()->route('admin.users.index')->with('updated','Successfully Updated');
     }

@@ -76,12 +76,12 @@ class StaffController extends Controller
      */
     public function store(StaffStoreRequest $request)
     {
-        $admin_user = new AdminUser();
-        $admin_user->name = $request->name;
-        $admin_user->email = $request->email;
-        $admin_user->phone = $request->phone;
-        $admin_user->password = Hash::make($request->password);
-        $admin_user->save();
+        $staff = new AdminUser();
+        $staff->name = $request->name;
+        $staff->email = $request->email;
+        $staff->phone = $request->phone;
+        $staff->password = Hash::make($request->password);
+        $staff->save();
 
         return redirect()->route('admin.staffs.index')->with('created','Created Successfully');
     }
