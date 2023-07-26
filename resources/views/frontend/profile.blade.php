@@ -30,7 +30,7 @@
     <div class="flex justify-center mt-5">
         <div 
             class="w-full  max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a class="flex cursor-pointer my-4 px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
+            <a href="{{ route('update_password') }}" class="flex cursor-pointer my-4 px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
                 <span>Update Password</span> <span><i class="las la-angle-right"></i></span>
             </a>
             <hr>
