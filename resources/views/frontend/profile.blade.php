@@ -1,13 +1,17 @@
 @section('title', 'Profile')
 <x-app-layout>
+    <div class="flex justify-center">
+    <img class="w-20 h-20 border-2 text-center border-purple-600 mb-5 rounded-full shadow-lg"
+    src="https://ui-avatars.com/api/?name={{ $user->name }}&background=ffffff"
+    alt="{{ $user->name }}" />
+    </div>
     {{-- Profile Card --}}
     <div class="flex justify-center">
         <div
             class="w-full py-5 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            
             <div class="flex flex-col items-center py-4">
-                <img class="w-15 h-15 border-2 border-purple-600 mb-5 rounded-full shadow-lg"
-                    src="https://ui-avatars.com/api/?name={{ $user->name }}&background=ffffff"
-                    alt="{{ $user->name }}" />
+               
 
                 <div class="w-full px-5 ">
                     <div class=" flex my-4 px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
