@@ -25,9 +25,9 @@
 
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
-         {{-- @include('frontend.layouts.navigation') --}}
+    {{-- @include('frontend.layouts.navigation') --}}
     <!-- Top Menu -->
-    <nav  class="bg-white border-b border-gray-100">
+    <nav  class="bg-white border-b border-gray-100 sticky top-0">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -66,13 +66,12 @@
         </header> --}}
 
         <!-- Page Content -->
-        <main>
+        <main class="p-5">
             {{ $slot }}
-
         </main>
 
         {{-- Button menu from flowbite --}}
-        <div class="flex justify-center">
+        <div class="flex justify-center mt-36">
             <div
                 class="fixed bottom-0 border rounded-full hover:rounded-full  left-auto z-50 w-full h-20 max-w-lg  bg-white border-t mb-1  border-gray-200 dark:bg-gray-700 dark:border-gray-600">
                 <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">

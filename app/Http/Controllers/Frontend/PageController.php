@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -11,6 +12,7 @@ class PageController extends Controller
         return view('frontend.home');
     }
     public function profile(){
-        return view('frontend.profile');
+        $user = Auth::user();
+        return view('frontend.profile',compact('user'));
     }
 }
