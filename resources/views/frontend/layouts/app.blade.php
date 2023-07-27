@@ -33,11 +33,20 @@
                 <div class="flex justify-between h-16">
                     <div class="flex items-center justify-center font-bold">
                         <!-- Logo -->
-                        <div class="shrink-0  w-8">
-                            <a href="{{ route('home') }}">
-                                <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
-                            </a>
-                        </div>
+                        @if (request()->is('/'))
+                            <div class="shrink-0  w-8">
+                                <a href="{{ route('home') }}">
+                                    <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                                </a>
+                            </div>
+                        @else
+                            <!-- Logo -->
+                            <div class="shrink-0  w-8 back-btn">
+                                <i class="las la-angle-left text-xl  text-purple-600"></i>
+                            </div>
+                        @endif
+
+
                         <div class="px-3">@yield('title')</div>
 
                     </div>
@@ -81,7 +90,7 @@
         <div class="flex justify-center mt-36">
             <div
                 class="fixed bottom-0 border rounded-full hover:rounded-full  left-auto z-50 w-full h-20 max-w-lg  bg-white border-t mb-1  border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-                <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
+                <div class="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
                     <a type="button" href="{{ route('home') }}"
                         class="inline-flex  rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
                         <svg class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['home'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500"
@@ -117,6 +126,20 @@
 
                         <span
                             class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500">Scan</span>
+                    </a>
+                    <a type="button"
+                        class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+                        <svg class="w-6 h-6 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500"
+                        viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 10H20L16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M16 14L4 14L8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+
+                        <span
+                            class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500">Transactions</span>
                     </a>
                     <a type="button" href="{{ route('profile') }}"
                         class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
@@ -169,7 +192,7 @@
             })
         @endif
     </script>
-    
+
 </body>
 
 </html>
