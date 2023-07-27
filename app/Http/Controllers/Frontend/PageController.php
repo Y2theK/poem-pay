@@ -39,5 +39,9 @@ class PageController extends Controller
 
 
     }
+    public function wallet(){
+        $user = Auth()->user();
+        return view('frontend.wallet',compact('user'));
+    }
 
 }

@@ -33,7 +33,7 @@
                 <div class="flex justify-between h-16">
                     <div class="flex items-center justify-center font-bold">
                         <!-- Logo -->
-                        @if (request()->is('/'))
+                        @if (request()->routeIs('home'))
                             <div class="shrink-0  w-8">
                                 <a href="{{ route('home') }}">
                                     <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
@@ -102,9 +102,9 @@
                         <span
                             class="text-sm text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['home'], 'text-purple-600') }} group-hover:text-purple-600  dark:group-hover:text-purple-500">Home</span>
                     </a>
-                    <a type="button"
+                    <a type="button" href="{{ route('wallet') }}"
                         class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-                        <svg class="w-5 h-5 mb-2 text-gray-500  dark:text-gray-400  group-hover:text-purple-600 dark:group-hover:text-purple-500"
+                        <svg class="w-5 h-5 mb-2 text-gray-500  dark:text-gray-400  {{ areActiveRoutes(['wallet'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 20">
                             <path
@@ -113,7 +113,7 @@
                                 d="M19 10h-6a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1Zm-4.5 3.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM12.62 4h2.78L12.539.41a1.086 1.086 0 1 0-1.7 1.352L12.62 4Z" />
                         </svg>
                         <span
-                            class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-purple-600  dark:group-hover:text-purple-500">Wallet</span>
+                            class="text-sm text-gray-500 dark:text-gray-400  {{ areActiveRoutes(['wallet'], 'text-purple-600') }} group-hover:text-purple-600  dark:group-hover:text-purple-500">Wallet</span>
                     </a>
                     <a type="button"
                         class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
