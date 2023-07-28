@@ -18,6 +18,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/',[PageController::class,'home'])->name('home');
     Route::get('/profile',[PageController::class,'profile'])->name('profile');
     Route::get('/wallet',[PageController::class,'wallet'])->name('wallet');
+    Route::get('/transfer',[PageController::class,'transfer'])->name('transfer');
+    Route::post('/transfer/confirm',[PageController::class,'transferConfirm'])->name('transfer.confirm');
 
     Route::get('/profile/update-password',[PageController::class,'updatePasswordCreate'])->name('update_password');
     Route::post('/profile/update-password',[PageController::class,'updatePasswordStore'])->name('update_password.store');

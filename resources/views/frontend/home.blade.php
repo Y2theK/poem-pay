@@ -89,7 +89,7 @@
     <div class="flex justify-center mt-5">
         <div
             class="w-full px-5 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="{{ route('update_password') }}"
+            <a href="{{ route('transfer') }}"
                 class="flex cursor-pointer my-4 py-2 px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
                 <div class="flex">
                     <?xml version="1.0" encoding="iso-8859-1"?>
