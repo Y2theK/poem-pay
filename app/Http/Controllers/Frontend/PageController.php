@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Hash;
 class PageController extends Controller
 {
     public function home(){
-        return view('frontend.home');
+        $user = Auth()->user();
+        return view('frontend.home',compact('user'));
     }
     public function profile(){
         $user = Auth::user();
