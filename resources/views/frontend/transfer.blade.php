@@ -8,8 +8,7 @@
 
             <form method="POST" action="{{ route('transfer.confirm') }}">
                 @csrf
-                <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+               
 
                  <!-- To Phone-->
                  <div class="mt-4">
@@ -30,6 +29,9 @@
                     <x-label for="to_phone" :value="__('To')" />
                     <x-input id="to_phone" class="block mt-1 w-full" type="number" placeholder="09123987456" name="to_phone" value="{{ old('to_phone') }}"
                          />
+                    @error('to_phone')
+                        <span class="text-red-600 text-sm">{{ $message }}</span>
+                    @enderror
                 </div>
                 <!-- Amounnt -->
                 <div class="mt-4">
@@ -37,6 +39,10 @@
 
                     <x-input id="amount" class="block mt-1 w-full" placeholder="1000" type="number" name="amount" value="{{ old('amount') }}"
                          />
+                    @error('amount')
+                         <span class="text-red-600 text-sm">{{ $message }}</span>
+                    @enderror
+                    
                 </div>
                  <!-- Amounnt -->
                  <div class="mt-4">
@@ -44,6 +50,9 @@
 
                     <textarea id="description" placeholder="Chit lox" rows="3" style="resize: none;" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" name="description" 
                          ></textarea>
+                    @error('description')
+                         <span class="text-red-600 text-sm">{{ $message }}</span>
+                     @enderror
                 </div>
 
 

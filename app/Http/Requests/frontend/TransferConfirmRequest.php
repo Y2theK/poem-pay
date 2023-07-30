@@ -24,9 +24,19 @@ class TransferConfirmRequest extends FormRequest
     public function rules()
     {
         return [
-            'to_phone' => 'required|numeric',
+            'to_phone' => 'required|numeric|exists:users,phone',
             'amount' => 'required|integer|min:1000',
             'description' => 'string|nullable'
+        ];
+    }
+    public function messages(){
+        return [
+            'to_phone.required' => 'Phone Number is required.',
+            'to_phone.exists' => 'Phone Number does not exist.',
+            'amount.required' => 'Amount is required.',
+            'amount.integer' => 'Amount must be number.',
+            'amount.min' => 'Amount must be minimum 1000 MMK.',
+            'description.string' => 'Description must be string.',
         ];
     }
 }
