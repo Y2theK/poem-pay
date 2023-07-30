@@ -14,10 +14,10 @@
                     <x-label for="to_phone" :value="__('From')" class="mb-2  font-bold"/>
 
                     <label class='block font-medium text-sm  text-gray-700'>
-                        {{ $user->name }}
+                        {{ $from_account_user->name }}
                     </label>
                     <label class='block font-medium  text-sm text-gray-700'>
-                        {{ $user->phone }}
+                        {{ $from_account_user->phone }}
                     </label>
                     
                    
@@ -27,9 +27,11 @@
                 <!-- To Phone-->
                 <div class="mt-4">
                     <x-label for="to_phone" :value="__('To')" class="font-bold "/>
-
-                    <label class='block font-medium text-sm text-gray-700 text-muted'>
-                        {{ $to_phone }}
+                    <label class='block font-semibold text-sm text-gray-700 text-muted'>
+                        {{ $to_account_user->name }}
+                    </label>
+                    <label class='block  font-semibold text-sm text-gray-700 text-muted'>
+                        {{ $to_account_user->phone }}
                     </label>
 
                     <x-label for="to_phone" :value="__('Amount')" class="font-bold mt-4"/>
@@ -39,7 +41,7 @@
                     </label>
 
                     
-                    @if ($description != '')
+                    @if ($description)
                     <x-label for="to_phone" :value="__('Description')" class="font-bold mt-4"/>
                     <label class='block font-medium text-sm text-gray-700 text-muted'>
                         {{ $description }}
@@ -54,7 +56,7 @@
 
 
                 <div class=" mt-5">
-                    <x-button class="w-full flex items-center justify-center">
+                    <x-button class="w-full confirm-btn flex items-center justify-center">
                         {{ __('Confirm') }}
                     </x-button>
                 </div>
@@ -63,5 +65,15 @@
     </div>
 
 
+@section('script')
+<script type="text/javascript">
 
+$('.confirm-btn').on('click',function(){
+
+    
+})
+
+</script>
+
+@endsection
 </x-app-layout>

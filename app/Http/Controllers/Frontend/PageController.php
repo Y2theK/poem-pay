@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Validation\Rules;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\frontend\TransferConfirmRequest as FrontendTransferConfirmRequest;
-use App\Http\Requests\TransferConfirmRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\TransferConfirmRequest;
+use App\Http\Requests\frontend\TransferConfirmRequest as FrontendTransferConfirmRequest;
 
 class PageController extends Controller
 {
@@ -51,13 +52,30 @@ class PageController extends Controller
         return view('frontend.transfer',compact('user'));
     }
     public function transferConfirm(FrontendTransferConfirmRequest $request){
-        // dd($request);
-        $user = Auth()->user();
+
+        $from_account_user = Auth()->user();
+        $to_account_user = User::where('phone',$request->to_phone)->first();
+
         $to_phone = $request->to_phone;
         $amount = $request->amount;
         $description = $request->description;
 
-        return view('frontend.transfer_confirm',compact('user','to_phone','amount','description'));
+        return view('frontend.transfer_confirm',compact('from_account_user','to_account_user','amount','description'));
     }
-
+    public function toAccountVerify(Request $request){
+        $user = User::where('phone',$request->phone)->first();
+        if(auth()->user()->phone != $request->phone){
+            if($user){
+                return response()->json([
+                    'status' => 'success',
+                    'data' => $user
+                ]);
+            }
+        }
+            return response()->json([
+                'status' => 'fail',
+                'message' => 'Invalid Phone Number.'
+        ]);
+        
+    }
 }
