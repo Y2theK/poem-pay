@@ -8,8 +8,9 @@ use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\TransferConfirmRequest;
-use App\Http\Requests\frontend\TransferConfirmRequest as FrontendTransferConfirmRequest;
+use Illuminate\Validation\ValidationException;
+use App\Http\Requests\frontend\TransferConfirmRequest;
+use Exception;
 
 class PageController extends Controller
 {
@@ -49,9 +50,10 @@ class PageController extends Controller
     }
     public function transfer(){
         $user = Auth()->user();
+        // dd(request()->route());
         return view('frontend.transfer',compact('user'));
     }
-    public function transferConfirm(FrontendTransferConfirmRequest $request){
+    public function transferConfirm(TransferConfirmRequest $request){
 
         $from_account_user = Auth()->user();
         $to_account_user = User::where('phone',$request->to_phone)->first();
@@ -61,6 +63,46 @@ class PageController extends Controller
         $description = $request->description;
 
         return view('frontend.transfer_confirm',compact('from_account_user','to_account_user','amount','description'));
+    }
+    public function transferComplete(TransferConfirmRequest $request,Exception $exception){
+
+        $from_account_user = Auth()->user();
+        $to_account_user = User::where('phone',$request->to_phone)->first();
+        if(!$to_account_user){
+            return redirect()->route('transfer')->withErrors('to_phone','Invalid Account');
+        }
+        if(auth()->user()->phone == $request->to_phone){
+           return redirect()->route('transfer')->withErrors('to_phone','Invalid Phone Number');
+        }
+        if(!$from_account_user->wallet || !$to_account_user->wallet){
+            return redirect()->route('transfer')->withErrors('to_phone','Invalid Account');
+
+        }
+        $to_phone = $request->to_phone;
+        $amount = $request->amount;
+        $description = $request->description;
+
+        $from_account_wallet = $from_account_user->wallet;
+        $from_account_wallet->decrement('amount',$amount);
+        $from_account_wallet->save();
+        
+        $to_account_wallet = $to_account_user->wallet;
+        $to_account_wallet->increment('amount',$amount);
+        $to_account_wallet->save();
+
+        return redirect()->route('home')->with('created','Successfully Transferred');
+
+        // return view('frontend.transfer_complete',compact('from_account_user','to_account_user','amount','description'));
+    }
+    public function passwordCheck(Request $request){
+        if(Hash::check($request->password,auth()->user()->password)){
+            return response()->json([
+                'status' => 'success'
+            ]);
+        }
+        return response()->json([
+            'status' => 'fail',
+        ]);
     }
     public function toAccountVerify(Request $request){
         $user = User::where('phone',$request->phone)->first();

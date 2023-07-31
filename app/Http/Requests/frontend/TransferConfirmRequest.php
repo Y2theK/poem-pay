@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\frontend;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TransferConfirmRequest extends FormRequest

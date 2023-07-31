@@ -6,8 +6,8 @@
         <div
             class="w-full py-5 px-10 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
-            <form method="POST" action="{{ route('transfer.confirm') }}">
-                @csrf
+            <form method="GET" action="{{ route('transfer.confirm') }}">
+                {{-- @csrf --}}
 
 
                 <!-- To Phone-->

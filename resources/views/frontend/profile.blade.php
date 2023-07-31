@@ -54,7 +54,7 @@
         $(document).ready(function() {
             $(document).on('click','.logout',function(e){
              
-                event.preventDefault();
+                e.preventDefault();
                
                 Swal.fire({
                     title: 'Are you sure to logout?',
