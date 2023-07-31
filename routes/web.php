@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/transfer/complete',[PageController::class,'transferComplete'])->name('transfer.complete');
     Route::get('/transfer/to-account-verify',[PageController::class,'toAccountVerify'])->name('to_account_verify');
     Route::get('/password/check',[PageController::class,'passwordCheck'])->name('password.check');
-
+    Route::get('transfer/hash',[PageController::class,'hashTransfer'])->name('transfer.hash');
     Route::get('/profile/update-password',[PageController::class,'updatePasswordCreate'])->name('update_password');
     Route::post('/profile/update-password',[PageController::class,'updatePasswordStore'])->name('update_password.store');
 });

@@ -54,7 +54,12 @@ class PageController extends Controller
         return view('frontend.transfer',compact('user'));
     }
     public function transferConfirm(TransferConfirmRequest $request){
+        $str = $request->to_phone+$request->amount+$request->description;
+        $hash_value = hash_hmac('sha256', $str, 'magic_pay');
 
+        if($hash_value !== $request->hash_value){
+            return redirect()->back()->withErrors(['fail' => 'The given data is invalid.'])->withInput();
+        }
         $from_account_user = Auth()->user();
         $to_account_user = User::where('phone',$request->to_phone)->first();
 
@@ -65,6 +70,12 @@ class PageController extends Controller
         return view('frontend.transfer_confirm',compact('from_account_user','to_account_user','amount','description'));
     }
     public function transferComplete(TransferConfirmRequest $request,Exception $exception){
+        $str = $request->to_phone+$request->amount+$request->description;
+        $hash_value = hash_hmac('sha256', $str, 'magic_pay');
+
+        if($hash_value !== $request->hash_value){
+            return redirect()->back()->withErrors(['fail' => 'The given data is invalid.'])->withInput();
+        }
 
         $from_account_user = Auth()->user();
         $to_account_user = User::where('phone',$request->to_phone)->first();
@@ -74,6 +85,9 @@ class PageController extends Controller
         if(auth()->user()->phone == $request->to_phone){
            return redirect()->route('transfer')->withErrors('to_phone','Invalid Phone Number');
         }
+        if(auth()->user()->wallet->amount < $request->amount){
+            return redirect()->route('transfer')->withErrors('amount','Insuffient Balance');
+         }
         if(!$from_account_user->wallet || !$to_account_user->wallet){
             return redirect()->route('transfer')->withErrors('to_phone','Invalid Account');
 
@@ -102,6 +116,14 @@ class PageController extends Controller
         }
         return response()->json([
             'status' => 'fail',
+        ]);
+    }
+    public function hashTransfer(Request $request){
+        $str = $request->to_phone+$request->amount+$request->description;
+        $hash_value = hash_hmac('sha256', $str, 'magic_pay');
+        return response()->json([
+            'status' => 'success',
+            'data' => $hash_value
         ]);
     }
     public function toAccountVerify(Request $request){

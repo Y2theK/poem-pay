@@ -9,7 +9,7 @@
             <form method="GET" action="{{ route('transfer.confirm') }}">
                 {{-- @csrf --}}
 
-
+                <input type="hidden" name="hash_value" value="">
                 <!-- To Phone-->
                 <div class="mt-4">
                     <x-label for="to_phone" :value="__('From')" class="mb-3" />
@@ -68,7 +68,7 @@
 
 
                 <div class="flex items-center justify-end mt-4">
-                    <x-button class="ml-3">
+                    <x-button class="ml-3 submit-btn">
                         {{ __('Continue') }}
                     </x-button>
                 </div>
@@ -78,6 +78,22 @@
     @section('script')
     <script type="text/javascript">
         $(document).ready(function() {
+             $(document).on('click','.submit-btn',function(e){
+                e.preventDefault();
+                var to_phone = $("[name='to_phone']").val();
+                var amount = $("[name='amount']").val();
+                var description = $("[name='description']").val();
+                 $.ajax({
+                     url: "{{ route('transfer.hash') }}" + `?to_phone=${to_phone}&amount=${amount}&description=${description}`,
+                     type: 'GET',
+                     success : function(res){
+                         if(res.status == 'success'){
+                            $("[name='hash_value']").val(res.data);
+                            $('form').submit();
+                         }
+                     }
+                 });
+            });
             $(document).on('click','.verify-btn',function(e){
              
                 $.ajax({
