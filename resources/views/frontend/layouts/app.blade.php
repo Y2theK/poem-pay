@@ -127,9 +127,9 @@
                         <span
                             class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500">Scan</span>
                     </a>
-                    <a type="button"
+                    <a type="button" href="{{ route('transactions') }}"
                         class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-                        <svg class="w-6 h-6 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500"
+                        <svg class="w-6 h-6 mb-2 text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['transactions'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500"
                         viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M8 10H20L16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -139,7 +139,7 @@
                         </svg>
 
                         <span
-                            class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500">Transactions</span>
+                            class="text-sm text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['transactions'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500">Transactions</span>
                     </a>
                     <a type="button" href="{{ route('profile') }}"
                         class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">

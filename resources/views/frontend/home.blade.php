@@ -226,7 +226,7 @@
             <span><i class="las la-angle-right"></i></span>
         </a>
         <hr> --}}
-            <a href="{{ route('update_password') }}"
+            <a href="{{ route('transactions') }}"
                 class="flex  cursor-pointer my-4 py-2 px-5  justify-between text-md font-medium text-gray-900 dark:text-white  group">
                 <div class="flex">
                     <svg fill="#000000"

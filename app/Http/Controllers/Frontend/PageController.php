@@ -51,6 +51,17 @@ class PageController extends Controller
         $user = Auth()->user();
         return view('frontend.wallet',compact('user'));
     }
+    public function transaction(){
+        $user = Auth()->user();
+        $transactions =  Transaction::where('user_id',$user->id)->latest()->get();
+        return view('frontend.transaction',compact('user','transactions'));
+    }
+    public function transactionDetail($trx_id){
+        $user = Auth()->user();
+        $transaction = Transaction::where('user_id',$user->id)->where('trx_id',$trx_id)->firstOrFail();
+        // dd(request()->route());
+        return view('frontend.transaction_detail',compact('user','transaction'));
+    }
     public function transfer(){
         $user = Auth()->user();
         // dd(request()->route());

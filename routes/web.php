@@ -17,13 +17,20 @@ use App\Http\Controllers\Auth\AdminLoginController;
 Route::middleware('auth')->group(function(){
     Route::get('/',[PageController::class,'home'])->name('home');
     Route::get('/profile',[PageController::class,'profile'])->name('profile');
+
     Route::get('/wallet',[PageController::class,'wallet'])->name('wallet');
+
     Route::get('/transfer',[PageController::class,'transfer'])->name('transfer');
     Route::get('/transfer/confirm',[PageController::class,'transferConfirm'])->name('transfer.confirm');
     Route::post('/transfer/complete',[PageController::class,'transferComplete'])->name('transfer.complete');
     Route::get('/transfer/to-account-verify',[PageController::class,'toAccountVerify'])->name('to_account_verify');
+    Route::get('/transfer/hash',[PageController::class,'hashTransfer'])->name('transfer.hash');
+
+    Route::get('/transactions',[PageController::class,'transaction'])->name('transactions');
+    Route::get('/transactions/{trx_id}',[PageController::class,'transactionDetail'])->name('transactions.detail');
+
     Route::get('/password/check',[PageController::class,'passwordCheck'])->name('password.check');
-    Route::get('transfer/hash',[PageController::class,'hashTransfer'])->name('transfer.hash');
+
     Route::get('/profile/update-password',[PageController::class,'updatePasswordCreate'])->name('update_password');
     Route::post('/profile/update-password',[PageController::class,'updatePasswordStore'])->name('update_password.store');
 });
