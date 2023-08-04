@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Helpers\UUIDGenerater;
+use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\frontend\TransferConfirmRequest;
-use Exception;
+use App\Models\Transaction;
 
 class PageController extends Controller
 {
@@ -54,7 +57,7 @@ class PageController extends Controller
         return view('frontend.transfer',compact('user'));
     }
     public function transferConfirm(TransferConfirmRequest $request){
-        $str = $request->to_phone+$request->amount+$request->description;
+        $str = $request->to_phone.$request->amount.$request->description;
         $hash_value = hash_hmac('sha256', $str, 'magic_pay');
 
         if($hash_value !== $request->hash_value){
@@ -70,7 +73,12 @@ class PageController extends Controller
         return view('frontend.transfer_confirm',compact('from_account_user','to_account_user','amount','description'));
     }
     public function transferComplete(TransferConfirmRequest $request,Exception $exception){
-        $str = $request->to_phone+$request->amount+$request->description;
+       
+        $to_phone = $request->to_phone;
+        $amount = $request->amount;
+        $description = $request->description;
+
+        $str = $to_phone . $amount . $description;
         $hash_value = hash_hmac('sha256', $str, 'magic_pay');
 
         if($hash_value !== $request->hash_value){
@@ -79,32 +87,63 @@ class PageController extends Controller
 
         $from_account_user = Auth()->user();
         $to_account_user = User::where('phone',$request->to_phone)->first();
+
         if(!$to_account_user){
             return redirect()->route('transfer')->withErrors('to_phone','Invalid Account');
         }
-        if(auth()->user()->phone == $request->to_phone){
+        if($from_account_user->phone == $to_phone){
            return redirect()->route('transfer')->withErrors('to_phone','Invalid Phone Number');
         }
-        if(auth()->user()->wallet->amount < $request->amount){
+        if($from_account_user->wallet->amount < $request->amount){
             return redirect()->route('transfer')->withErrors('amount','Insuffient Balance');
          }
         if(!$from_account_user->wallet || !$to_account_user->wallet){
             return redirect()->route('transfer')->withErrors('to_phone','Invalid Account');
-
         }
-        $to_phone = $request->to_phone;
-        $amount = $request->amount;
-        $description = $request->description;
 
-        $from_account_wallet = $from_account_user->wallet;
-        $from_account_wallet->decrement('amount',$amount);
-        $from_account_wallet->save();
+        DB::beginTransaction();
+
+        try {
+
+            $from_account_wallet = $from_account_user->wallet;
+            $from_account_wallet->decrement('amount',$amount);
+            $from_account_wallet->save();
+            
+            $to_account_wallet = $to_account_user->wallet;
+            $to_account_wallet->increment('amount',$amount);
+            $to_account_wallet->save();
+
+            $ref_no = UUIDGenerater::refNo();
+            $from_account_transaction = new Transaction();
+            $from_account_transaction->ref_no = $ref_no;
+            $from_account_transaction->trx_id = UUIDGenerater::trxID();
+            $from_account_transaction->user_id = $from_account_user->id;
+            $from_account_transaction->source_id = $to_account_user->id;
+            $from_account_transaction->type = 2;  //expense
+            $from_account_transaction->amount = $amount;
+            $from_account_transaction->description = $description;
+            $from_account_transaction->save();
+
+            $to_account_transaction = new Transaction();
+            $to_account_transaction->ref_no = $ref_no;
+            $to_account_transaction->trx_id = UUIDGenerater::trxID();
+            $to_account_transaction->user_id = $to_account_user->id;
+            $to_account_transaction->source_id = $from_account_user->id;
+            $to_account_transaction->type = 1;  //income
+            $to_account_transaction->amount = $amount;
+            $to_account_transaction->description = $description;
+            $to_account_transaction->save();
+
+            DB::commit();
+
+            return redirect()->route('home')->with('created','Successfully Transferred');
+
+        } catch (\Throwable $e) {
+           DB::rollBack();
+           return redirect()->back()->withErrors('failed','Something wrong.')->withInput();
+        }
+
         
-        $to_account_wallet = $to_account_user->wallet;
-        $to_account_wallet->increment('amount',$amount);
-        $to_account_wallet->save();
-
-        return redirect()->route('home')->with('created','Successfully Transferred');
 
         // return view('frontend.transfer_complete',compact('from_account_user','to_account_user','amount','description'));
     }
@@ -119,7 +158,7 @@ class PageController extends Controller
         ]);
     }
     public function hashTransfer(Request $request){
-        $str = $request->to_phone+$request->amount+$request->description;
+        $str = $request->to_phone . $request->amount . $request->description;
         $hash_value = hash_hmac('sha256', $str, 'magic_pay');
         return response()->json([
             'status' => 'success',

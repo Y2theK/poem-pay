@@ -59,7 +59,7 @@
 
                     <textarea id="description" placeholder="Chit lox" rows="3" style="resize: none;"
                         class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                        type="text" name="description"></textarea>
+                        type="text" name="description">{{ old('description') }}</textarea>
                     @error('description')
                         <span class="text-xs ml-1 text-red-600 dark:text-red-400">{{ $message }}</span>
                     @enderror
