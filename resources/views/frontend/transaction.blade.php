@@ -1,7 +1,7 @@
 @section('title', 'Transactions')
 <x-app-layout>
 
-    {{-- Profile Action --}}
+    {{-- Transactions lists --}}
     <div class="flex justify-center flex-col items-center mt-5">
 
         @foreach ($transactions as $transaction)

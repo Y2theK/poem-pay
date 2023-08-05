@@ -87,9 +87,9 @@
         </main>
 
         {{-- Button menu from flowbite --}}
-        <div class="flex justify-center mt-36">
+        <div class="flex justify-center mt-36 text-xs">
             <div
-                class="fixed bottom-0 border rounded-full hover:rounded-full  left-auto z-50 w-full h-20 max-w-lg  bg-white border-t mb-1  border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+                class="fixed bottom-0 border rounded-full hover:rounded-full  left-auto z-50 w-full h-16 max-w-lg  bg-white border-t mb-1  border-gray-200 dark:bg-gray-700 dark:border-gray-600">
                 <div class="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
                     <a type="button" href="{{ route('home') }}"
                         class="inline-flex  rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
@@ -100,7 +100,7 @@
                                 d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                         </svg>
                         <span
-                            class="text-sm text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['home'], 'text-purple-600') }} group-hover:text-purple-600  dark:group-hover:text-purple-500">Home</span>
+                            class=" text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['home'], 'text-purple-600') }} group-hover:text-purple-600  dark:group-hover:text-purple-500">Home</span>
                     </a>
                     <a type="button" href="{{ route('wallet') }}"
                         class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
@@ -113,7 +113,7 @@
                                 d="M19 10h-6a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1Zm-4.5 3.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM12.62 4h2.78L12.539.41a1.086 1.086 0 1 0-1.7 1.352L12.62 4Z" />
                         </svg>
                         <span
-                            class="text-sm text-gray-500 dark:text-gray-400  {{ areActiveRoutes(['wallet'], 'text-purple-600') }} group-hover:text-purple-600  dark:group-hover:text-purple-500">Wallet</span>
+                            class=" text-gray-500 dark:text-gray-400  {{ areActiveRoutes(['wallet'], 'text-purple-600') }} group-hover:text-purple-600  dark:group-hover:text-purple-500">Wallet</span>
                     </a>
                     <a type="button"
                         class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
@@ -125,11 +125,11 @@
                         </svg>
 
                         <span
-                            class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500">Scan</span>
+                            class=" text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500">Scan</span>
                     </a>
                     <a type="button" href="{{ route('transactions') }}"
                         class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-                        <svg class="w-6 h-6 mb-2 text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['transactions'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500"
+                        <svg class="w-6 h-6 mb-2 text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['transactions','transactions.detail'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500"
                         viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M8 10H20L16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -139,7 +139,7 @@
                         </svg>
 
                         <span
-                            class="text-sm text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['transactions'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500">Transactions</span>
+                            class=" text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['transactions','transactions.detail'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500">Transactions</span>
                     </a>
                     <a type="button" href="{{ route('profile') }}"
                         class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
@@ -150,7 +150,7 @@
                                 d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
                         </svg>
                         <span
-                            class="text-sm text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['profile'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500">Profile</span>
+                            class=" text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['profile'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500">Profile</span>
                     </a>
 
                 </div>
@@ -163,6 +163,9 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     {{-- sweetalert 2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- lottie player animation --}}
+    <script src=“https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js”></script>
+
     @yield('script')
     <script type="text/javascript">
         $('.back-btn').on('click', function() {
