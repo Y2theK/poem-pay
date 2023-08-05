@@ -26,7 +26,7 @@
                 </div>
                 <!-- To Phone-->
                 <div class="mt-4">
-                    <x-label for="to_phone" :value="__('To')" class="inline-block" /><span class="to_account_info text-green-500"></span>
+                    <x-label for="to_phone" :value="__('To')" class="inline-block" /><span class="to_account_info text-green-500 font-semibold text-xs"></span>
                     <div class="flex">
                         <x-input id="to_phone" class="block mt-1 w-full" type="number" placeholder="09123987456"
                             name="to_phone" value="{{ old('to_phone') }}" />
