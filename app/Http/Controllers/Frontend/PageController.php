@@ -53,7 +53,7 @@ class PageController extends Controller
     }
     public function transaction(){
         $user = Auth()->user();
-        $transactions =  Transaction::where('user_id',$user->id)->latest()->get();
+        $transactions =  Transaction::where('user_id',$user->id)->latest()->paginate(7);
         return view('frontend.transaction',compact('user','transactions'));
     }
     public function transactionDetail($trx_id){
@@ -147,7 +147,7 @@ class PageController extends Controller
 
             DB::commit();
 
-            return redirect()->route('home')->with('created','Successfully Transferred');
+            return redirect()->route('transactions.detail',$from_account_transaction->trx_id)->with('transfer_success','Successfully Transferred');
 
         } catch (\Throwable $e) {
            DB::rollBack();

@@ -160,14 +160,19 @@
 
     </div>
     <!-- jQuery -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script  src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     {{-- sweetalert 2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- lottie player animation --}}
-    <script src=“https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js”></script>
+    {{-- flowbit js  --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
+    {{-- jscroll cdn --}}
+    {{-- <script src="//unpkg.com/jscroll/dist/jquery.jscroll.min.js"></script> --}}
+    <script src="{{ asset('js/jscroll.min.js') }}"></script>
+
 
     @yield('script')
     <script type="text/javascript">
+   
         $('.back-btn').on('click', function() {
             window.history.go(-1);
             return false;
@@ -183,6 +188,16 @@
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
+        	//setup csrf token for all ajax requests
+        let token = document.head.querySelector('meta[name="csrf-token"]');
+
+        if(token){
+            $.ajaxSetup({
+                headers : {
+                    'X_CSRF_TOKEN' : token.content
+                }
+            });
+        }
         @if (session('created'))
             Toast.fire({
                 icon: 'success',
