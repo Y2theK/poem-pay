@@ -1,6 +1,6 @@
 @section('title', 'Wallet')
 <x-app-layout>
-    <div class="flex justify-center px-7">
+    <div class="flex justify-center px-0 sm:px-7">
         {{-- <div class="flex flex-col space-y-8 w-full px-16 max-w-xl"> --}}
 
         <!-- card -->

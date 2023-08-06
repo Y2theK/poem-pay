@@ -8,10 +8,10 @@
             {{-- {{ $month }} --}}
             @foreach ($transactions as $transaction)
                     <div
-                        class="w-full text-sm mb-2 py-2 px-5 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        class="w-full  mb-2 py-2 px-5 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
                         <a href="{{ route('transactions.detail', $transaction->trx_id) }}"
-                            class="flex cursor-pointer mt-2 items-center justify-between text-md font-medium text-gray-900 dark:text-white">
+                            class="flex cursor-pointer mt-2 items-center justify-between font-medium text-gray-900 dark:text-white">
                             <div class="flex items-center justify-center">
                                 <svg class="w-6 h-10 mr-4 text-gray-500  dark:text-gray-400  group-hover:text-purple-600 dark:group-hover:text-purple-500"
                                     fill="#9333ea" height="800px" width="800px" version="1.1" id="Capa_1"
