@@ -53,9 +53,9 @@
 
 
                     <!-- Notification Bell -->
-                    <div class="mr-4 flex items-center">
+                    <div class="mr-4 flex items-center ">
                         <a href="{{ route('notifications') }}"
-                            class="inline-flex items-center justify-center p-0 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                            class="inline-flex items-center relative  justify-center p-0 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                             <svg class="w-6 h-6 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500"
                                 viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -67,6 +67,8 @@
                                     fill="#9333ea" />
 
                             </svg>
+                            <div class="absolute inline-flex items-center justify-center w-3 h-3 text-xs font-bold text-white bg-red-500 border-0 border-white rounded-full -top-0 -right-1 dark:border-gray-900" style="font-size: 10px">{{ $unread_noti_count > 0 ? $unread_noti_count : '' }}</div>
+
                         </a>
                     </div>
                 </div>
