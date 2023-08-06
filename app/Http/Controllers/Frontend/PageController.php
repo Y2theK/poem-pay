@@ -58,8 +58,8 @@ class PageController extends Controller
             $user->password = Hash::make($request->new_password);
             $user->update();
 
-            $title = 'Changed password successfully';
-            $message = 'You have changed password successfuly.';
+            $title = 'Changed password successfully!';
+            $message = 'You have changed password successfully.';
             $sourceable_id = $user->id;
             $sourceable_type = User::class;
             $web_link = route('profile');
@@ -82,9 +82,9 @@ class PageController extends Controller
     public function notification()
     {
         $user = Auth()->user();
-        $notifications =  $user->notifications;
+        $notifications =  $user->notifications()->paginate(5);
 
-        dd($notifications);
+        // dd($notifications);
 
         return view('frontend.notifications', compact('user', 'notifications'));
     }
@@ -93,6 +93,7 @@ class PageController extends Controller
     {
         $user = Auth()->user();
         $notification = $user->notifications()->where('id', $id)->firstOrFail();
+        $notification->markAsRead();
         dd($notification);
         return view('frontend.notification_detail', compact('user', 'notification'));
     }
@@ -233,16 +234,16 @@ class PageController extends Controller
 
             DB::commit();
 
-            $title = 'E-money Transferred';
-            $message = 'You have transferred ' . number_format($amount) . ' MMK to ' . $to_account_user->name;
+            $title = 'E-money Transferred!';
+            $message = 'You have transferred ' . number_format($amount) . ' MMK to ' . $to_account_user->name . '.';
             $sourceable_id = $from_account_transaction->id;
             $sourceable_type = Transaction::class;
             $web_link = route('transactions.detail',$from_account_transaction->trx_id);
 
             Notification::send($from_account_user,new GeneralNotification($title,$message,$sourceable_id,$sourceable_type,$web_link));
 
-            $title = 'E-money Received';
-            $message = 'You have received ' . number_format($amount) . ' MMK from ' . $from_account_user->name;
+            $title = 'E-money Received!';
+            $message = 'You have received ' . number_format($amount) . ' MMK from ' . $from_account_user->name . '.';
             $sourceable_id = $to_account_transaction->id; 
             $sourceable_type = Transaction::class;
             $web_link = route('transactions.detail',$to_account_transaction->trx_id);
