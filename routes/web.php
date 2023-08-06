@@ -28,6 +28,9 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/transactions',[PageController::class,'transaction'])->name('transactions');
     Route::get('/transactions/{trx_id}',[PageController::class,'transactionDetail'])->name('transactions.detail');
+    
+    Route::get('/notifications',[PageController::class,'notification'])->name('notifications');
+    Route::get('/notifications/{id}',[PageController::class,'notificationDetail'])->name('notifications.detail');
 
     Route::get('/password/check',[PageController::class,'passwordCheck'])->name('password.check');
 

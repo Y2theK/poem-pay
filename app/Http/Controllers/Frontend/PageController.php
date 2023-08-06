@@ -17,26 +17,33 @@ use App\Models\Transaction;
 
 class PageController extends Controller
 {
-    public function home(){
+    public function home()
+    {
         $user = Auth()->user();
-        return view('frontend.home',compact('user'));
+        return view('frontend.home', compact('user'));
     }
-    public function profile(){
+    public function profile()
+    {
         $user = Auth::user();
-        return view('frontend.profile',compact('user'));
+        return view('frontend.profile', compact('user'));
     }
-    public function receiveQR(){
-        return view('frontend.receive_qr',['user' => auth()->user()]);
+    public function receiveQR()
+    {
+        return view('frontend.receive_qr', ['user' => auth()->user()]);
     }
-    public function scanAndPay(){
-        return view('frontend.scan_and_pay',['user' => auth()->user()]);
+    public function scanAndPay()
+    {
+        return view('frontend.scan_and_pay', ['user' => auth()->user()]);
     }
 
-    public function updatePasswordCreate(){
+    public function updatePasswordCreate()
+    {
         return view('frontend.update_password');
 
     }
-    public function updatePasswordStore(Request $request){
+
+    public function updatePasswordStore(Request $request)
+    {
 
         $request->validate([
             'old_password' => 'required',
@@ -44,7 +51,7 @@ class PageController extends Controller
         ]);
         $user = Auth()->user();
 
-        if(Hash::check($request->old_password,$user->password)){
+        if(Hash::check($request->old_password, $user->password)) {
             $user->password = Hash::make($request->new_password);
             $user->update();
 
@@ -54,40 +61,65 @@ class PageController extends Controller
 
 
     }
-    public function wallet(){
+
+    public function wallet()
+    {
         $user = Auth()->user();
-        return view('frontend.wallet',compact('user'));
+        return view('frontend.wallet', compact('user'));
     }
-    public function transaction(){
+
+    public function notification()
+    {
         $user = Auth()->user();
-        $transactions =  Transaction::where('user_id',$user->id)
+        $notifications =  $user->notifications;
+
+        dd($notifications);
+
+        return view('frontend.notifications', compact('user', 'notifications'));
+    }
+
+    public function notificationDetail($id)
+    {
+        $user = Auth()->user();
+        $notification = $user->notifications()->where('id', $id)->firstOrFail();
+        dd($notification);
+        return view('frontend.notification_detail', compact('user', 'notification'));
+    }
+
+    public function transaction()
+    {
+        $user = Auth()->user();
+        $transactions =  Transaction::where('user_id', $user->id)
                         ->latest()->paginate(5);
-                        // ->groupBy(function($item){
-                        //      return $item->created_at->format('F, Y'); 
-                        // }); //group by month
+        // ->groupBy(function($item){
+        //      return $item->created_at->format('F, Y');
+        // }); //group by month
 
         // dd($transactions);
-        return view('frontend.transaction',compact('user','transactions'));
+        return view('frontend.transaction', compact('user', 'transactions'));
     }
-    public function transactionDetail($trx_id){
+    public function transactionDetail($trx_id)
+    {
         $user = Auth()->user();
-        $transaction = Transaction::where('user_id',$user->id)->where('trx_id',$trx_id)->firstOrFail();
+        $transaction = Transaction::where('user_id', $user->id)->where('trx_id', $trx_id)->firstOrFail();
         // dd(request()->route());
-        return view('frontend.transaction_detail',compact('user','transaction'));
+        return view('frontend.transaction_detail', compact('user', 'transaction'));
     }
-    public function transfer(Request $request){
+    public function transfer(Request $request)
+    {
         $user = Auth()->user();
         $to_account = null;
-        if($request->has('to_phone')){
-            $to_account = User::where('phone',$request->to_phone)->first();
-            if(!$to_account || $to_account == $user){
+        if($request->has('to_phone')) {
+            $to_account = User::where('phone', $request->to_phone)->first();
+            if(!$to_account || $to_account == $user) {
                 return back()->withErrors(['fail' => 'Invalid QR Code']);
             }
         }
-        
-        return view('frontend.transfer',compact('user','to_account'));
+
+        return view('frontend.transfer', compact('user', 'to_account'));
     }
-    public function transferConfirm(TransferConfirmRequest $request){
+    public function transferConfirm(TransferConfirmRequest $request)
+    {
 
         $to_phone = $request->to_phone;
         $amount = $request->amount;
@@ -96,33 +128,34 @@ class PageController extends Controller
         $str = $to_phone . $amount . $description;
         $hash_value = hash_hmac('sha256', $str, 'magic_pay');
 
-        if($hash_value !== $request->hash_value){
+        if($hash_value !== $request->hash_value) {
             return redirect()->back()->withErrors(['fail' => 'The given data is invalid.'])->withInput();
         }
         $from_account_user = Auth()->user();
-        $to_account_user = User::where('phone',$request->to_phone)->first();
+        $to_account_user = User::where('phone', $request->to_phone)->first();
 
-        if(!$to_account_user){
-            return redirect()->route('transfer')->withErrors('to_phone','Invalid Account');
+        if(!$to_account_user) {
+            return redirect()->route('transfer')->withErrors('to_phone', 'Invalid Account');
         }
-        if($from_account_user->phone == $to_phone){
-           return redirect()->route('transfer')->withErrors('to_phone','Invalid Phone Number');
+        if($from_account_user->phone == $to_phone) {
+            return redirect()->route('transfer')->withErrors('to_phone', 'Invalid Phone Number');
         }
-        if($from_account_user->wallet->amount < $request->amount){
-            return redirect()->route('transfer')->withErrors('amount','Insuffient Balance');
-         }
-        if(!$from_account_user->wallet || !$to_account_user->wallet){
-            return redirect()->route('transfer')->withErrors('to_phone','Invalid Account');
+        if($from_account_user->wallet->amount < $request->amount) {
+            return redirect()->route('transfer')->withErrors('amount', 'Insuffient Balance');
+        }
+        if(!$from_account_user->wallet || !$to_account_user->wallet) {
+            return redirect()->route('transfer')->withErrors('to_phone', 'Invalid Account');
         }
 
         $to_phone = $request->to_phone;
         $amount = $request->amount;
         $description = $request->description;
 
-        return view('frontend.transfer_confirm',compact('from_account_user','to_account_user','amount','description','hash_value'));
+        return view('frontend.transfer_confirm', compact('from_account_user', 'to_account_user', 'amount', 'description', 'hash_value'));
     }
-    public function transferComplete(TransferConfirmRequest $request,Exception $exception){
-       
+    public function transferComplete(TransferConfirmRequest $request, Exception $exception)
+    {
+
         $to_phone = $request->to_phone;
         $amount = $request->amount;
         $description = $request->description;
@@ -130,24 +163,24 @@ class PageController extends Controller
         $str = $to_phone . $amount . $description;
         $hash_value = hash_hmac('sha256', $str, 'magic_pay');
 
-        if($hash_value !== $request->hash_value){
+        if($hash_value !== $request->hash_value) {
             return redirect()->back()->withErrors(['fail' => 'The given data is invalid.'])->withInput();
         }
 
         $from_account_user = Auth()->user();
-        $to_account_user = User::where('phone',$request->to_phone)->first();
+        $to_account_user = User::where('phone', $request->to_phone)->first();
 
-        if(!$to_account_user){
-            return redirect()->route('transfer')->withErrors('to_phone','Invalid Account');
+        if(!$to_account_user) {
+            return redirect()->route('transfer')->withErrors('to_phone', 'Invalid Account');
         }
-        if($from_account_user->phone == $to_phone){
-           return redirect()->route('transfer')->withErrors('to_phone','Invalid Phone Number');
+        if($from_account_user->phone == $to_phone) {
+            return redirect()->route('transfer')->withErrors('to_phone', 'Invalid Phone Number');
         }
-        if($from_account_user->wallet->amount < $request->amount){
-            return redirect()->route('transfer')->withErrors('amount','Insuffient Balance');
-         }
-        if(!$from_account_user->wallet || !$to_account_user->wallet){
-            return redirect()->route('transfer')->withErrors('to_phone','Invalid Account');
+        if($from_account_user->wallet->amount < $request->amount) {
+            return redirect()->route('transfer')->withErrors('amount', 'Insuffient Balance');
+        }
+        if(!$from_account_user->wallet || !$to_account_user->wallet) {
+            return redirect()->route('transfer')->withErrors('to_phone', 'Invalid Account');
         }
 
         DB::beginTransaction();
@@ -155,11 +188,11 @@ class PageController extends Controller
         try {
 
             $from_account_wallet = $from_account_user->wallet;
-            $from_account_wallet->decrement('amount',$amount);
+            $from_account_wallet->decrement('amount', $amount);
             $from_account_wallet->save();
-            
+
             $to_account_wallet = $to_account_user->wallet;
-            $to_account_wallet->increment('amount',$amount);
+            $to_account_wallet->increment('amount', $amount);
             $to_account_wallet->save();
 
             $ref_no = UUIDGenerater::refNo();
@@ -185,19 +218,20 @@ class PageController extends Controller
 
             DB::commit();
 
-            return redirect()->route('transactions.detail',$from_account_transaction->trx_id)->with('transfer_success','Successfully Transferred');
+            return redirect()->route('transactions.detail', $from_account_transaction->trx_id)->with('transfer_success', 'Successfully Transferred');
 
         } catch (\Throwable $e) {
-           DB::rollBack();
-           return redirect()->back()->withErrors('failed','Something wrong.')->withInput();
+            DB::rollBack();
+            return redirect()->back()->withErrors('failed', 'Something wrong.')->withInput();
         }
 
-        
+
 
         // return view('frontend.transfer_complete',compact('from_account_user','to_account_user','amount','description'));
     }
-    public function passwordCheck(Request $request){
-        if(Hash::check($request->password,auth()->user()->password)){
+    public function passwordCheck(Request $request)
+    {
+        if(Hash::check($request->password, auth()->user()->password)) {
             return response()->json([
                 'status' => 'success'
             ]);
@@ -206,7 +240,8 @@ class PageController extends Controller
             'status' => 'fail',
         ]);
     }
-    public function hashTransfer(Request $request){
+    public function hashTransfer(Request $request)
+    {
         $str = $request->to_phone . $request->amount . $request->description;
         $hash_value = hash_hmac('sha256', $str, 'magic_pay');
         return response()->json([
@@ -214,20 +249,21 @@ class PageController extends Controller
             'data' => $hash_value
         ]);
     }
-    public function toAccountVerify(Request $request){
-        $user = User::where('phone',$request->phone)->first();
-        if(auth()->user()->phone != $request->phone){
-            if($user){
+    public function toAccountVerify(Request $request)
+    {
+        $user = User::where('phone', $request->phone)->first();
+        if(auth()->user()->phone != $request->phone) {
+            if($user) {
                 return response()->json([
                     'status' => 'success',
                     'data' => $user
                 ]);
             }
         }
-            return response()->json([
-                'status' => 'fail',
-                'message' => 'Invalid Phone Number'
+        return response()->json([
+            'status' => 'fail',
+            'message' => 'Invalid Phone Number'
         ]);
-        
+
     }
 }
