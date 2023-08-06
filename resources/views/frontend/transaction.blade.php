@@ -54,7 +54,7 @@
 
                                 <span
                                     class="{{ $transaction->type == 1 ? 'text-green-500' : 'text-red-500' }}">{{ $transaction->type == 1 ? '+' : '-' }}
-                                    {{ $transaction->amount }} <small>MMK</small> </span>
+                                    {{ number_format($transaction->amount) }} <small>MMK</small> </span>
                             </div>
                         </a>
 

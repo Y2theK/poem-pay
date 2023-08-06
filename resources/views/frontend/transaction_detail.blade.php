@@ -51,7 +51,7 @@
                     </div>
                     <hr>
                     <div class=" flex my-4 justify-between text-md font-medium text-gray-900 dark:text-white">
-                        <span>{{ __('Amount') }}</span> <span>{{ $transaction->amount }} <small>MMK</small> </span>
+                        <span>{{ __('Amount') }}</span> <span>{{ number_format($transaction->amount) }} <small>MMK</small> </span>
                     </div>
                     <hr>
                     <div class=" flex my-4  justify-between text-md font-medium text-gray-900 dark:text-white">

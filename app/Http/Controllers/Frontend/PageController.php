@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\frontend\TransferConfirmRequest;
 use App\Models\Transaction;
+use App\Notifications\GeneralNotification;
+use Illuminate\Support\Facades\Notification;
 
 class PageController extends Controller
 {
@@ -49,11 +51,20 @@ class PageController extends Controller
             'old_password' => 'required',
             'new_password' => ['required',Rules\Password::defaults()]
         ]);
+
         $user = Auth()->user();
 
         if(Hash::check($request->old_password, $user->password)) {
             $user->password = Hash::make($request->new_password);
             $user->update();
+
+            $title = 'Changed password successfully';
+            $message = 'You have changed password successfuly.';
+            $sourceable_id = $user->id;
+            $sourceable_type = User::class;
+            $web_link = route('profile');
+
+            Notification::send($user,new GeneralNotification($title,$message,$sourceable_id,$sourceable_type,$web_link));
 
             return redirect()->route('profile')->with(['updated' => 'Password Updated.']);
         }
@@ -98,6 +109,7 @@ class PageController extends Controller
         // dd($transactions);
         return view('frontend.transaction', compact('user', 'transactions'));
     }
+
     public function transactionDetail($trx_id)
     {
         $user = Auth()->user();
@@ -105,6 +117,7 @@ class PageController extends Controller
         // dd(request()->route());
         return view('frontend.transaction_detail', compact('user', 'transaction'));
     }
+
     public function transfer(Request $request)
     {
         $user = Auth()->user();
@@ -118,6 +131,7 @@ class PageController extends Controller
 
         return view('frontend.transfer', compact('user', 'to_account'));
     }
+
     public function transferConfirm(TransferConfirmRequest $request)
     {
 
@@ -153,6 +167,7 @@ class PageController extends Controller
 
         return view('frontend.transfer_confirm', compact('from_account_user', 'to_account_user', 'amount', 'description', 'hash_value'));
     }
+
     public function transferComplete(TransferConfirmRequest $request, Exception $exception)
     {
 
@@ -218,6 +233,22 @@ class PageController extends Controller
 
             DB::commit();
 
+            $title = 'E-money Transferred';
+            $message = 'You have transferred ' . number_format($amount) . ' MMK to ' . $to_account_user->name;
+            $sourceable_id = $from_account_transaction->id;
+            $sourceable_type = Transaction::class;
+            $web_link = route('transactions.detail',$from_account_transaction->trx_id);
+
+            Notification::send($from_account_user,new GeneralNotification($title,$message,$sourceable_id,$sourceable_type,$web_link));
+
+            $title = 'E-money Received';
+            $message = 'You have received ' . number_format($amount) . ' MMK from ' . $from_account_user->name;
+            $sourceable_id = $to_account_transaction->id; 
+            $sourceable_type = Transaction::class;
+            $web_link = route('transactions.detail',$to_account_transaction->trx_id);
+
+            Notification::send($to_account_user,new GeneralNotification($title,$message,$sourceable_id,$sourceable_type,$web_link));
+
             return redirect()->route('transactions.detail', $from_account_transaction->trx_id)->with('transfer_success', 'Successfully Transferred');
 
         } catch (\Throwable $e) {
@@ -229,6 +260,7 @@ class PageController extends Controller
 
         // return view('frontend.transfer_complete',compact('from_account_user','to_account_user','amount','description'));
     }
+
     public function passwordCheck(Request $request)
     {
         if(Hash::check($request->password, auth()->user()->password)) {
@@ -240,6 +272,7 @@ class PageController extends Controller
             'status' => 'fail',
         ]);
     }
+
     public function hashTransfer(Request $request)
     {
         $str = $request->to_phone . $request->amount . $request->description;
@@ -249,6 +282,7 @@ class PageController extends Controller
             'data' => $hash_value
         ]);
     }
+
     public function toAccountVerify(Request $request)
     {
         $user = User::where('phone', $request->phone)->first();
