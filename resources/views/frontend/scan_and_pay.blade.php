@@ -7,7 +7,8 @@
             class="w-full py-5 px-10 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div class="flex justify-center">
                 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"
-                    data-imageid="bug-fixing-4" imageName="QR code" class="illustrations_image" width="406" height="306">
+                    data-imageid="bug-fixing-4" imageName="QR code" class="illustrations_image" width="406"
+                    height="306">
                     <title>_</title>
                     <path
                         d="M303.91,63.94c33.15,9.24,58.74,35.63,65.19,68.79,5.44,27.93-4.15,62.39-58.85,78.69-55.83,16.65-211.69,25.46-240.34-19.73S47.77,88.26,107.32,67.27C149.06,52.55,239.15,45.89,303.91,63.94Z"
@@ -136,38 +137,102 @@
                     <rect x="185.69" y="213.58" width="94.03" height="5.62" fill="#fff"
                         opacity="0.46" />
                 </svg>
+
+            </div>
+            <div class="text-center">
+                <x-button data-modal-target="defaultModal"  id="scan">
+                    {{ __('Scan QR') }}
+                </x-button>
             </div>
 
-            <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-            <form method="POST" action="{{ route('update_password.store') }}">
-                @csrf
-
-
-                <!-- Old Password -->
-                <div class="mt-4">
-                    <x-label for="old_password" :value="__('Old Password')" />
-                    <x-input id="old_password" class="block mt-1 w-full" type="password" name="old_password" />
+            <!-- Main modal -->
+            <div id="defaultModal" tabindex="-1" aria-hidden="true"
+                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative w-full max-w-2xl max-h-full">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <!-- Modal header -->
+                        <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                Scan QR to Pay
+                            </h3>
+                            <button type="button"
+                                class="scan-close text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                data-modal-hide="defaultModal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-6 space-y-6">
+                            <video id="scanner" width="100%" height="300px"></video>
+                        </div>
+                        <!-- Modal footer -->
+                        <div
+                            class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                            <x-button class="scan-close">
+                                {{ __('Close') }}
+                            </x-button>
+                        </div>
+                    </div>
                 </div>
-                <!-- new Password -->
-                <div class="mt-4">
-                    <x-label for="new_password" :value="__('New Password')" />
-
-                    <x-input id="new_password" class="block mt-1 w-full" type="password" name="new_password" />
-                </div>
+            </div>
 
 
 
-                <div class="flex items-center justify-end mt-4">
-                    <x-button class="ml-3">
-                        {{ __('Update Password') }}
-                    </x-button>
-                </div>
-            </form>
+
         </div>
     </div>
 
 
+    @section('script')
 
+        <script src="{{ asset('js/qr-scanner.umd.min.js') }}"></script>
+        <script>
+            $(document).ready(function() {
+
+                const videoElem = document.getElementById('scanner')
+                const qrScanner = new QrScanner(
+                    videoElem,
+                    function(result) {
+                        if(result){
+                            qrScanner.stop();
+                            modal.hide();
+                        }
+                    },
+                );
+                // set the modal menu element
+                const $targetEl = document.getElementById('defaultModal');
+
+                // options with default values
+                const options = {
+                    //   placement: 'bottom-right',
+                    backdrop: 'dynamic',
+                    backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
+                    closable: false,
+                    onHide: () => {
+                        qrScanner.stop();
+                    },
+                    onShow: () => {
+                        qrScanner.start();
+                    },
+                };
+
+
+                const modal = new Modal($targetEl, options);
+                $('#scan').click(function(){
+                    modal.show();
+                });
+                $('.scan-close').click(function(){
+                    modal.hide();
+                });
+
+            })
+        </script>
+
+    @endsection
 </x-app-layout>

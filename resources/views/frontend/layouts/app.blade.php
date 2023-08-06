@@ -115,9 +115,9 @@
                         <span
                             class=" text-gray-500 dark:text-gray-400  {{ areActiveRoutes(['wallet'], 'text-purple-600') }} group-hover:text-purple-600  dark:group-hover:text-purple-500">Wallet</span>
                     </a>
-                    <a type="button"
+                    <a type="button" href="{{ route('scan_and_pay') }}"
                         class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-                        <svg class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500"
+                        <svg class="w-5 h-5 mb-2 {{ areActiveRoutes(['scan_and_pay'], 'text-purple-600') }} text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 24 24">
                             <path
@@ -125,7 +125,7 @@
                         </svg>
 
                         <span
-                            class=" text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500">Scan</span>
+                            class=" text-gray-500 dark:text-gray-400  {{ areActiveRoutes(['scan_and_pay'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500">Scan</span>
                     </a>
                     <a type="button" href="{{ route('transactions') }}"
                         class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
@@ -210,6 +210,8 @@
             })
         @endif
     </script>
+    {{-- <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script> --}}
+
 
 </body>
 
