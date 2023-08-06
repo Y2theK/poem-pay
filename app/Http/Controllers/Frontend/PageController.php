@@ -75,9 +75,17 @@ class PageController extends Controller
         // dd(request()->route());
         return view('frontend.transaction_detail',compact('user','transaction'));
     }
-    public function transfer(){
+    public function transfer(Request $request){
         $user = Auth()->user();
-        return view('frontend.transfer',compact('user'));
+        $to_account = null;
+        if($request->has('to_phone')){
+            $to_account = User::where('phone',$request->to_phone)->first();
+            if(!$to_account || $to_account == $user){
+                return back()->withErrors(['fail' => 'Invalid QR Code']);
+            }
+        }
+        
+        return view('frontend.transfer',compact('user','to_account'));
     }
     public function transferConfirm(TransferConfirmRequest $request){
 

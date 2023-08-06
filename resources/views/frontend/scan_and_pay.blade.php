@@ -1,11 +1,15 @@
-@section('title', 'Update Password')
+@section('title', 'Scan & Pay')
 <x-app-layout>
     {{-- Profile Card --}}
+    
     <div class="flex justify-center">
 
         <div
             class="w-full py-5 px-10 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            @include('backend.layouts.flash')
             <div class="flex justify-center">
+
+
                 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"
                     data-imageid="bug-fixing-4" imageName="QR code" class="illustrations_image" width="406"
                     height="306">
@@ -202,6 +206,9 @@
                         if(result){
                             qrScanner.stop();
                             modal.hide();
+                            const url = '{{ route('transfer',['to_phone' => '']) }}' + result;
+                            console.log(url);
+                            return window.location.replace('/transfer?to_phone=' + result);
                         }
                     },
                 );

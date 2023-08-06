@@ -10,7 +10,7 @@
                 {{-- @csrf --}}
 
                 <input type="hidden" name="hash_value" value="">
-                <!-- To Phone-->
+                <!-- From Phone-->
                 <div class="mt-4">
                     <x-label for="to_phone" :value="__('From')" class="mb-3" />
 
@@ -24,12 +24,45 @@
 
 
                 </div>
-                <!-- To Phone-->
+
+                {{-- @if ($to_account)
+                <div class="mt-4">
+                    <x-label for="to_phone" :value="__('To')" class="mb-3" />
+
+                    <label class='block font-medium text-sm text-gray-700'>
+                        {{ $to_account->name }}
+                    </label>
+                    <label class='block font-medium text-sm text-gray-700'>
+                        {{ $to_account->phone }}
+                    </label>
+                    <input type="hidden" name="to_phone" value="{{ $to_account->phone }}">
+                    
+                </div>
+                @else
+                   <!-- To Phone-->
                 <div class="mt-4">
                     <x-label for="to_phone" :value="__('To')" class="inline-block" /><span class="to_account_info text-green-500 font-semibold text-xs"></span>
                     <div class="flex">
                         <x-input id="to_phone" class="block mt-1 w-full" type="number" placeholder="09123987456"
                             name="to_phone" value="{{ old('to_phone') }}" />
+                        <button type="button"
+                            class="ml-2 px-2 verify-btn text-white bg-purple-700 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  border  hover:bg-purple-800  focus:outline-none  dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
+                            <i class="las la-user-check text-xl"></i>
+                        </button>
+                    </div>
+                    @error('to_phone')
+                        <span class="text-xs ml-1 text-red-600 dark:text-red-400">{{ $message }}</span>
+                    @enderror
+                </div>
+                @endif --}}
+
+
+                <!-- To Phone-->
+                <div class="mt-4">
+                    <x-label for="to_phone" :value="__('To')" class="inline-block" /><span class="to_account_info text-green-500 font-semibold text-xs"></span>
+                    <div class="flex">
+                        <x-input id="to_phone" class="block mt-1 w-full" type="number" placeholder="09123987456"
+                            name="to_phone" value="{{ $to_account->phone ?? old('to_phone')}}" />
                         <button type="button"
                             class="ml-2 px-2 verify-btn text-white bg-purple-700 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  border  hover:bg-purple-800  focus:outline-none  dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
                             <i class="las la-user-check text-xl"></i>
