@@ -17,7 +17,7 @@
 
 
             <div class="grid grid-flow-col space-x-3 grid-cols-2">
-                <a href="{{ route('update_password') }}"
+                <a href="{{ route('scan_and_pay') }}"
                     class="flex p-5 cursor-pointer  bg-white border border-gray-200 rounded-lg shadow items-center justify-center text-md font-medium text-gray-900 dark:text-white  group">
                     {{-- <div class="flex "> --}}
 
@@ -51,7 +51,7 @@
                     <span class="ml-5">{{ __('Scan Pay') }}</span>
                     {{-- </div> --}}
                 </a>
-                <a href="{{ route('update_password') }}"
+                <a href="{{ route('receive_qr') }}"
                     class="flex p-5 cursor-pointer  bg-white border border-gray-200 rounded-lg shadow items-center justify-center text-md font-medium text-gray-900 dark:text-white  group">
                     {{-- <div class="flex "> --}}
                     <svg class="w-6 h-6  text-gray-500  dark:text-gray-400  {{ areActiveRoutes(['wallet'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500"

@@ -33,6 +33,9 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/profile/update-password',[PageController::class,'updatePasswordCreate'])->name('update_password');
     Route::post('/profile/update-password',[PageController::class,'updatePasswordStore'])->name('update_password.store');
+
+    Route::get('/receive-qr',[PageController::class,'receiveQR'])->name('receive_qr');
+    Route::get('/scan-and-pay',[PageController::class,'scanAndPay'])->name('scan_and_pay');
 });
 
 

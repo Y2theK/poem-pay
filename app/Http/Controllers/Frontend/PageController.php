@@ -25,6 +25,13 @@ class PageController extends Controller
         $user = Auth::user();
         return view('frontend.profile',compact('user'));
     }
+    public function receiveQR(){
+        return view('frontend.receive_qr',['user' => auth()->user()]);
+    }
+    public function scanAndPay(){
+        return view('frontend.scan_and_pay',['user' => auth()->user()]);
+    }
+
     public function updatePasswordCreate(){
         return view('frontend.update_password');
 
