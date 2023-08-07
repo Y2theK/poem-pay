@@ -16,7 +16,7 @@
                     class="{{ $transaction->type == 1 ? 'text-green-500' : 'text-red-500' }}">
                     {{ $transaction->amount }} <small>MMK</small> </span>
                 </div>
-                {{-- @if (session('transfer_success')) --}}
+                @if (session('transfer_success'))
                     
                     <div id="alertSuccess" class="flex items-center justify-center  w-full  max-w-5xl p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
                         <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -24,8 +24,7 @@
                         </svg>
                         <span class="sr-only">Info</span>
                         <div class="ml-3 text-sm font-medium ">
-                        {{-- {{ session('transfer_success') }} --}}
-                        Successfully Transferred
+                        {{ session('transfer_success') }}
                         </div>
                         <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700" data-dismiss-target="#alertSuccess" aria-label="Close">
                         <span class="sr-only">Close</span>
@@ -34,7 +33,7 @@
                         </svg>
                         </button>
                     </div>
-                {{-- @endif --}}
+                @endif
 
                 <div class="w-full px-5 ">
                     <div class=" flex my-4 justify-between text-md font-medium text-gray-900 dark:text-white">

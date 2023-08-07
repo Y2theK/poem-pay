@@ -84,7 +84,6 @@ class PageController extends Controller
         $user = Auth()->user();
         $notifications =  $user->notifications()->paginate(5);
 
-        // dd($notifications);
 
         return view('frontend.notifications', compact('user', 'notifications'));
     }
@@ -94,7 +93,6 @@ class PageController extends Controller
         $user = Auth()->user();
         $notification = $user->notifications()->where('id', $id)->firstOrFail();
         $notification->markAsRead();
-        dd($notification);
         return view('frontend.notification_detail', compact('user', 'notification'));
     }
 

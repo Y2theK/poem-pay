@@ -1,11 +1,9 @@
-@section('title', 'Transactions')
+@section('title', 'Notifications')
 <x-app-layout>
 
     {{-- Transactions lists --}}
     <div class="infinite-scroll">
         <div class="flex justify-center flex-col items-center">
-            {{-- @foreach ($transactions as $month => $monthly_transactions) --}}
-            {{-- {{ $month }} --}}
             @foreach ($notifications as $notification)
                 <div
                     class="w-full  mb-2 py-2 px-5 max-w-5xl {{ $notification->read_at ? 'bg-white' : 'bg-gray-100' }} border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
