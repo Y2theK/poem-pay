@@ -8,6 +8,7 @@
 
             <form method="GET" action="{{ route('transfer.confirm') }}">
                 {{-- @csrf --}}
+                @include('backend.layouts.flash')
 
                 <input type="hidden" name="hash_value" value="">
                 <!-- From Phone-->

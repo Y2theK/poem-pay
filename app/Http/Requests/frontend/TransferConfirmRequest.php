@@ -27,7 +27,7 @@ class TransferConfirmRequest extends FormRequest
         return [
             'to_phone' => 'required|numeric|exists:users,phone',
             'amount' => 'required|integer|min:1000',
-            'description' => 'string|nullable'
+            'description' => 'string|nullable|max:100'
         ];
     }
     public function messages(){
