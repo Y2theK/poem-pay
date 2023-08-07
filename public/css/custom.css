@@ -5,3 +5,9 @@
 .bg-theme-color{
     background: #f3f4f6;
 }
+.amount-edit-btn{
+    display: none;
+}
+td:has(> .amount-group):hover .amount-edit-btn{
+    display: block;
+}

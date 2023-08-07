@@ -33,6 +33,11 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+            $(document).on('click','.amount-edit-btn',function(e){
+                e.preventDefault();
+                var id = $(this).data('id');
+                console.log('Amount Edit',id);
+            })
 
             var table = $('#walletDatatable').DataTable({
                     "responsive": true,
