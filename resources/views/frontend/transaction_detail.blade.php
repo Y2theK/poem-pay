@@ -58,7 +58,7 @@
                     </div>
                     <hr>
                     <div class=" flex my-4 justify-between text-md font-medium text-gray-900 dark:text-white">
-                        <span>{{ __('To') }}</span> <span>{{ $transaction->source->phone }}</span>
+                        <span>{{ $transaction->type == 1 ? __('From') : __('To') }}</span> <span>{{ $transaction->source ? $transaction->source->phone : 'admin@magic-pay.com'}}</span>
                     </div>
                     <hr>
                     <div class=" flex mt-4 mb-0  justify-between text-md font-medium text-gray-900 dark:text-white">

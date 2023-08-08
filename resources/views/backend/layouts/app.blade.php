@@ -14,8 +14,8 @@
     <script src="{{ asset('backend/js/init-alpine.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
-    <script src="{{ asset('backend/js/charts-lines.js') }}" defer></script>
-    <script src="{{ asset('backend/js/charts-pie.js') }}" defer></script>
+    {{-- <script src="{{ asset('backend/js/charts-lines.js') }}" defer></script> --}}
+    {{-- <script src="{{ asset('backend/js/charts-pie.js') }}" defer></script> --}}
    
     {{-- line awesome --}}
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
@@ -200,6 +200,12 @@
 		icon: 'success',
 		title: '{{ session('updated') }}'
 		})
+	@elseif (session('fail'))
+		Toast.fire({
+		icon: 'danger',
+		title: '{{ session('fail') }}'
+		})
+	
 	@endif
 
 	

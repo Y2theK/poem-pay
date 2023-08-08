@@ -42,7 +42,7 @@
                                     </g>
                                 </svg>
                                 <div>{{ $transaction->type == 1 ? 'Received from' : 'Transfer to' }} <strong>
-                                        {{ $transaction->source->name }}</strong>
+                                        {{ $transaction->source ? $transaction->source->name : 'Admin'}}</strong>
                                     <br>
                                     <small
                                         class="text-gray-600">{{ $transaction->created_at->format('d/m H:i:s') }}</small>

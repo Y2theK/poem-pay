@@ -12,6 +12,8 @@ Route::prefix('/admin')->name('admin.')->middleware('auth:admin_user')->group(fu
     Route::get('users/datatable/ssd',[UserController::class,'getUsers'])->name('users_ssd');
     Route::get('staffs/datatable/ssd',[StaffController::class,'getStaffs'])->name('staffs_ssd');
     
+    Route::post('/amount/{account_id}',[WalletController::class,'amountUpdate'])->name('amount_update');
+
     Route::resource('users',UserController::class);
     Route::resource('staffs',StaffController::class);
 
