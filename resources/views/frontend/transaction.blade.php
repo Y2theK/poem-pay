@@ -41,7 +41,7 @@
                c-3.039,0-5.503,2.464-5.503,5.503c0,3.039,2.464,5.503,5.503,5.503H256.08L230.25,288.467z" />
                                     </g>
                                 </svg>
-                                <div>{{ $transaction->type == 1 ? 'Received from' : 'Transfer to' }} <strong>
+                                <div>{{  config('transaction_types.typeTitles')[$transaction->type]  }} <strong>
                                         {{ $transaction->source ? $transaction->source->name : 'Admin'}}</strong>
                                     <br>
                                     <small
@@ -53,7 +53,7 @@
                             <div>
 
                                 <span
-                                    class="{{ $transaction->type == 1 ? 'text-green-500' : 'text-red-500' }}">{{ $transaction->type == 1 ? '+' : '-' }}
+                                    class="text-{{ config('transaction_types.typeColors')[$transaction->type] }}">{{config('transaction_types.typeSymbols')[$transaction->type] }}
                                     {{ number_format($transaction->amount) }} <small>MMK</small> </span>
                             </div>
                         </a>

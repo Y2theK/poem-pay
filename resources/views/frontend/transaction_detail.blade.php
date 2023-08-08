@@ -13,7 +13,7 @@
                     src=" {{ asset('image/logo/animation_correct.gif') }}"
                     alt="{{ $user->name }}" />
                     <span
-                    class="{{ $transaction->type == 1 ? 'text-green-500' : 'text-red-500' }}">
+                    class="text-{{ config('transaction_types.typeColors')[$transaction->type] }}">
                     {{ $transaction->amount }} <small>MMK</small> </span>
                 </div>
                 @if (session('transfer_success'))
@@ -45,8 +45,8 @@
                     </div> --}}
                     {{-- <hr> --}}
                     <div class=" flex my-4  justify-between text-md font-medium text-gray-900 dark:text-white">
-                        <span>{{ __('Type') }}</span> <span class="px-2 py-1 rounded-md  text-xs font-bold text-white {{ $transaction->type == 1 ? 'bg-green-500' : 'bg-red-500' }}">{{ $transaction->type == 1 ? 'Income' : 
-                        'Expense'}}</span>
+                        <span>{{ __('Type') }}</span> <span class="px-2 py-1 rounded-md  text-xs font-bold text-white bg-{{ config('transaction_types.typeColors')[$transaction->type] }}">{{ config('transaction_types.typeTexts')[$transaction->type]
+                        }}</span>
                     </div>
                     <hr>
                     <div class=" flex my-4 justify-between text-md font-medium text-gray-900 dark:text-white">
@@ -58,7 +58,7 @@
                     </div>
                     <hr>
                     <div class=" flex my-4 justify-between text-md font-medium text-gray-900 dark:text-white">
-                        <span>{{ $transaction->type == 1 ? __('From') : __('To') }}</span> <span>{{ $transaction->source ? $transaction->source->phone : 'admin@magic-pay.com'}}</span>
+                        <span>{{  config('transaction_types.typeTitles')[$transaction->type] }}</span> <span>{{ $transaction->source ? $transaction->source->phone : 'admin@magic-pay.com'}}</span>
                     </div>
                     <hr>
                     <div class=" flex mt-4 mb-0  justify-between text-md font-medium text-gray-900 dark:text-white">

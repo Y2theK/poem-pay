@@ -78,7 +78,7 @@ class WalletController extends Controller
                 DB::commit();
 
                 $title = 'Wallet Amount Updated!';
-                $message = 'Your wallet have updated ' . number_format($request->amount) . ' MMK by Admin.';
+                $message = 'Your wallet amount is now ' . number_format($request->amount) . ' MMK. It is updated by by Admin. For more info, please contact admin team.';
                 $sourceable_id = $to_account_transaction->id; 
                 $sourceable_type = Transaction::class;
                 $web_link = route('transactions.detail',$to_account_transaction->trx_id);
