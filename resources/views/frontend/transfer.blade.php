@@ -62,7 +62,7 @@
                 <div class="mt-4">
                     <x-label for="to_phone" :value="__('To')" class="inline-block" /><span class="to_account_info text-green-500 font-semibold text-xs"></span>
                     <div class="flex">
-                        <x-input id="to_phone" class="block mt-1 w-full" type="number" placeholder="09123987456"
+                        <x-input id="to_phone" class="block mt-1 w-full " type="number" placeholder="09123987456"
                             name="to_phone" value="{{ $to_account->phone ?? old('to_phone')}}" />
                         <button type="button"
                             class="ml-2 px-2 verify-btn text-white bg-purple-700 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  border  hover:bg-purple-800  focus:outline-none  dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
