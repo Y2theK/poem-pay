@@ -20,7 +20,7 @@
                 @endif
                
             </div>
-            <input id="dropzone-file" type="file" class="hidden" name="avatar" />
+            <input id="dropzone-file" type="file" class="hidden" name="avatar" accept="image/*" />
         </label>
         </form>
     </div> 
