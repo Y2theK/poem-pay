@@ -11,3 +11,6 @@
 td:has(> .amount-group):hover .amount-edit-btn{
     display: block;
 }
+.profile-img:hover .upload-icon{
+    display: block;
+}

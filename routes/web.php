@@ -17,6 +17,7 @@ use App\Http\Controllers\Auth\AdminLoginController;
 Route::middleware('auth')->group(function(){
     Route::get('/',[PageController::class,'home'])->name('home');
     Route::get('/profile',[PageController::class,'profile'])->name('profile');
+    Route::post('/profile-image-upload',[PageController::class,'uploadProfileImage'])->name('profile_image_upload');
 
     Route::get('/wallet',[PageController::class,'wallet'])->name('wallet');
 
