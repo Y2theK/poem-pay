@@ -213,6 +213,11 @@
                 icon: 'success',
                 title: '{{ session('updated') }}'
             })
+        @elseif (session('saved'))
+        Toast.fire({
+                icon: 'success',
+                title: '{{ session('saved') }}'
+            })
         @endif
     </script>
     {{-- <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script> --}}

@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Helpers\UUIDGenerater;
 use Exception;
 use App\Models\User;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Helpers\UUIDGenerater;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
-use App\Http\Requests\frontend\TransferConfirmRequest;
-use App\Models\Transaction;
+use Illuminate\Support\Facades\Storage;
 use App\Notifications\GeneralNotification;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Validation\ValidationException;
+use App\Http\Requests\frontend\TransferConfirmRequest;
 
 class PageController extends Controller
 {
@@ -28,6 +29,29 @@ class PageController extends Controller
     {
         $user = Auth::user();
         return view('frontend.profile', compact('user'));
+    }
+    public function uploadProfileImage(Request $request){
+
+       $request->validate([
+        'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+       ]);
+
+       $imageName = time().'.'.$request->avatar->extension();
+
+       $path = 'avatars/';
+
+        $request->avatar->storeAs($path,$imageName,'public');
+      
+        $user = Auth::user();
+        if($user->avatar){
+            Storage::disk('public')->delete($user->avatar);
+        }
+        $user->avatar = $path . $imageName;
+        $user->save();
+
+        return redirect()->route('profile')->with(['saved' => 'Profile Successfully Updated.']);
+
+
     }
     public function receiveQR()
     {
