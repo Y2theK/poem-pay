@@ -13,8 +13,8 @@
                         class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         <th data-priority="1">ID</th>
                         <th data-priority="2">Ref ID</th>
-                        <th data-priority="2">Received User</th>
-                        <th data-priority="2">Source User</th>
+                        <th data-priority="2">User</th>
+                        <th data-priority="2">Source</th>
                         <th data-priority="3">Type</th>
                         <th data-priority="6">Amount (MMK)</th>
                         <th data-priority="5">Date</th>
