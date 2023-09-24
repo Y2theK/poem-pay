@@ -1,10 +1,11 @@
 @section('title', 'Magic Pay')
 <x-app-layout>
-    <div class="flex justify-center">
-        <img class="w-20 h-20 border-2 text-center border-purple-500 mb-5 rounded-full shadow-lg"
-            src="https://ui-avatars.com/api/?name={{ $user->name }}&background=ffffff" alt="{{ $user->name }}" />
+    <div class="flex justify-center mb-5 ">
+        <img class="w-20 h-20 border-2 text-center border-purple-600  rounded-full shadow-lg object-center"
+                    src={{ $user->avatar ?  asset('storage/'.$user->avatar) : "https://ui-avatars.com/api/?name=$user->name&background=ffffff" }}
+                    alt="{{ $user->name }}" />
     </div>
-    <p class="text-center">{{ $user->name }}</p>
+    <p class="text-center font-semibold">{{ $user->name }}</p>
     <p class="text-center">{{ $user->wallet ? number_format($user->wallet->amount) : '-' }} <span
             class="text-xs">MMK</span> </p>
 
