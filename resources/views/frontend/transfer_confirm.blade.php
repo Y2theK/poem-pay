@@ -6,7 +6,7 @@
         <div
             class="w-full py-5 px-10 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
-            <form method="POST" action="{{ route('transfer.complete') }}">
+            <form method="POST" action="{{ route('transfer.complete') }}" class="transfer-confirm-form">
                 @csrf
                 @include('backend.layouts.flash')
                 <!-- From Phone-->
@@ -94,7 +94,7 @@
                                 type: 'GET',
                                 success: function(res) {
                                     if (res.status == 'success') {
-                                         $('form').submit();
+                                         $('.transfer-confirm-form').submit();
                                     }else{
                                         Swal.fire({
                                             icon: 'error',

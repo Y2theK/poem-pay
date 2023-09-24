@@ -45,7 +45,8 @@
                     </div> --}}
                     {{-- <hr> --}}
                     <div class=" flex my-4  justify-between text-md font-medium text-gray-900 dark:text-white">
-                        <span>{{ __('Type') }}</span> <span class="px-2 py-1 rounded-md  text-xs font-bold text-white bg-{{ config('transaction_types.typeColors')[$transaction->type] }}">{{ config('transaction_types.typeTexts')[$transaction->type]
+                        <span>{{ __('Type') }}</span> 
+                        <span class="px-2 py-1 rounded-md  text-xs font-bold text-white bg-{{ config('transaction_types.typeColors')[$transaction->type] }}">{{ config('transaction_types.typeTexts')[$transaction->type]
                         }}</span>
                     </div>
                     <hr>
@@ -58,7 +59,7 @@
                     </div>
                     <hr>
                     <div class=" flex my-4 justify-between text-md font-medium text-gray-900 dark:text-white">
-                        <span>{{  config('transaction_types.typeTitles')[$transaction->type] }}</span> <span>{{ $transaction->source ? $transaction->source->phone : 'admin@magic-pay.com'}}</span>
+                        <span>{{  config('transaction_types.typeTitles')[$transaction->type] }}</span> <span>{{ $transaction->source ? $transaction->source->phone : config('mail.from.address') }}</span>
                     </div>
                     <hr>
                     <div class=" flex mt-4 mb-0  justify-between text-md font-medium text-gray-900 dark:text-white">

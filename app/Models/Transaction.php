@@ -10,6 +10,9 @@ class Transaction extends Model
 {
     use HasFactory;
     public function source(){
-        return $this->hasOne(User::class,'id','source_id');
+        return $this->belongsTo(User::class,'source_id','id');
+    }
+    public function user(){
+        return $this->belongsTo(User::class,'user_id','id');
     }
 }

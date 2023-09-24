@@ -37,7 +37,7 @@
 
                 <div class="">
                     <div class="text-md font-semibold tracking-tight font-mono">
-                        {{ $user->wallet ? implode(' ', str_split($user->wallet->account_number, 4)) : '-' }}
+                        {{ $user->wallet ? transaction_format($user->wallet->account_number) : '-' }}
                     </div>
                 </div>
                 <div class="flex justify-between">

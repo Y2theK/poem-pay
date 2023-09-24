@@ -6,7 +6,7 @@
         <div
             class="w-full py-5 px-10 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
-            <form method="GET" action="{{ route('transfer.confirm') }}">
+            <form method="GET" action="{{ route('transfer.confirm') }}" class="transfer_form">
                 {{-- @csrf --}}
                 @include('backend.layouts.flash')
 
@@ -123,7 +123,8 @@
                      success : function(res){
                          if(res.status == 'success'){
                             $("[name='hash_value']").val(res.data);
-                            $('form').submit();
+                            console.log(res.data);
+                            $('.transfer_form').submit();
                          }
                      }
                  });

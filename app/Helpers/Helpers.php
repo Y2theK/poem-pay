@@ -10,3 +10,15 @@ if(!function_exists('areActiveRoutes')){
         }
     }
 }
+
+if(!function_exists('transaction_format')){
+    function transaction_format(string $transaction_no){
+        return implode(' ',str_split($transaction_no,4));
+    }
+}
+
+if(!function_exists('price_format')){
+    function price_format($amount,$precision = 2){
+        return number_format($amount,$precision);
+    }
+}
