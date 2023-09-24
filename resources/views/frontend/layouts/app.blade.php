@@ -94,10 +94,10 @@
         {{-- Button menu from flowbite --}}
         <div class="flex justify-center mt-36 text-xs">
             <div
-                class="fixed bottom-0 border rounded-full hover:rounded-full  left-auto z-50 w-full h-16 max-w-lg  bg-white border-t mb-1  border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+                class="fixed bottom-0 border rounded-lg hover:rounded-lg  left-auto z-50 w-full h-16 max-w-lg  bg-white border-t mb-1  border-gray-200 dark:bg-gray-700 dark:border-gray-600">
                 <div class="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
                     <a type="button" href="{{ route('home') }}"
-                        class="inline-flex  rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+                        class="inline-flex  rounded-lg flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
                         <svg class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['home'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 20">
@@ -108,7 +108,7 @@
                             class=" text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['home'], 'text-purple-600') }} group-hover:text-purple-600  dark:group-hover:text-purple-500">Home</span>
                     </a>
                     <a type="button" href="{{ route('wallet') }}"
-                        class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+                        class="inline-flex rounded-lg flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
                         <svg class="w-5 h-5 mb-2 text-gray-500  dark:text-gray-400  {{ areActiveRoutes(['wallet'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 20">
@@ -121,7 +121,7 @@
                             class=" text-gray-500 dark:text-gray-400  {{ areActiveRoutes(['wallet'], 'text-purple-600') }} group-hover:text-purple-600  dark:group-hover:text-purple-500">Wallet</span>
                     </a>
                     <a type="button" href="{{ route('scan_and_pay') }}"
-                        class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+                        class="inline-flex rounded-lg flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
                         <svg class="w-5 h-5 mb-2 {{ areActiveRoutes(['scan_and_pay'], 'text-purple-600') }} text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 24 24">
@@ -133,7 +133,7 @@
                             class=" text-gray-500 dark:text-gray-400  {{ areActiveRoutes(['scan_and_pay'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500">Scan</span>
                     </a>
                     <a type="button" href="{{ route('transactions') }}"
-                        class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+                        class="inline-flex rounded-lg flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
                         <svg class="w-6 h-6 mb-2 text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['transactions','transactions.detail'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500"
                         viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -147,7 +147,7 @@
                             class=" text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['transactions','transactions.detail'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500">Transactions</span>
                     </a>
                     <a type="button" href="{{ route('profile') }}"
-                        class="inline-flex rounded-full flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+                        class="inline-flex rounded-lg flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
                         <svg class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 {{ areActiveRoutes(['profile'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 20">

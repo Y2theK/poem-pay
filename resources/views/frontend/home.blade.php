@@ -26,7 +26,7 @@
                 <a href="{{ route('receive_qr') }}"
                     class="flex p-5 cursor-pointer  bg-white border border-gray-200 rounded-lg shadow items-center justify-center text-md font-medium text-gray-900 dark:text-white  group">
                     <img src="{{ asset('image/logo/myQR.png') }}" alt="My QR" class="w-6 h-6">
-                    <span class="ml-5">{{ __('Receive') }}</span>
+                    <span class="ml-5">{{ __('Receive QR') }}</span>
                 </a>
 
 
