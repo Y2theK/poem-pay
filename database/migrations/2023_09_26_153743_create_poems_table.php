@@ -17,6 +17,7 @@ class CreatePoemsTable extends Migration
         Schema::create('poems', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug');
             $table->text('excerpt');
             $table->longText('content');
             $table->foreignIdFor(User::class);
