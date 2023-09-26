@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Exception;
 use App\Models\User;
+use App\Models\Wallet;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Helpers\UUIDGenerater;
@@ -309,12 +310,23 @@ class PageController extends Controller
     public function toAccountVerify(Request $request)
     {
         $user = User::where('phone', $request->phone)->first();
+
+
         if(auth()->user()->phone != $request->phone) {
             if($user) {
                 return response()->json([
                     'status' => 'success',
                     'data' => $user
                 ]);
+            }
+            $wallet = Wallet::where('account_number',$request->phone)->first();
+            if(auth()->id() != $wallet->user_id) {
+                if($wallet) {
+                    return response()->json([
+                        'status' => 'success',
+                        'data' => $wallet->user
+                    ]);
+                }
             }
         }
         return response()->json([
