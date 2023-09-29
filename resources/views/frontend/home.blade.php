@@ -14,7 +14,11 @@
             <div class="flex pb-6 items-center justify-between">
               <div class="flex">
                 <a class="inline-block mr-4" href="#">
-                  <img class="rounded-full max-w-none w-14 h-14" src="https://randomuser.me/api/portraits/men/9.jpg" />
+                  {{-- <img class="rounded-full max-w-none w-14 h-14 border-2 text-center border-purple-600   shadow-lg object-center"
+                  src="{{ $poem->user->avatar ?  asset('storage/'.$poem->user->avatar) : "https://ui-avatars.com/api/?name=".$poem->user->name."&background=ffffff" }}"
+                  alt="{{ $poem->user->name }}" /> --}}
+
+                  <img class="rounded-full max-w-none w-14 h-14  shadow-lg {{ $poem->user->avatar ? '' : 'border-2 border-purple-600' }}" src="{{ $poem->user->avatar ?  asset('storage/'.$poem->user->avatar) : "https://ui-avatars.com/api/?name=".$poem->user->name."&background=ffffff" }}" />
                 </a>
                 <div class="flex flex-col">
                   <div class="flex items-center">
@@ -32,7 +36,7 @@
             </h2>
             <div class="py-4">
               <p>
-                {!! $poem->content !!}
+                {!! $poem->excerpt !!}
               </p>
             </div>
             <div class="py-4">
@@ -44,7 +48,7 @@
                     </path>
                   </svg>
                 </span>
-                <span class="text-lg font-bold"> {{ $poem->reactions()->count() }}</span>
+                <span class="text-lg font-bold"> {{ $poem->reactions->count() }}</span>
               </a>
             </div>
             <div class="relative">
@@ -63,20 +67,24 @@
               </span>
             </div>
             <!-- Comments content -->
+            {{-- @dd($poem->comments()) --}}
             <div class="pt-6">
-              <!-- Comment row -->
+              @foreach ($poem->comments->slice(0,2) as $comment)
+                  <!-- Comment row -->
               <div class="media flex pb-4">
                 <a class="mr-4" href="#">
-                  <img class="rounded-full max-w-none w-12 h-12" src="https://randomuser.me/api/portraits/men/54.jpg" />
+                  {{-- <img class="max-w-none w-11 h-11 border-2 text-center border-purple-600  rounded-full shadow-lg object-center"
+                  src="{{ $comment->user->avatar ?  asset('storage/'.$comment->user->avatar) : "https://ui-avatars.com/api/?name=".$comment->user->name."&background=ffffff" }}"
+                  alt="{{ $comment->user->name }}" /> --}}
+                  <img class="rounded-full max-w-none w-11 h-11  shadow-lg {{ $comment->user->avatar ? '' : 'border-2 border-purple-600' }}" src="{{ $comment->user->avatar ?  asset('storage/'.$comment->user->avatar) : "https://ui-avatars.com/api/?name=".$comment->user->name."&background=ffffff" }}" />
                 </a>
                 <div class="media-body">
                   <div>
-                    <a class="inline-block text-base font-bold mr-2" href="#">Shawn</a>
-                    <span class="text-slate-500 dark:text-slate-300">2 days ago</span>
+                    <a class="inline-block text-base font-bold mr-2" href="#">{{ $comment->user->name }}</a>
+                    <span class="text-slate-500 dark:text-slate-300">{{ $comment->created_at->diffForHumans() }}</span>
                   </div>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do
-                    eiusmod.
+                   {{ $comment->content }}
                   </p>
                   <div class="mt-2 flex items-center">
                     <a class="inline-flex items-center py-2 mr-3" href="#">
@@ -91,46 +99,14 @@
                       <span class="text-base font-bold">2</span>
                     </a>
                     <button class="py-2 px-4 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg">
-                      Repply
+                      Reply
                     </button>
                   </div>
                 </div>
               </div>
               <!-- End comments row -->
-              <!-- comments row -->
-              <div class="media flex pb-4">
-                <a class="inline-block mr-4" href="#">
-                  <img class="rounded-full max-w-none w-12 h-12" src="https://randomuser.me/api/portraits/women/54.jpg" />
-                </a>
-                <div class="media-body">
-                  <div>
-                    <a class="inline-block text-base font-bold mr-2" href="#">Dianne Russell</a>
-                    <span class="text-slate-500 dark:text-slate-300">3 minutes ago</span>
-                  </div>
-                  <p>
-                    Dolor sit ameteiusmod Dolor sit ameteiusmod
-                    😍😍✌🤪consectetur adipiscing elitconsectetur adipiscing
-                    elit.
-                  </p>
-                  <div class="mt-2 flex items-center">
-                    <a class="inline-flex items-center py-2 mr-3" href="#">
-                      <span class="mr-2">
-                        <svg class="fill-rose-600 dark:fill-rose-400" style="width: 22px; height: 22px;"
-                          viewBox="0 0 24 24">
-                          <path
-                            d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z">
-                          </path>
-                        </svg>
-                      </span>
-                      <span class="text-base font-bold">2</span>
-                    </a>
-                    <button class="py-2 px-4 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg">
-                      Repply
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <!-- End comments row -->
+              @endforeach
+              
               <!-- More comments -->
               <div class="w-full">
                 <a href="#"

@@ -25,7 +25,7 @@ class PageController extends Controller
     public function home()
     {
         $user = Auth()->user();
-        $poems = Poem::with(['user','reactions','comments'])->orderBy('id','desc')->paginate(15);
+        $poems = Poem::with(['user','reactions','comments.user'])->orderBy('id','desc')->paginate(15);
         return view('frontend.home', compact('user','poems'));
     }
     public function profile()

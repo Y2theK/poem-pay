@@ -16,9 +16,6 @@ class ReactionSeeder extends Seeder
      */
     public function run()
     {
-        Reaction::factory(300)->create([
-            'user_id' => User::all()->random()->id,
-            'poem_id' => Poem::all()->random()->id
-        ]);
+        Reaction::factory(300)->create();
     }
 }
