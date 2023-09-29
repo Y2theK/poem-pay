@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Poem;
+use App\Models\User;
+use App\Models\Reaction;
 use Illuminate\Database\Seeder;
 
 class ReactionSeeder extends Seeder
@@ -13,7 +16,9 @@ class ReactionSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Reaction::factory(300)->create();
-
+        Reaction::factory(300)->create([
+            'user_id' => User::all()->random()->id,
+            'poem_id' => Poem::all()->random()->id
+        ]);
     }
 }

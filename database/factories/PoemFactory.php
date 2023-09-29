@@ -14,7 +14,7 @@ class PoemFactory extends Factory
      */
     public function definition()
     {
-        $title = $this->faker->word;
+        $title = $this->faker->sentence(rand(3,7),true);
         $excerpt = '';
         for($i = 0; $i < 5; $i++){
             $excerpt .= $this->faker->sentence(rand(3,5),true) . '</br>';
