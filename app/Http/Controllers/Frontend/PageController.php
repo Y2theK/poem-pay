@@ -18,13 +18,15 @@ use App\Notifications\GeneralNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\frontend\TransferConfirmRequest;
+use App\Models\Poem;
 
 class PageController extends Controller
 {
     public function home()
     {
         $user = Auth()->user();
-        return view('frontend.home', compact('user'));
+        $poems = Poem::with(['user','reactions','comments'])->orderBy('id','desc')->paginate(15);
+        return view('frontend.home', compact('user','poems'));
     }
     public function profile()
     {
