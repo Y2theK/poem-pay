@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Poem;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ReactionFactory extends Factory
@@ -13,10 +15,11 @@ class ReactionFactory extends Factory
      */
     public function definition()
     {
+        
         return [
             'reaction' => $this->faker->randomElement(['like','love','care','sad','unlike']),
-            'user_id' => rand(1,300),
-            'poem_id' => rand(1,300)
+            'user_id' => User::all()->random()->id,
+            'poem_id' => Poem::all()->random()->id
         ];
     }
 }

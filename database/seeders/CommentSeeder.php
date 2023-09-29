@@ -16,9 +16,6 @@ class CommentSeeder extends Seeder
      */
     public function run()
     {
-        Comment::factory(300)->create([
-            'user_id' => User::all()->random()->id,
-            'poem_id' => Poem::all()->random()->id
-        ]);
+        Comment::factory(300)->create();
     }
 }
