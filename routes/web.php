@@ -18,6 +18,7 @@ use App\Http\Controllers\Frontend\PoemController;
 Route::middleware('auth')->group(function(){
 
     Route::resource('poems',PoemController::class);
+    Route::get('/my-poems',[PoemController::class,'myPoems'])->name('my_poems');
     
     Route::get('/',[PageController::class,'home'])->name('home');
     Route::get('/profile',[PageController::class,'profile'])->name('profile');

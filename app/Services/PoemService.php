@@ -11,13 +11,14 @@ class PoemService implements PoemServiceInterface{
         return Poem::create($data);
     }
 
-    public function update(Poem $poem,array $data){
+    public function update(array $data, Poem $poem){
         return $poem->update($data);
     }
 
     public function destroy(Poem $poem)
     {
         $poem->comments()->delete();
+        $poem->reactions()->delete();
         
         $poem->delete();
     }

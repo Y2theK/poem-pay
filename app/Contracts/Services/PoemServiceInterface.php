@@ -8,7 +8,7 @@ interface PoemServiceInterface{
     
     public function store(array $data);
 
-    public function update(Poem $poem,array $data);
+    public function update(array $data,Poem $poem);
 
     public function destroy(Poem $poem);
 }

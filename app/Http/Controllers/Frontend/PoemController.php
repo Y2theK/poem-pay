@@ -25,6 +25,12 @@ class PoemController extends Controller
     {
         //
     }
+    public function myPoems()
+    {
+        $user = Auth()->user();
+        $poems = Poem::with(['user','reactions','comments.user'])->where('user_id',$user->id)->orderBy('id','desc')->paginate(15);
+        return view('frontend.home', compact('poems'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -63,7 +69,7 @@ class PoemController extends Controller
      */
     public function show(Poem $poem)
     {
-        //
+        return $poem;
     }
 
     /**
@@ -87,15 +93,14 @@ class PoemController extends Controller
      */
     public function update(PoemRequest $request, PoemRequest $poem)
     {
-        $poem->update(
-            $request->validated() + 
-            [
-                'slug' => Str::slug($request->title),
-                'user_id' => Auth::id(),
-            ]
-        );
+        $this->poemService->update($request->validated() + 
+        [
+            'slug' => Str::slug($request->title),
+            'user_id' => Auth::id(),
+        ]
+        ,$poem);
 
-        return redirect()->route('home')->with(['created' => 'Poem Successfully Updated.']);
+        return redirect()->route('home')->with(['updated' => 'Poem Successfully Updated.']);
     }
 
     /**
@@ -106,6 +111,8 @@ class PoemController extends Controller
      */
     public function destroy(Poem $poem)
     {
-        //
+        $this->poemService->destroy($poem);
+        return redirect()->route('home')->with(['deleted' => 'Poem Successfully Deleted.']);
+
     }
 }
