@@ -10,7 +10,7 @@
       <!-- Content grid -->
       <div class="box-border max-w-7xl mx-4 sm:columns-1 md:columns-2 lg:columns-3 xl:columns-3">
         <div class="mb-5 relative">
-          <a href="{{ route('notifications') }}">
+          <a href="{{ route('poems.create') }}">
           <input
             class="pt-2 pb-2 pl-3 w-full h-11 bg-slate-100 dark:bg-slate-600 rounded-lg placeholder:text-slate-600 dark:placeholder:text-slate-300 font-medium pr-20"
             type="text" placeholder="Start Creating a Majastic Poem" />

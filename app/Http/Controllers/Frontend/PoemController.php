@@ -1,12 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
+use App\Contracts\Services\PoemServiceInterface;
 use App\Models\Poem;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\frontend\PoemRequest;
 
 class PoemController extends Controller
 {
+    public function __construct(private PoemServiceInterface $poemService)
+    {
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +33,7 @@ class PoemController extends Controller
      */
     public function create()
     {
-        //
+        return view('frontend.poems.create');
     }
 
     /**
@@ -33,9 +42,17 @@ class PoemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PoemRequest $request)
     {
-        //
+        $this->poemService->store( $request->validated() + 
+        [
+            'slug' => Str::slug($request->title),
+            'user_id' => Auth::id(),
+        ]
+        );
+
+        return redirect()->route('home')->with(['created' => 'Poem Successfully Created.']);
+
     }
 
     /**
@@ -57,7 +74,8 @@ class PoemController extends Controller
      */
     public function edit(Poem $poem)
     {
-        //
+        return view('frontend.poems.edit',compact('poem'));
+
     }
 
     /**
@@ -67,9 +85,17 @@ class PoemController extends Controller
      * @param  \App\Models\Poem  $poem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Poem $poem)
+    public function update(PoemRequest $request, PoemRequest $poem)
     {
-        //
+        $poem->update(
+            $request->validated() + 
+            [
+                'slug' => Str::slug($request->title),
+                'user_id' => Auth::id(),
+            ]
+        );
+
+        return redirect()->route('home')->with(['created' => 'Poem Successfully Updated.']);
     }
 
     /**
