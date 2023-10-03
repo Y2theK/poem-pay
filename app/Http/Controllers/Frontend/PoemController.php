@@ -14,7 +14,8 @@ class PoemController extends Controller
 {
     public function __construct(private PoemServiceInterface $poemService)
     {
-        
+        $this->middleware('can:update,poem')->only('update');
+        $this->middleware('can:delete,poem')->only('destroy');
     }
     /**
      * Display a listing of the resource.
