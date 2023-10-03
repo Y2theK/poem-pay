@@ -29,7 +29,7 @@ class PoemController extends Controller
     {
         $user = Auth()->user();
         $poems = Poem::with(['user','reactions','comments.user'])->where('user_id',$user->id)->orderBy('id','desc')->paginate(15);
-        return view('frontend.home', compact('poems'));
+        return view('frontend.poems.my_poem', compact('poems'));
     }
 
     /**
@@ -57,7 +57,7 @@ class PoemController extends Controller
         ]
         );
 
-        return redirect()->route('home')->with(['created' => 'Poem Successfully Created.']);
+        return redirect()->route('my_poems')->with(['created' => 'Poem Successfully Created.']);
 
     }
 
@@ -69,7 +69,9 @@ class PoemController extends Controller
      */
     public function show(Poem $poem)
     {
-        return $poem;
+        $poems = Poem::with(['user','reactions','comments.user'])->orderBy('id','desc')->paginate(15);
+
+        return view('frontend.poems.show',compact('poem','poems'));
     }
 
     /**
@@ -91,7 +93,7 @@ class PoemController extends Controller
      * @param  \App\Models\Poem  $poem
      * @return \Illuminate\Http\Response
      */
-    public function update(PoemRequest $request, PoemRequest $poem)
+    public function update(PoemRequest $request, Poem $poem)
     {
         $this->poemService->update($request->validated() + 
         [
@@ -100,7 +102,7 @@ class PoemController extends Controller
         ]
         ,$poem);
 
-        return redirect()->route('home')->with(['updated' => 'Poem Successfully Updated.']);
+        return redirect()->route('my_poems')->with(['updated' => 'Poem Successfully Updated.']);
     }
 
     /**

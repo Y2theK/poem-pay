@@ -4,11 +4,12 @@
 
         <div
             class="w-full py-5 px-10 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <form action="{{ route('poems.store',$poem->id) }}" method="POST">
+            <form action="{{ route('poems.update',$poem) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="mb-4 ">
 
-                    <x-input id="title" class="w-full text-sm" type="text" name="title" value={{ $poem->title }}
+                    <x-input id="title" class="w-full text-sm" type="text" name="title" value="{{ $poem->title }}"
                         placeholder="Start Creating a Majastic Poem" />
                 </div>
 

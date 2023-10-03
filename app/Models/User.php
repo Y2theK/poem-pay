@@ -50,4 +50,7 @@ class User extends Authenticatable
     public function wallet(){
         return $this->hasOne(Wallet::class,'user_id','id');
     }
+    public function getAvatarAttribute($value){
+        return $value ? asset('storage/'.$value) : "https://ui-avatars.com/api/?name=".$this->name."&background=FFFFFF" ;
+    }
 }

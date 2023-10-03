@@ -37,7 +37,7 @@
                   src="{{ $poem->user->avatar ?  asset('storage/'.$poem->user->avatar) : "https://ui-avatars.com/api/?name=".$poem->user->name."&background=ffffff" }}"
                   alt="{{ $poem->user->name }}" /> --}}
 
-                  <img class="rounded-full max-w-none w-14 h-14  shadow-lg {{ $poem->user->avatar ? '' : 'border-2 border-purple-600' }}" src="{{ $poem->user->avatar ?  asset('storage/'.$poem->user->avatar) : "https://ui-avatars.com/api/?name=".$poem->user->name."&background=ffffff" }}" />
+                  <img class="rounded-full max-w-none w-14 h-14  shadow-lg {{ $poem->user->avatar ? '' : 'border-2 border-purple-600' }}" src="{{ $poem->user->avatar }}" />
                 </a>
                 <div class="flex flex-col">
                   <div class="flex items-center">
@@ -50,6 +50,7 @@
                 </div>
               </div>
             </div>
+            <a href="{{ route('poems.show',$poem) }}">
             <h2 class="text-3xl font-extrabold">
              {{ $poem->title }}
             </h2>
@@ -58,6 +59,7 @@
                 {!! $poem->excerpt !!}
               </p>
             </div>
+            </a>
             <div class="py-4">
               <a class="inline-flex items-center" href="#">
                 <span class="mr-2">
@@ -95,7 +97,7 @@
                   {{-- <img class="max-w-none w-11 h-11 border-2 text-center border-purple-600  rounded-full shadow-lg object-center"
                   src="{{ $comment->user->avatar ?  asset('storage/'.$comment->user->avatar) : "https://ui-avatars.com/api/?name=".$comment->user->name."&background=ffffff" }}"
                   alt="{{ $comment->user->name }}" /> --}}
-                  <img class="rounded-full max-w-none w-11 h-11  shadow-lg {{ $comment->user->avatar ? '' : 'border-2 border-purple-600' }}" src="{{ $comment->user->avatar ?  asset('storage/'.$comment->user->avatar) : "https://ui-avatars.com/api/?name=".$comment->user->name."&background=ffffff" }}" />
+                  <img class="rounded-full max-w-none w-11 h-11  shadow-lg {{ $comment->user->avatar ? '' : 'border-2 border-purple-600' }}" src="{{ $comment->user->avatar }}" />
                 </a>
                 <div class="media-body">
                   <div>
