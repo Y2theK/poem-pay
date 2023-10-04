@@ -58,7 +58,7 @@ class PoemController extends Controller
         ]
         );
 
-        return redirect()->route('my_poems')->with(['created' => 'Poem Successfully Created.']);
+        return back()->with(['created' => 'Poem Successfully Created.']);
 
     }
 
@@ -99,11 +99,10 @@ class PoemController extends Controller
         $this->poemService->update($request->validated() + 
         [
             'slug' => Str::slug($request->title),
-            'user_id' => Auth::id(),
         ]
         ,$poem);
 
-        return redirect()->route('my_poems')->with(['updated' => 'Poem Successfully Updated.']);
+        return back()->with(['updated' => 'Poem Successfully Updated.']);
     }
 
     /**
@@ -115,7 +114,7 @@ class PoemController extends Controller
     public function destroy(Poem $poem)
     {
         $this->poemService->destroy($poem);
-        return redirect()->route('home')->with(['deleted' => 'Poem Successfully Deleted.']);
+        return back()->with(['deleted' => 'Poem Successfully Deleted.']);
 
     }
 }

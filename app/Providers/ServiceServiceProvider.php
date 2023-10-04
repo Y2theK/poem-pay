@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
-use App\Contracts\Services\PoemServiceInterface;
 use App\Services\PoemService;
+use App\Services\CommentService;
 use Illuminate\Support\ServiceProvider;
+use App\Contracts\Services\PoemServiceInterface;
+use App\Contracts\Services\CommentServiceInterface;
 
 class ServiceServiceProvider extends ServiceProvider
 {
@@ -28,6 +30,11 @@ class ServiceServiceProvider extends ServiceProvider
         $this->app->bind(
             PoemServiceInterface::class,
             PoemService::class
+        );
+
+        $this->app->bind(
+            CommentServiceInterface::class,
+            CommentService::class
         );
     }
 }

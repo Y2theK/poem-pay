@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\PageController;
-use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\PoemController;
 
 /*
@@ -18,6 +18,7 @@ use App\Http\Controllers\Frontend\PoemController;
 Route::middleware('auth')->group(function(){
 
     Route::resource('poems',PoemController::class);
+    Route::resource('poems.comments',CommentController::class);
     Route::get('/my-poems',[PoemController::class,'myPoems'])->name('my_poems');
     
     Route::get('/',[PageController::class,'home'])->name('home');
