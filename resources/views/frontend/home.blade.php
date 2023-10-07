@@ -33,11 +33,7 @@
             <div class="flex pb-6 items-center justify-between">
               <div class="flex">
                 <a class="inline-block mr-4" href="#">
-                  {{-- <img class="rounded-full max-w-none w-14 h-14 border-2 text-center border-purple-600   shadow-lg object-center"
-                  src="{{ $poem->user->avatar ?  asset('storage/'.$poem->user->avatar) : "https://ui-avatars.com/api/?name=".$poem->user->name."&background=ffffff" }}"
-                  alt="{{ $poem->user->name }}" /> --}}
-
-                  <img class="rounded-full max-w-none w-14 h-14  shadow-lg {{ $poem->user->avatar ? '' : 'border-2 border-purple-600' }}" src="{{ $poem->user->avatar }}" />
+                  <img class="rounded-full max-w-none w-14 h-14" src="https://randomuser.me/api/portraits/men/9.jpg" />
                 </a>
                 <div class="flex flex-col">
                   <div class="flex items-center">
@@ -130,15 +126,13 @@
             </form>
             </div>
             <!-- Comments content -->
+            {{-- @dd($poem->comments()) --}}
             <div class="pt-6">
               @foreach ($poem->comments->slice(0,2) as $comment)
                   <!-- Comment row -->
               <div class="media flex pb-4">
                 <a class="mr-4" href="#">
-                  {{-- <img class="max-w-none w-11 h-11 border-2 text-center border-purple-600  rounded-full shadow-lg object-center"
-                  src="{{ $comment->user->avatar ?  asset('storage/'.$comment->user->avatar) : "https://ui-avatars.com/api/?name=".$comment->user->name."&background=ffffff" }}"
-                  alt="{{ $comment->user->name }}" /> --}}
-                  <img class="rounded-full max-w-none w-11 h-11  shadow-lg {{ $comment->user->avatar ? '' : 'border-2 border-purple-600' }}" src="{{ $comment->user->avatar }}" />
+                  <img class="rounded-full max-w-none w-12 h-12" src="https://randomuser.me/api/portraits/men/54.jpg" />
                 </a>
                 <div class="media-body">
                   <div>
@@ -146,7 +140,8 @@
                     <span class="text-slate-500 dark:text-slate-300">{{ $comment->created_at->diffForHumans() }}</span>
                   </div>
                   <p>
-                   {{ $comment->comment }}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do
+                    eiusmod.
                   </p>
                   <div class="mt-2 flex items-center">
                     <a class="inline-flex items-center py-2 mr-3" href="#">

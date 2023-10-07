@@ -10,8 +10,11 @@ class Comment extends Model
 {
     use HasFactory;
 
+<<<<<<< HEAD
     protected $guarded = [];
 
+=======
+>>>>>>> 8aebf1a4a3dfbf48f02fbef36b218dbda218def0
     public function user(){
         return $this->belongsTo(User::class);
     }
