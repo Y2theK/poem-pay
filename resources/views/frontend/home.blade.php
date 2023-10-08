@@ -33,7 +33,9 @@
             <div class="flex pb-6 items-center justify-between">
               <div class="flex">
                 <a class="inline-block mr-4" href="#">
-                  <img class="rounded-full max-w-none w-14 h-14" src="https://randomuser.me/api/portraits/men/9.jpg" />
+                  <img class="rounded-full max-w-none w-14 h-14" src="{{ $poem->user->avatar}}"
+                    alt="{{ $poem->user->name }}" />
+                  
                 </a>
                 <div class="flex flex-col">
                   <div class="flex items-center">
@@ -132,7 +134,8 @@
                   <!-- Comment row -->
               <div class="media flex pb-4">
                 <a class="mr-4" href="#">
-                  <img class="rounded-full max-w-none w-12 h-12" src="https://randomuser.me/api/portraits/men/54.jpg" />
+                  <img class="rounded-full max-w-none w-12 h-12" src="{{ $comment->user->avatar}}"
+                    alt="{{ $comment->user->name }}"/>
                 </a>
                 <div class="media-body">
                   <div>
@@ -140,8 +143,7 @@
                     <span class="text-slate-500 dark:text-slate-300">{{ $comment->created_at->diffForHumans() }}</span>
                   </div>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do
-                    eiusmod.
+                   {{  $comment->comment }}
                   </p>
                   <div class="mt-2 flex items-center">
                     <a class="inline-flex items-center py-2 mr-3" href="#">
