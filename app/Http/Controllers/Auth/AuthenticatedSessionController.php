@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
+use App\Helpers\UUIDGenerater;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
+use App\Http\Requests\Auth\LoginRequest;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -31,7 +33,6 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
         //update ip and user_agent after login
         if(Auth::guard('web')->check()){
             $user = Auth::guard('web')->user();
@@ -39,6 +40,16 @@ class AuthenticatedSessionController extends Controller
             $user->user_agent = $request->server('HTTP_USER_AGENT');
             $user->login_at = date('Y-m-d H:i:s');
             $user->update();
+
+            Wallet::firstOrCreate(
+                [
+                    'user_id' => $user->id
+                ],
+                [
+                    'account_number' => UUIDGenerater::accountNumber(),
+                    'amount' => 0
+                ]
+            );
         }
 
         return redirect()->intended(RouteServiceProvider::HOME);
