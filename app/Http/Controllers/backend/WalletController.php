@@ -23,6 +23,13 @@ class WalletController extends Controller
         $wallets = Wallet::with('user');
 
         return DataTables::of($wallets)
+        ->filterColumn('account_person',function($query,$keyword){
+            $query->whereHas('user',function($q) use ($keyword){
+                $q->where('name','like',"%$keyword%")
+                ->orWhere('email','like',"%$keyword%")
+                ->orWhere('phone','like',"%$keyword%");
+            });
+        })
         ->addColumn('account_person', function ($row) {
             $user = $row->user;
             if($user) {

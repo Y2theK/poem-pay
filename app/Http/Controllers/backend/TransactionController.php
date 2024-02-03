@@ -20,10 +20,10 @@ class TransactionController extends Controller
             ->editColumn('created_at', function ($row) {
                 return  $row->created_at->format('Y, M d H:i:s'); 
             })
-            ->editColumn('user_id',function($row){
+            ->addColumn('user',function($row){
                 return $row->user? $row->user->name : config('mail.from.address');
             })
-            ->editColumn('source_id',function($row){
+            ->addColumn('source',function($row){
                 return $row->source ? $row->source->name : config('mail.from.address');
             })
             ->editColumn('amount',function($row){
@@ -35,7 +35,16 @@ class TransactionController extends Controller
             ->editColumn('ref_no',function($row){
                 return transaction_format($row->ref_no);
             })
-            // implode(' ', str_split($user->wallet->account_number, 4))
+            ->filterColumn('user',function($query,$keyword){
+                $query->whereHas('user',function($q) use ($keyword){
+                    $q->where('name','like',"%" . $keyword. "%");
+                });
+            })
+            ->filterColumn('source',function($query,$keyword){
+                $query->whereHas('source',function($q) use ($keyword){
+                    $q->where('name','like',"%" . $keyword. "%");
+                });
+            })
             ->editColumn('type',function($row){
 
                 $html = '<span class="px-2 py-1 rounded-md  text-xs font-bold text-white bg-' . config('transaction_types.typeColors')[$row->type] . ' "> ' . config('transaction_types.typeTexts')[$row->type]

@@ -43,8 +43,8 @@
                     
                         {data: 'trx_id', name: 'trx_id'},
                         {data: 'ref_no', name: 'ref_no'},
-                        {data: 'user_id', name: 'user_id'},
-                        {data: 'source_id', name: 'source_id'},
+                        {data: 'user', name: 'user'},
+                        {data: 'source', name: 'source'},
                         {data: 'type', name: 'type'},
                         {data: 'amount', name: 'amount'},
                         {data: 'created_at', name: 'created_at'},
