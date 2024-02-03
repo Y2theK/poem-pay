@@ -92,7 +92,7 @@
 						}
                 	],
 					language: {
-						"search": "Search",
+						"search": "<span class='text-purple-600 font-medium'>Search</span>",
 						"processing": "<span style='display: flex;justify-content: center;'><img src='/image/animation_loading.gif' style='width:100px' /></span>",
 
 					},

@@ -14,9 +14,9 @@ class PageController extends Controller
     public function home(){
         
         $bankBalance = Wallet::sum('amount');
-        $totalUsers = User::count();
-        $totalAdminUsers = AdminUser::count();
-        $totalTransactions = Transaction::count();
+        $totalUsers = User::count('id');
+        $totalAdminUsers = AdminUser::count('id');
+        $totalTransactions = Transaction::count('id');
 
         return view('backend.home',compact('bankBalance','totalUsers','totalAdminUsers','totalTransactions'));
     }
