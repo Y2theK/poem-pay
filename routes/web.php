@@ -2,44 +2,53 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\PageController;
-use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Frontend\ProfileController;
+use App\Http\Controllers\Frontend\TransferController;
+use App\Http\Controllers\Frontend\TransactionController;
+use App\Http\Controllers\Frontend\NotificationController;
+use Illuminate\Notifications\Notification;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 Route::middleware('auth')->group(function(){
-    Route::get('/',[PageController::class,'home'])->name('home');
-    Route::get('/profile',[PageController::class,'profile'])->name('profile');
-    Route::post('/profile-image-upload',[PageController::class,'uploadProfileImage'])->name('profile_image_upload');
+    Route::controller(PageController::class)->group(function(){
+        Route::get ('/','home')->name('home');
+        Route::get('/wallet','wallet')->name('wallet');
+        Route::get('/receive-qr','receiveQR')->name('receive_qr');
+        Route::get('/scan-and-pay','scanAndPay')->name('scan_and_pay');
+    });
 
-    Route::get('/wallet',[PageController::class,'wallet'])->name('wallet');
+    Route::controller(ProfileController::class)->group(function(){
+        Route::get('/profile','profile')->name('profile');
+        Route::post('/profile-image-upload','uploadProfileImage')->name('profile_image_upload');
+        Route::get('/password/check','passwordCheck')->name('password.check');
+        Route::get('/profile/update-password','updatePasswordCreate')->name('update_password');
+        Route::post('/profile/update-password','updatePasswordStore')->name('update_password.store');
+    });
 
-    Route::get('/transfer',[PageController::class,'transfer'])->name('transfer');
-    Route::get('/transfer/confirm',[PageController::class,'transferConfirm'])->name('transfer.confirm');
-    Route::post('/transfer/complete',[PageController::class,'transferComplete'])->name('transfer.complete');
-    Route::get('/transfer/to-account-verify',[PageController::class,'toAccountVerify'])->name('to_account_verify');
-    Route::get('/transfer/hash',[PageController::class,'hashTransfer'])->name('transfer.hash');
-
-    Route::get('/transactions',[PageController::class,'transaction'])->name('transactions');
-    Route::get('/transactions/{trx_id}',[PageController::class,'transactionDetail'])->name('transactions.detail');
+    Route::controller(TransferController::class)->group(function(){
+        Route::get('/transfer','transfer')->name('transfer');
+        Route::get('/transfer/confirm','transferConfirm')->name('transfer.confirm');
+        Route::post('/transfer/complete','transferComplete')->name('transfer.complete');
+        Route::get('/transfer/to-account-verify','toAccountVerify')->name('to_account_verify');
+        Route::get('/transfer/hash','hashTransfer')->name('transfer.hash');
+    });
+    Route::controller(TransactionController::class)->group(function(){
+        Route::get('/transactions','transaction')->name('transactions');
+        Route::get('/transactions/{trx_id}','transactionDetail')->name('transactions.detail');
     
-    Route::get('/notifications',[PageController::class,'notification'])->name('notifications');
-    Route::get('/notifications/{id}',[PageController::class,'notificationDetail'])->name('notifications.detail');
+    });
+    Route::controller(NotificationController::class)->group(function(){
+        Route::get('/notifications','notification')->name('notifications');
+        Route::get('/notifications/{id}','notificationDetail')->name('notifications.detail');
+    
+    });
+    
 
-    Route::get('/password/check',[PageController::class,'passwordCheck'])->name('password.check');
+        
 
-    Route::get('/profile/update-password',[PageController::class,'updatePasswordCreate'])->name('update_password');
-    Route::post('/profile/update-password',[PageController::class,'updatePasswordStore'])->name('update_password.store');
 
-    Route::get('/receive-qr',[PageController::class,'receiveQR'])->name('receive_qr');
-    Route::get('/scan-and-pay',[PageController::class,'scanAndPay'])->name('scan_and_pay');
+
+    
 });
 
 
