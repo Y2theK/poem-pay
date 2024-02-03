@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Models\Wallet;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Helpers\UUIDGenerater;
 use Illuminate\Validation\Rules;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
+use App\Notifications\GeneralNotification;
+use Illuminate\Support\Facades\Notification;
 
 class RegisteredUserController extends Controller
 {
@@ -52,16 +55,44 @@ class RegisteredUserController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
 
-            Wallet::firstOrCreate(
+            $registerPayAmount = 5000;
+            $wallet = Wallet::firstOrCreate(
                 [
                     'user_id' => $user->id
                 ],
                 [
                     'account_number' => UUIDGenerater::accountNumber(),
-                    'amount' => 0
+                    'amount' => $registerPayAmount
                 ]
             );
-
+            if($wallet){
+                try {
+        
+                    $to_account_transaction = new Transaction();
+                    $to_account_transaction->ref_no = UUIDGenerater::refNo();
+                    $to_account_transaction->trx_id = UUIDGenerater::trxID();
+                    $to_account_transaction->user_id = $wallet->user->id;
+                    $to_account_transaction->source_id = 0;
+                    $to_account_transaction->type = 1;  //income
+                    $to_account_transaction->amount = $registerPayAmount;
+                    $to_account_transaction->description = 'Register Pay';
+                    $to_account_transaction->save();
+    
+                    $title = 'Welcome Amount Received!';
+                    $message = 'Hi there, Look like you are a new comer. Here is your welcome gift - ' . number_format($registerPayAmount) . ' MMK. Feel free to use.';
+                    $sourceable_id = $to_account_transaction->id; 
+                    $sourceable_type = Transaction::class;
+                    $web_link = route('transactions.detail',$to_account_transaction->trx_id);
+        
+                    Notification::send($wallet->user,new GeneralNotification($title,$message,$sourceable_id,$sourceable_type,$web_link));
+    
+                   
+    
+                } catch (\Exception $e) {
+                    
+                }
+              
+            }
             DB::commit();
 
             event(new Registered($user));
