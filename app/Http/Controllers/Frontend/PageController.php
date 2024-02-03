@@ -158,6 +158,7 @@ class PageController extends Controller
 
     public function transferConfirm(TransferConfirmRequest $request)
     {
+        // dd($request->all());
 
         $to_phone = $request->to_phone;
         $amount = $request->amount;
@@ -169,20 +170,21 @@ class PageController extends Controller
         if($hash_value !== $request->hash_value) {
             return redirect()->back()->withErrors(['fail' => 'The given data is invalid.'])->withInput();
         }
+
         $from_account_user = Auth()->user();
         $to_account_user = User::where('phone', $request->to_phone)->first();
 
         if(!$to_account_user) {
-            return redirect()->route('transfer')->withErrors('to_phone', 'Invalid Account');
+            return redirect()->back()->withErrors(['to_phone' => 'Invalid Account.'])->withInput();
         }
         if($from_account_user->phone == $to_phone) {
-            return redirect()->route('transfer')->withErrors('to_phone', 'Invalid Phone Number');
+            return redirect()->back()->withErrors(['to_phone' => 'Invalid Phone Number.'])->withInput();
         }
         if($from_account_user->wallet->amount < $request->amount) {
-            return redirect()->route('transfer')->withErrors('amount', 'Insuffient Balance');
+            return redirect()->back()->withErrors(['amount' => 'Insuffient Balance.'])->withInput();
         }
         if(!$from_account_user->wallet || !$to_account_user->wallet) {
-            return redirect()->route('transfer')->withErrors('to_phone', 'Invalid Account');
+            return redirect()->back()->withErrors(['to_phone' => 'Invalid Account.'])->withInput();
         }
 
         $to_phone = $request->to_phone;
@@ -210,16 +212,16 @@ class PageController extends Controller
         $to_account_user = User::where('phone', $request->to_phone)->first();
 
         if(!$to_account_user) {
-            return redirect()->route('transfer')->withErrors('to_phone', 'Invalid Account');
+            return redirect()->back()->withErrors(['fail' => 'The given data is invalid.'])->withInput();
         }
         if($from_account_user->phone == $to_phone) {
-            return redirect()->route('transfer')->withErrors('to_phone', 'Invalid Phone Number');
+            return redirect()->back()->withErrors(['fail' => 'The given data is invalid.'])->withInput();
         }
         if($from_account_user->wallet->amount < $request->amount) {
-            return redirect()->route('transfer')->withErrors('amount', 'Insuffient Balance');
+            return redirect()->back()->withErrors(['fail' => 'The given data is invalid.'])->withInput();
         }
         if(!$from_account_user->wallet || !$to_account_user->wallet) {
-            return redirect()->route('transfer')->withErrors('to_phone', 'Invalid Account');
+            return redirect()->back()->withErrors(['fail' => 'The given data is invalid.'])->withInput();
         }
 
         DB::beginTransaction();
