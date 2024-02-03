@@ -29,7 +29,7 @@
 
                     </tr>
                 </thead>
-               <tbody class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800 "></tbody>
+               <tbody class="text-xs font-semibold tracking-wide text-left text-gray-500  border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800 "></tbody>
 
             </table>
         </div>
@@ -44,9 +44,6 @@
         $(document).ready(function() {
 
             var table = $('#userDatatable').DataTable({
-                    "responsive": true,
-                    "processing": true,
-                    "serverSide": true,
                     "ajax": "{{ route('admin.users_ssd') }}",
                     "columns": [
                         {data: 'id', name: 'id'},
@@ -59,10 +56,6 @@
                         {data: 'login_at', name: 'login_at'},
                         {data: 'updated_at', name: 'updated_at'},
                         {data: 'action', name: 'action',searchable: false},
-                    ],
-                    "columnDefs": [
-                        { targets: 'no-sort', orderable: false },
-                        { targets: 'no-visible', visible: false },
                     ],
                     "order": [
                         [8, 'desc'] //default order updated_at desc

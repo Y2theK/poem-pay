@@ -14,3 +14,9 @@ td:has(> .amount-group):hover .amount-edit-btn{
 .profile-img:hover .upload-icon{
     display: block;
 }
+
+/* mark js css */
+mark{
+    background:#9b58d8;
+    color:#f3f4f6;
+}

@@ -20,7 +20,7 @@
 
                     </tr>
                 </thead>
-               <tbody class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800 "></tbody>
+               <tbody class="text-xs font-semibold tracking-wide text-left text-gray-500 border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800 "></tbody>
 
             </table>
         </div>
@@ -127,9 +127,6 @@
             });
 
             var table = $('#walletDatatable').DataTable({
-                    "responsive": true,
-                    "processing": true,
-                    "serverSide": true,
                     "ajax": "{{ route('admin.wallets_ssd') }}",
                     "columns": [
                         {data: 'id', name: 'id'},
