@@ -33,7 +33,7 @@ class WalletController extends Controller
                 $to_account_transaction->trx_id = UUIDGenerater::trxID();
                 $to_account_transaction->user_id = $wallet->user->id;
                 $to_account_transaction->source_id = 0;
-                $to_account_transaction->type = 3;  //income
+                $to_account_transaction->type = 3;  //wallet reset
                 $to_account_transaction->amount = $request->amount;
                 $to_account_transaction->description = 'Matual Pay';
                 $to_account_transaction->save();

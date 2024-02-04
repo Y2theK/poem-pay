@@ -60,14 +60,14 @@ class TransferController extends Controller
 
     public function transferComplete(TransferConfirmRequest $request,TransactionService $transactionService)
     {
-
+        
         $to_phone = $request->to_phone;
         $amount = $request->amount;
         $description = $request->description;
-
+        
         $str = $to_phone . $amount . $description;
         $hash_value = get_hashed_hmac_value($str);
-
+        
         if($hash_value !== $request->hash_value) {
             return redirect()->back()->withErrors(['fail' => 'The given data is invalid.'])->withInput();
         }
@@ -76,25 +76,26 @@ class TransferController extends Controller
         $to_account_user = User::where('phone', $request->to_phone)->first();
 
         if(!$to_account_user) {
-            return redirect()->back()->withErrors(['fail' => 'The given data is invalid.'])->withInput();
+            return redirect()->back()->withErrors(['fail' => 'The given data is invalid.']);
         }
         if($from_account_user->phone == $to_phone) {
-            return redirect()->back()->withErrors(['fail' => 'The given data is invalid.'])->withInput();
+            return redirect()->back()->withErrors(['fail' => 'The given data is invalid.']);
         }
         if($from_account_user->wallet->amount < $request->amount) {
-            return redirect()->back()->withErrors(['fail' => 'The given data is invalid.'])->withInput();
+            return redirect()->back()->withErrors(['fail' => 'The given data is invalid.']);
         }
         if(!$from_account_user->wallet || !$to_account_user->wallet) {
-            return redirect()->back()->withErrors(['fail' => 'The given data is invalid.'])->withInput();
+            return redirect()->back()->withErrors(['fail' => 'The given data is invalid.']);
         }
-
+        
         try {
             $from_account_transaction = $transactionService->make($from_account_user,$to_account_user,$amount,$description);
+            return redirect()->route('transactions.detail', $from_account_transaction->trx_id)->with('transfer_success', 'Successfully Transferred');
         } catch (\Throwable $th) {
-            return redirect()->back()->withErrors('failed', 'Something wrong.')->withInput();
+            // dd($th);
+            return redirect()->back()->withErrors(['fail' => 'The given data is invalid.']);
         }
 
-        return redirect()->route('transactions.detail', $from_account_transaction->trx_id)->with('transfer_success', 'Successfully Transferred');
     }
 
     

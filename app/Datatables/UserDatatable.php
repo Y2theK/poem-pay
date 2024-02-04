@@ -2,13 +2,14 @@
 
 namespace App\Datatables;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Jenssegers\Agent\Agent;
 use Yajra\DataTables\DataTables;
+use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
+use App\Datatables\Contract\DatatableInterface;
 
-class UserDatatable {
+class UserDatatable implements DatatableInterface {
     public function getUsers()
     {
         $data = User::query();

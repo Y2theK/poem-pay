@@ -5,8 +5,9 @@ namespace App\Datatables;
 use App\Models\Transaction;
 use Yajra\DataTables\DataTables;
 use Illuminate\Database\Eloquent\Builder;
+use App\Datatables\Contract\DatatableInterface;
 
-class TransactionDatatable {
+class TransactionDatatable implements DatatableInterface{
 
     public function getTransactions()
     {

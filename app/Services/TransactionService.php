@@ -10,8 +10,8 @@ use App\Services\NotificationService;
 
 class TransactionService{
 
-    public function make(User $from_account_user,User $to_account_user,float $amount,string $description){
-        
+    public function make(User $from_account_user,User $to_account_user,float $amount,?string $description){
+
         DB::beginTransaction();
 
         try {
