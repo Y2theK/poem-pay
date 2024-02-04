@@ -12,7 +12,6 @@ class NotificationController extends Controller
         $user = Auth()->user();
         $notifications =  $user->notifications()->paginate(5);
 
-
         return view('frontend.notifications', compact('user', 'notifications'));
     }
 
@@ -21,6 +20,7 @@ class NotificationController extends Controller
         $user = Auth()->user();
         $notification = $user->notifications()->where('id', $id)->firstOrFail();
         $notification->markAsRead();
+        
         return view('frontend.notification_detail', compact('user', 'notification'));
     }
 

@@ -8,8 +8,7 @@ class PageController extends Controller
 {
     public function home()
     {
-        $user = Auth()->user();
-        return view('frontend.home', compact('user'));
+        return view('frontend.home', ['user' => auth()->user()]);
     }
     
     public function receiveQR()
@@ -22,8 +21,7 @@ class PageController extends Controller
     }
     public function wallet()
     {
-        $user = Auth()->user();
-        return view('frontend.wallet', compact('user'));
+        return view('frontend.wallet', ['user' => auth()->user()]);
     }
 
    

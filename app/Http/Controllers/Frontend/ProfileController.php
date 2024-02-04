@@ -5,36 +5,31 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\ImageUploadService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Services\NotificationService;
 use Illuminate\Support\Facades\Storage;
-use App\Notifications\GeneralNotification;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Validation\Rules;
+use App\Http\Requests\frontend\UpdatePasswordRequest;
+use App\Http\Requests\frontend\ProfileImageUploadRequest;
 
 class ProfileController extends Controller
 {
     public function profile()
     {
-        $user = Auth::user();
-        return view('frontend.profile', compact('user'));
+        return view('frontend.profile', ['user' => auth()->user()]);
     }
-    public function uploadProfileImage(Request $request){
+    public function uploadProfileImage(ProfileImageUploadRequest $request,ImageUploadService $imageService){
 
-       $request->validate([
-        'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-       ]);
-
-       $imageName = time().'.'.$request->avatar->extension();
-
-       $path = 'avatars/';
-
-        $request->avatar->storeAs($path,$imageName,'public');
-      
         $user = Auth::user();
         if($user->avatar){
-            Storage::disk('public')->delete($user->avatar);
+            $imageService->delete($user->avatar,'public');
         }
+
+        $path = 'avatars/';
+      
+        $imageName = $imageService->upload($request->avatar,$path,'public');
+
         $user->avatar = $path . $imageName;
         $user->save();
 
@@ -60,27 +55,24 @@ class ProfileController extends Controller
 
     }
 
-    public function updatePasswordStore(Request $request)
+    public function updatePasswordStore(UpdatePasswordRequest $request,NotificationService $notificationService)
     {
-
-        $request->validate([
-            'old_password' => 'required',
-            'new_password' => ['required',Rules\Password::defaults()]
-        ]);
 
         $user = Auth()->user();
 
         if(Hash::check($request->old_password, $user->password)) {
+            
             $user->password = Hash::make($request->new_password);
             $user->update();
 
-            $title = 'Changed password successfully!';
-            $message = 'You have changed password successfully.';
-            $sourceable_id = $user->id;
-            $sourceable_type = User::class;
-            $web_link = route('profile');
+            $data = array();
+            $data['title'] = 'Changed password successfully!';
+            $data['message'] = 'You have changed password successfully.';
+            $data['sourceable_id'] = $user->id;
+            $data['sourceable_type'] = User::class;
+            $data['web_link'] = route('profile');
 
-            Notification::send($user,new GeneralNotification($title,$message,$sourceable_id,$sourceable_type,$web_link));
+            $notificationService->sendGeneralNotification($data,$user);
 
             return redirect()->route('profile')->with(['updated' => 'Password Updated.']);
         }
