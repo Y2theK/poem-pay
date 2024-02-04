@@ -53,6 +53,7 @@ class UserService{
         }
     }
     public function delete(User $user){
+        $user->wallet()->delete();
         return $user->delete();
     }
 }
