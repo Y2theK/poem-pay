@@ -9,9 +9,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\backend\StaffStoreRequest;
 use App\Http\Requests\backend\StaffUpdateRequest;
+use App\Services\StaffService;
 
 class StaffController extends Controller
 {
+    public function __construct(protected StaffService $staffService)
+    {
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -40,13 +45,9 @@ class StaffController extends Controller
      */
     public function store(StaffStoreRequest $request)
     {
-        $staff = new AdminUser();
-        $staff->name = $request->name;
-        $staff->email = $request->email;
-        $staff->phone = $request->phone;
-        $staff->password = Hash::make($request->password);
-        $staff->save();
-
+        $data  = $request->validated();
+        $data['password'] = Hash::make($request->password);
+        $staff = $this->staffService->store($data);
         return redirect()->route('admin.staffs.index')->with('created','Created Successfully');
     }
 
@@ -84,11 +85,9 @@ class StaffController extends Controller
     public function update(StaffUpdateRequest $request, $id)
     {
         $staff = AdminUser::findOrFail($id);
-        $staff->name = $request->name;
-        $staff->email = $request->email;
-        $staff->phone = $request->phone;
-        $staff->password = $request->password ? Hash::make($request->password) : $staff->password;
-        $staff->save();
+        $data = $request->validated();
+        $data['password'] = $request->password ? Hash::make($request->password) : $staff->password;
+        $staff = $this->staffService->update($staff,$data);
 
         return redirect()->route('admin.staffs.index')->with('updated','Successfully Updated');
     }
@@ -102,7 +101,7 @@ class StaffController extends Controller
     public function destroy($id)
     {
         $staff = AdminUser::findOrFail($id);
-        $staff->delete();
+        $this->staffService->delete($staff);
         return 'success';
     }
 }
