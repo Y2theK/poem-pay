@@ -9,7 +9,7 @@ This application is about a online wallet app to easily scan and pay money betwe
 
 
 ```shell
-git clone https://github.com/Y2theK/survey-test.git
+git clone https://github.com/Y2theK/magic_pay.git
 ```
 
 ```shell
@@ -35,19 +35,19 @@ npm install && npm run dev
 - [x] User Management
 - [x] Admin Management
 - [x] Wallet and Transaction Management
-- [x] Scan pay or Manual Pay
-- [x] Scan QR to receive
+- [x] Scan pay or Manual pay
+- [x] Scan QR to receive money
 - [x] User profile
 - [x] Notifications
-- [x] Infinite Scroll
-- [] Account Management
+- [x] Infinite scroll
+- [ ] Account Management
 
 ## Screenshots 
 
-<img src="/public/image/screenshot/MPADMIN.png" alt="Admin Page" width="60%" />
+<img src="/public/image/screenshot/MPADMIN.png" alt="Admin Page" width="80%" />
 <div style="">
-<img src="/public/image/screenshot/MPWALLET.png" alt="Admin Page" width="30%" style="margin-right:30px" />
-<img src="/public/image/screenshot/MPSCAN2.png" alt="Admin Page" width="30%" />
+<img src="/public/image/screenshot/MPWALLET.png" alt="Admin Page" width="40%" />
+<img src="/public/image/screenshot/MPSCAN2.png" alt="Admin Page" width="40%" />
 </div>
 
 ## Author
