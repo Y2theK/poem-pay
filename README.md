@@ -3,7 +3,7 @@
 ### Description
 This application is about a online wallet app to easily scan and pay money between users.
 
-`Laravel 8` `Mysql` `tailwindcss` `datatable`
+`Laravel 8` `Mysql` `tailwindcss` `serverside-datatable`
 
 ## Installation
 
@@ -39,12 +39,16 @@ npm install && npm run dev
 - [x] Scan QR to receive
 - [x] User profile
 - [x] Notifications
-- [x] Reviewing Teacher Application Form
+- [x] Infinite Scroll
 - [] Account Management
 
-## Example 
+## Screenshots 
 
-<img src="/public/image/screenshot/MPADMIN.png" alt="Admin Page" width="50%">
+<img src="/public/image/screenshot/MPADMIN.png" alt="Admin Page" width="60%" />
+<div style="">
+<img src="/public/image/screenshot/MPWALLET.png" alt="Admin Page" width="30%" style="margin-right:30px" />
+<img src="/public/image/screenshot/MPSCAN2.png" alt="Admin Page" width="30%" />
+</div>
 
 ## Author
 **Ye Yint Kyaw**
