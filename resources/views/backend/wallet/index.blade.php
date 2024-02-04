@@ -138,7 +138,7 @@
                         
                     ],
                     "order": [
-                        [5, 'desc'] //default order updated_at desc
+                        [0, 'desc'] //default order updated_at desc
                     ]
                 })
                 .columns.adjust()

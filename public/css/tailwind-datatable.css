@@ -2,8 +2,11 @@
 .uk-text-danger{
     color : red;
 }
-/*Overrides for Tailwind CSS */
-
+/*Overrides for Tailwind CSS Datatable */
+.dataTables_wrapper .dataTables_paginate .paginate_button.next,
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous{
+    padding-top: 4px ;
+}
 /*Form fields*/
 .dataTables_wrapper select,
 .dataTables_wrapper .dataTables_filter input {

@@ -2,7 +2,7 @@
 @section('title', 'Staff Management')
 @section('breadcrumb', 'Staff Create')
 @section('content')
-  <div class="w-full mb-8 overflow-hidden rounded-lg>
+  <div class="w-full mb-8 overflow-hidden rounded-lg">
         <div class="w-full overflow-x-auto px-10">
             @include('backend.layouts.flash')
             <form action="{{ route('admin.staffs.store') }}" method="POST" id="staff-create-form"> 

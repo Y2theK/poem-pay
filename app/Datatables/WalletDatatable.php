@@ -35,14 +35,19 @@ class WalletDatatable implements DatatableInterface{
 
                         return $htmlTable;
                     }
-                    return '-';
+                    return '<strong class="text-red-500 p-3">No User Data (Contact Admin)</strong>';
 
                 })
                 ->editColumn('amount', function ($row) {
                     // route('admin.users.edit', $row->id) 
-                    $edit_icon = '<a href="#" data-id="' . $row->account_number . '" data-amount="' . $row->amount . '" data-name="' . $row->user->name . '" class="amount-edit-btn text-yellow-500  text-right text-xl "> <i class="las la-edit"></i></a>';
+                    $user = $row->user;
+                    $edit_icon = '';
+                    if($user) {
+                        $edit_icon = '<a href="#" data-id="' . $row->account_number . '" data-amount="' . $row->amount . '" data-name="' . $row->user->name . '" class="amount-edit-btn text-yellow-500  text-right text-xl "> <i class="las la-edit"></i></a>';
+                    }
                     $amount = "<span>". number_format($row->amount,2) . "  <small>MMK</small></span>";
-                    return '<div class="amount-group flex items-center justify-between">'. $amount . $edit_icon. '</div>';
+                    return '<div class="amount-group flex items-center justify-between">'. $amount . $edit_icon . '</div>';
+
                 })
                 ->editColumn('account_number',function($row){
                 return '<strong>' . implode(' ', str_split($row->account_number, 4)) . '</strong>';

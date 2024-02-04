@@ -7,8 +7,6 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
 	<link rel="stylesheet" href="{{ asset('backend/css/tailwind.output.css') }}" />
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="{{ asset('backend/js/init-alpine.js') }}"></script>
@@ -24,7 +22,6 @@
 
 	<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
-
 	{{-- <link href="https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.min.css" rel="stylesheet"> --}}
 
     <!--Regular Datatables CSS-->
@@ -33,6 +30,11 @@
 	<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
 	
 	<link rel="stylesheet" href="{{ asset('css/tailwind-datatable.css') }}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Titillium+Web&display=swap" rel="stylesheet">
+	{{-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" /> --}}
+
 	
 </head>
 
@@ -92,9 +94,14 @@
 						}
                 	],
 					language: {
-						"search": "<span class='text-purple-600 font-medium'>Search</span>",
+						"search":     "<span class='text-purple-500 font-medium'>Search:</span>",
+						"info":       "<span class='text-purple-500 font-medium'>Showing _START_ to _END_ of _TOTAL_ entries</span>",
+    					"lengthMenu": "<span class='text-purple-500 font-medium'>_MENU_</span>",
 						"processing": "<span style='display: flex;justify-content: center;'><img src='/image/animation_loading.gif' style='width:100px' /></span>",
-
+						"paginate": {
+							"next":       "<i class='las la-arrow-right text-xl bold'></i>",
+							"previous":   "<i class='las la-arrow-left text-xl bold'></i>"
+						},
 					},
 
 		});
