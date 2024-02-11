@@ -26,7 +26,7 @@
 <body class="antialiased text-sm md:text-md">
     <div class="min-h-screen bg-gray-100">
         <!-- Top Bar -->
-        <nav class="bg-white border-b border-gray-100 sticky top-0">
+        <nav class="bg-white border-b border-gray-100 sticky top-0 z-50">
            @include('frontend.layouts.partials.top-bar')
         </nav>
 

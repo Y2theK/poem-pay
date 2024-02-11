@@ -18,6 +18,8 @@ td:has(> .amount-group):hover .amount-edit-btn{
 .profile-img:hover .upload-icon{
     display: block;
 }
+
+/* button & input box focus none */
 button:focus , input:focus{
     outline-offset: none !important; 
     box-shadow: none !important;
