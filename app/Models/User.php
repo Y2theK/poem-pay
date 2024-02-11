@@ -50,4 +50,16 @@ class User extends Authenticatable
     public function wallet(){
         return $this->hasOne(Wallet::class,'user_id','id');
     }
+
+    public function posts(){
+        return $this->hasMany(Post::class,'user_id','id');
+    }
+
+    public function reactions(){
+        return $this->hasMany(Reaction::class,'user_id','id');
+    }
+    
+    public function comments(){
+        return $this->hasMany(Comment::class,'user_id','id');
+    }
 }

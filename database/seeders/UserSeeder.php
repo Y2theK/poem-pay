@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -13,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(300)->create()->each(function($user){
+        $users = \App\Models\User::factory(30)->create()->each(function($user){
             \App\Models\Wallet::factory(1)->create([
                 'user_id' => $user->id
             ]);

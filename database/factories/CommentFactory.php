@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
 use App\Models\User;
-use App\Helpers\UUIDGenerater;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class WalletFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,9 +16,9 @@ class WalletFactory extends Factory
     public function definition()
     {
         return [
-            'account_number' => UUIDGenerater::accountNumber(),
-            'amount' => rand(1000,10000),
+            'content' => $this->faker->realText(rand(10,15)),
             'user_id' => User::inRandomOrder()->first()->id,
+            'post_id' => Post::inRandomOrder()->first()->id
         ];
     }
 }
