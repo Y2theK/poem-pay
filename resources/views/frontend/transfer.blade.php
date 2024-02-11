@@ -91,7 +91,7 @@
                 <div class="mt-4">
                     <x-label for="description" :value="__('Remark')" />
 
-                    <textarea id="description" placeholder="Chit lox" rows="3" style="resize: none;"
+                    <textarea id="description" placeholder="Write a short description" rows="3" style="resize: none;"
                         class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         type="text" name="description">{{ old('description') }}</textarea>
                     @error('description')

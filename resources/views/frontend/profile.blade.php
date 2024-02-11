@@ -28,15 +28,15 @@
                
 
                 <div class="w-full px-5 ">
-                    <div class=" flex my-4 px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
+                    <div class=" flex my-4 px-1 justify-between text-md font-medium text-gray-900 dark:text-white">
                         <span>Name</span> <span>{{ $user->name }}</span>
                     </div>
                     <hr>
-                    <div class=" flex my-4 px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
+                    <div class=" flex my-4 px-1 justify-between text-md font-medium text-gray-900 dark:text-white">
                         <span>Email</span> <span>{{ $user->email }}</span>
                     </div>
                     <hr>
-                    <div class=" flex mt-4 mb-0 px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
+                    <div class=" flex mt-4 mb-0 px-1 justify-between text-md font-medium text-gray-900 dark:text-white">
                         <span>Phone</span> <span>{{ $user->phone }}</span>
                     </div>
                     {{-- <hr> --}}
