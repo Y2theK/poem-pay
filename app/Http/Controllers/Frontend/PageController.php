@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Post;
 use App\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
     public function home()
     {
-        return view('frontend.home', ['user' => auth()->user()]);
+        $user = auth()->user();
+        $posts = Post::withCount(['reactions','comments'])->with(['tags:name','user:id,name,avatar'])->latest()->paginate();
+        // dd($posts);
+        return view('frontend.home', compact('user','posts'));
     }
     
     public function receiveQR()

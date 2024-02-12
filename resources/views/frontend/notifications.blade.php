@@ -148,9 +148,9 @@
             $(function() {
                 $('.infinite-scroll').jscroll({
                     autoTrigger: true,
-                    loadingHtml: '<img class="mx-auto" width="50px" src="{{ asset('image/logo/animation_loading.gif') }}" alt="Loading..." />',
+                    loadingHtml: '<img class="mx-auto" width="50px" src="{{ asset('image/animation_loading.gif') }}" alt="Loading..." />',
                     padding: 0,
-                    nextSelector: '.pagination span.activeLink + a.pageLink',
+                    nextSelector: 'a[rel="next"]',
                     contentSelector: 'div.infinite-scroll',
                     callback: function() {
                         $('ul.pagination').remove();

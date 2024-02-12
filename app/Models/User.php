@@ -47,12 +47,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getAvatarPath(){
+        return $this->avatar ?  asset('storage/'.$this->avatar) : "https://ui-avatars.com/api/?name=$this->name&background=ffffff";
+    }
+
     public function wallet(){
         return $this->hasOne(Wallet::class,'user_id','id');
     }
 
     public function posts(){
-        return $this->hasMany(Post::class,'user_id','id');
+        return $this->hasMany(Post::class);
     }
 
     public function reactions(){

@@ -14,13 +14,13 @@ class Post extends Model
     }
 
     public function reactions(){
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Reaction::class);
     }
 
     public function comments(){
         return $this->hasMany(Comment::class);
     }
-    
+
     public function tags(){
         return $this->belongsToMany(Tag::class,'post_tags');
     }
