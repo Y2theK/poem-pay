@@ -21,6 +21,10 @@ class Post extends Model
         return $this->hasOne(Reaction::class)->where('user_id',auth()->id());
     }
 
+    public function authUserSavedPost(){
+        return $this->hasOne(SavedPost::class)->where('user_id',auth()->id());
+    }
+
     public function comments(){
         return $this->hasMany(Comment::class);
     }

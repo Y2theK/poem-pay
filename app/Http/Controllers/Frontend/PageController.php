@@ -11,7 +11,7 @@ class PageController extends Controller
     public function home()
     {
         $user = auth()->user();
-        $posts = Post::withCount(['reactions','comments','authUserReactions'])
+        $posts = Post::withCount(['reactions','comments','authUserReactions','authUserSavedPost'])
                         ->with(['user:id,name,avatar'])
                         ->latest()->paginate();
         // dd($posts);

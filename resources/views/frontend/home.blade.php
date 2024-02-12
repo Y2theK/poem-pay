@@ -154,11 +154,28 @@
                             if(res.message === 'created'){
                                 reactionSvg.setAttribute("fill", "red");
                                 reactionSvg.setAttribute("stroke", "red");
-                                reactionCount.innerText++;
+                                reactionCount.textContent++;
                             }else{
                                 reactionSvg.setAttribute("fill", "none");
                                 reactionSvg.setAttribute("stroke", "currentColor");
-                                reactionCount.innerText--;
+                                reactionCount.textContent--;
+                            }
+                        }
+                    })
+                });
+
+                 $(document).on('click','.saved-btn',function(e){
+                    let id = $(this).data('id');
+                    $.ajax({
+                    url : "{{ route('saved_posts.store')}}",
+                    type : 'POST',
+                    data : { 'id': id },
+                        success : function(res){
+                            let savedSvg = $('#saved-'+id).children()[0]; //to change reaction svg color
+                            if(res.message === 'created'){
+                                savedSvg.setAttribute("fill", "white");
+                            }else{
+                                savedSvg.setAttribute("fill", "none");
                             }
                         }
                     })
