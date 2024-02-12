@@ -11,8 +11,8 @@
         </div>
     </div>
     <div class="mt-3 mx-5 w-full flex justify-end">
-        <div class='flex text-gray-700 font-normal text-sm rounded-md mb-2 mr-4 items-center'>
-            Likes: <div class="ml-1 text-gray-400 font-thin text-ms">
+        <div id="reaction-count-{{ $post->id }}" class='flex text-gray-700 font-normal text-sm rounded-md mb-2 mr-4 items-center'>
+            Likes: <div class="ml-1 text-gray-400 font-thin text-ms" >
                 {{ $post->reactions_count }}</div>
         </div>
     </div>

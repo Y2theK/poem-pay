@@ -141,6 +141,28 @@
                         $('ul.pagination').remove();
                     }
                 });
+                $(document).on('click','.reaction-btn',function(e){
+                    let id = $(this).data('id');
+                 //   $('.reaction-btn').disabled();
+                    $.ajax({
+                    url : "{{ route('reactions.store')}}",
+                    type : 'POST',
+                    data : { 'id': id },
+                        success : function(res){
+                            let reactionSvg = $('#reaction-'+id).children()[0]; //to change reaction svg color
+                            let reactionCount = $('#reaction-count-'+id).children()[0]; //to change reaction ount
+                            if(res.message === 'created'){
+                                reactionSvg.setAttribute("fill", "red");
+                                reactionSvg.setAttribute("stroke", "red");
+                                reactionCount.innerText++;
+                            }else{
+                                reactionSvg.setAttribute("fill", "none");
+                                reactionSvg.setAttribute("stroke", "currentColor");
+                                reactionCount.innerText--;
+                            }
+                        }
+                    })
+                });
             });
         </script>
 

@@ -17,6 +17,10 @@ class Post extends Model
         return $this->hasMany(Reaction::class);
     }
 
+    public function authUserReactions(){
+        return $this->hasOne(Reaction::class)->where('user_id',auth()->id());
+    }
+
     public function comments(){
         return $this->hasMany(Comment::class);
     }

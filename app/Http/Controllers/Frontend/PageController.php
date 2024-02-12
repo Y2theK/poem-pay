@@ -4,14 +4,18 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Post;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\frontend\PostResource;
 
 class PageController extends Controller
 {
     public function home()
     {
         $user = auth()->user();
-        $posts = Post::withCount(['reactions','comments'])->with(['tags:name','user:id,name,avatar'])->latest()->paginate();
+        $posts = Post::withCount(['reactions','comments','authUserReactions'])
+                        ->with(['user:id,name,avatar'])
+                        ->latest()->paginate();
         // dd($posts);
+                        
         return view('frontend.home', compact('user','posts'));
     }
     

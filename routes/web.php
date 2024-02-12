@@ -1,12 +1,14 @@
 <?php
 
+use App\Models\Reaction;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Notifications\Notification;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\ProfileController;
+use App\Http\Controllers\Frontend\ReactionController;
 use App\Http\Controllers\Frontend\TransferController;
 use App\Http\Controllers\Frontend\TransactionController;
 use App\Http\Controllers\Frontend\NotificationController;
-use Illuminate\Notifications\Notification;
 
 
 Route::middleware('auth')->group(function(){
@@ -43,7 +45,7 @@ Route::middleware('auth')->group(function(){
     
     });
     
-
+    Route::resource('reactions', ReactionController::class)->only(['store','destroy']);
         
 
 
