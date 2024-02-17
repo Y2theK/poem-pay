@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\ReactionController;
 use App\Http\Controllers\Frontend\TransferController;
 use App\Http\Controllers\Frontend\TransactionController;
 use App\Http\Controllers\Frontend\NotificationController;
+use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\SavedPostController;
 
 Route::middleware('auth')->group(function(){
@@ -49,6 +50,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('saved-posts', SavedPostController::class)->only(['store'])->names([
         'store' => 'saved_posts.store'
     ]);
+    Route::resource('posts',PostController::class)->only(['store','update','destroy']);
     
 });
 

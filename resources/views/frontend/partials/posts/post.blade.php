@@ -8,7 +8,7 @@
             <div class='text-gray-600 font-semibold text-lg mb-2 mt-3 mx-3 px-2'>
                 {{ $post->title }}
             </div>
-            <div class='text-gray-500 font-thin text-sm mb-6 mx-3 px-2'>{!! $post->excerpt !!}
+            <div class='text-gray-500 font-thin text-sm mb-6 mx-3 px-2'>{!! $post->content !!}
             </div>
             <div>
                 @include('frontend.partials.posts.save-share-react-bar')

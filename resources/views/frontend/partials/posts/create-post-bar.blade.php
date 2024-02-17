@@ -1,5 +1,5 @@
 <!-- This is an create post component -->
-<div class="">
+<div class="" data-modal-target="post-create-modal" data-modal-toggle="post-create-modal">
     <div class='flex max-w-xl bg-white shadow-md rounded-lg overflow-hidden mx-auto'>
         <div class='flex items-center w-full'>
             <div class='w-full'>

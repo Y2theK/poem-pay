@@ -115,6 +115,7 @@
             </div>
         </div> --}}
         <div class="infinite-scroll">
+            @include('backend.layouts.flash')
             @foreach ($posts as $post)
                 <div class="">
                     @include('frontend.partials.posts.post')
@@ -126,7 +127,9 @@
         </div>
     <div>
 
-
+    @section('modal')
+        @include('frontend.modals.post-create-modal')
+    @endsection
     @section('script')
         <script>
             $('ul.pagination').hide();
@@ -140,45 +143,6 @@
                     callback: function() {
                         $('ul.pagination').remove();
                     }
-                });
-                $(document).on('click','.reaction-btn',function(e){
-                    let id = $(this).data('id');
-                 //   $('.reaction-btn').disabled();
-                    $.ajax({
-                    url : "{{ route('reactions.store')}}",
-                    type : 'POST',
-                    data : { 'id': id },
-                        success : function(res){
-                            let reactionSvg = $('#reaction-'+id).children()[0]; //to change reaction svg color
-                            let reactionCount = $('#reaction-count-'+id).children()[0]; //to change reaction ount
-                            if(res.message === 'created'){
-                                reactionSvg.setAttribute("fill", "red");
-                                reactionSvg.setAttribute("stroke", "red");
-                                reactionCount.textContent++;
-                            }else{
-                                reactionSvg.setAttribute("fill", "none");
-                                reactionSvg.setAttribute("stroke", "currentColor");
-                                reactionCount.textContent--;
-                            }
-                        }
-                    })
-                });
-
-                 $(document).on('click','.saved-btn',function(e){
-                    let id = $(this).data('id');
-                    $.ajax({
-                    url : "{{ route('saved_posts.store')}}",
-                    type : 'POST',
-                    data : { 'id': id },
-                        success : function(res){
-                            let savedSvg = $('#saved-'+id).children()[0]; //to change reaction svg color
-                            if(res.message === 'created'){
-                                savedSvg.setAttribute("fill", "white");
-                            }else{
-                                savedSvg.setAttribute("fill", "none");
-                            }
-                        }
-                    })
                 });
             });
         </script>
