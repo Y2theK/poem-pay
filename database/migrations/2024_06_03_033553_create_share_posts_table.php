@@ -19,6 +19,7 @@ class CreateSharePostsTable extends Migration
             $table->id();
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Post::class);
+            $table->string('title')->nullable();
             $table->timestamps();
         });
     }

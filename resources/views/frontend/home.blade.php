@@ -31,6 +31,47 @@
                 }
             });
         });
+
+         //reaction btn click ajax
+         $(document).on('click','.reaction-btn',function(e){
+            let id = $(this).data('id');
+            $.ajax({
+            url : "{{ route('reactions.store')}}",
+            type : 'POST',
+            data : { 'id': id },
+                success : function(res){
+                    let reactionSvg = $('#reaction-'+id).children()[0]; //to change reaction svg color
+                    let reactionCount = $('#reaction-count-'+id).children()[0]; //to change reaction ount
+                    if(res.message === 'created'){
+                        reactionSvg.setAttribute("fill", "red");
+                        reactionSvg.setAttribute("stroke", "red");
+                        reactionCount.textContent++;
+                    }else{
+                        reactionSvg.setAttribute("fill", "none");
+                        reactionSvg.setAttribute("stroke", "currentColor");
+                        reactionCount.textContent--;
+                    }
+                }
+            })
+        });
+
+        //saved btn click ajax
+        $(document).on('click','.saved-btn',function(e){
+            let id = $(this).data('id');
+            $.ajax({
+            url : "{{ route('posts.save')}}",
+            type : 'POST',
+            data : { 'id': id },
+                success : function(res){
+                    let savedSvg = $('#saved-'+id).children()[0]; //to change reaction svg color
+                    if(res.message === 'created'){
+                        savedSvg.setAttribute("fill", "white");
+                    }else{
+                        savedSvg.setAttribute("fill", "none");
+                    }
+                }
+            })
+        });
     </script>
 
 @endsection

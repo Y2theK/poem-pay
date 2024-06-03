@@ -66,6 +66,10 @@ class User extends Authenticatable
     public function savedPosts(){
         return $this->hasMany(SavedPost::class,'user_id','id');
     }
+
+    public function sharePosts(){
+        return $this->hasMany(SharePost::class,'user_id','id');
+    }
     
     public function comments(){
         return $this->hasMany(Comment::class,'user_id','id');

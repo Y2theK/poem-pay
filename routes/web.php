@@ -3,14 +3,15 @@
 use App\Models\Reaction;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Notifications\Notification;
+use App\Http\Controllers\SharePostController;
 use App\Http\Controllers\Frontend\PageController;
+use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\ReactionController;
 use App\Http\Controllers\Frontend\TransferController;
+use App\Http\Controllers\Frontend\SavedPostController;
 use App\Http\Controllers\Frontend\TransactionController;
 use App\Http\Controllers\Frontend\NotificationController;
-use App\Http\Controllers\Frontend\PostController;
-use App\Http\Controllers\Frontend\SavedPostController;
 
 Route::middleware('auth')->group(function(){
     Route::controller(PageController::class)->group(function(){
@@ -47,10 +48,9 @@ Route::middleware('auth')->group(function(){
     });
     
     Route::resource('reactions', ReactionController::class)->only(['store']);
-    Route::resource('saved-posts', SavedPostController::class)->only(['store'])->names([
-        'store' => 'saved_posts.store'
-    ]);
     Route::resource('posts',PostController::class);
+    Route::post('saved-posts', SavedPostController::class)->name('posts.save');
+    Route::post('share-posts', SharePostController::class)->name('posts.share');
     
 });
 

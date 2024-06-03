@@ -1,5 +1,6 @@
  <div class="flex justify-start mb-4 border-t border-gray-100">
      <div class="flex w-full mt-1 pt-2 pl-5">
+        {{-- react btn --}}
          <span data-id={{ $post->id }} id="reaction-{{ $post->id }}"
              class="reaction-btn bg-white transition ease-out duration-300 hover:text-red-500 border w-8 h-8 px-2 pt-2 text-center rounded-full text-gray-400 cursor-pointer mr-2">
              <svg xmlns="http://www.w3.org/2000/svg" fill="{{ $post->auth_user_reactions_count ? 'red' : 'none' }}" width="15px" viewBox="0 0 24 24" stroke-width="1.5"
@@ -23,7 +24,8 @@
              alt="" />
      </div>
      <div class="flex justify-end w-full mt-1 pt-2 pr-5">
-         <span
+         {{-- share btn --}}
+         <span data-modal-target="post-share-modal-{{ $post->id }}" data-modal-toggle="post-share-modal-{{ $post->id }}"
              class="transition ease-out duration-300 hover:bg-blue-50 bg-blue-100 h-8 px-2 py-2 text-center rounded-full text-blue-400 cursor-pointer mr-2">
              <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="14px" viewBox="0 0 24 24"
                  stroke="currentColor">
@@ -31,6 +33,7 @@
                      d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
              </svg>
          </span>
+         {{-- saved btn --}}
          <span data-id={{ $post->id }} id="saved-{{ $post->id }}"
              class="saved-btn transition ease-out duration-300 hover:bg-blue-500 bg-blue-600 h-8 px-2 py-2 text-center rounded-full text-gray-100 cursor-pointer">
              <svg xmlns="http://www.w3.org/2000/svg" fill="{{ $post->auth_user_saved_post_count ? 'white' : 'none' }}" width="14px" viewBox="0 0 24 24"
@@ -40,4 +43,5 @@
              </svg>
          </span>
      </div>
- </div>
+    </div>
+    @include('frontend.modals.post-share-modal')

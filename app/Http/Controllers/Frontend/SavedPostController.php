@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class SavedPostController extends Controller
 {
-    public function store(Request $request){
+    public function __invoke(Request $request){
        
         $user = auth()->user();
         $is_existed_saved_post = SavedPost::where('user_id',$user->id)->where('post_id',$request->id)->first();
