@@ -4,6 +4,7 @@
         <x-posts.create-post-bar :user=$user></x-posts.create-post-bar>
    
         <div class="infinite-scroll">
+            @include('backend.layouts.flash')
             @foreach ($posts as $post)
                 <div class="">
                 <x-posts.post :post=$post :user=$user></x-posts.post>
