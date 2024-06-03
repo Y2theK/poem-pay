@@ -69,6 +69,7 @@
 
     <script>
         $('#summernote').summernote({
+            dialogsInBody: true,
             height: 300,                 // set editor height
             minHeight: null,             // set minimum height of editor
             maxHeight: null,             // set maximum height of editor
@@ -99,26 +100,29 @@
                 }
             });
         }
-        
-    </script>
 
-    @if (session('created'))
+        @if (session('created'))
             Toast.fire({
                 icon: 'success',
                 title: '{{ session('created') }}'
             })
-    @elseif (session('updated'))
-        Toast.fire({
-            icon: 'success',
-            title: '{{ session('updated') }}'
-        })
-    @elseif (session('saved'))
-        Toast.fire({
+        @elseif (session('updated'))
+            Toast.fire({
                 icon: 'success',
-                title: '{{ session('saved') }}'
+                title: '{{ session('updated') }}'
             })
-    @endif
+        @elseif (session('saved'))
+            Toast.fire({
+                    icon: 'success',
+                    title: '{{ session('saved') }}'
+                })
+        @endif
+        
+    </script>
 
+    
+    
+    @stack('child-script')
     @yield('script')
 
 

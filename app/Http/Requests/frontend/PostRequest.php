@@ -19,7 +19,7 @@ class PostRequest extends FormRequest
 
     public function prepareForValidation(){
         $this->merge([
-            'slug' => Str::slug($this->title)
+            'slug' => Str::slug($this->title) . uniqid()
         ]);
     }
 
