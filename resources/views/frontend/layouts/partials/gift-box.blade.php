@@ -8,7 +8,7 @@ x-data="{ open: false }"  x-init="() => setTimeout(() => open = true, 500)" x-sh
  <div  class="bg-white min-w-1xl flex flex-col shadow-lg" style="background-color:#36393f;">
       <div class="px-16 py-7">
           <img class="h-24 m-auto rounded-full mb-2" src="{{ asset('image/logo/logo_wallet.png') }}">
-        <p class="text-gray-300 text-center">Magic Pay sent a gift</p>
+        <p class="text-gray-300 text-center">{{ config('app.name') }} sent a gift</p>
         <div class="flex m-auto">
         <img src="{{ asset('image/logo/logo_wallet.png') }}" class="h-10 mr-2">
         <h2 class="text-gray-100 text-3xl font-semibold text-center">50 Free Amount of Point</h2>

@@ -14,7 +14,7 @@
             <div class='text-gray-500 text-sm mb-6 mx-3 px-2 hidden' id="read-more-{{ $post->id }}">{!! $post->content !!}
             </div>
 
-            <div class='text-blue-500 text-sm mb-6 mx-3 px-2 cursor-pointer read-btn' data-id={{ $post->id }} id="read-btn-{{ $post->id }}">Read more..</div>
+            <span class='text-blue-500 text-sm mb-6 mx-3 px-2 cursor-pointer read-btn' data-id={{ $post->id }} id="read-btn-{{ $post->id }}">Read more..</span>
            
             <div>
                 <x-posts.save-share-react-bar :post=$post />

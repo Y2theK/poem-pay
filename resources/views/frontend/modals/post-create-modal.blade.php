@@ -1,10 +1,3 @@
-{{-- <!-- Modal toggle -->
-<button data-modal-target="post-create-modal" data-modal-toggle="post-create-modal"
-    class="block text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
-    type="button">
-    Toggle modal
-</button> --}}
-
 <!-- Main modal -->
     <div id="post-create-modal" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-full  max-h-full">
@@ -33,23 +26,17 @@
                     @csrf
                     <div class="grid gap-4 mb-4 grid-cols-2">
                         <div class="col-span-2">
-                            {{-- <label for="title"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label> --}}
                             <input type="text" name="title" id="title"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                                 placeholder="Enter an awesome title" required="">
                         </div>
 
                         <div class="col-span-2">
-                            {{-- <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> --}}
-                                {{-- Content</label> --}}
-                            <textarea id="excerpt" rows="1" name="excerpt"
+                            <textarea id="excerpt" rows="3" name="excerpt"
                                 class=" block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                                 placeholder="Write excerpt here"></textarea>
                         </div>
                         <div class="col-span-2">
-                            {{-- <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> --}}
-                                {{-- Content</label> --}}
                             <textarea id="summernote"  rows="60" name="content"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                                 placeholder="Write full content here"></textarea>

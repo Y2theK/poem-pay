@@ -5,7 +5,7 @@
                 <div class="shrink-0 w-8 mr-4">
                     <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                 </div>
-                <div> Magic Pay </div>
+                <div>{{ config('app.name') }} </div>
                 </a>
                 <ul class="mt-6">
                     <li class="relative px-6 py-3">
@@ -76,7 +76,7 @@
                     <div class="shrink-0 w-8 mr-4">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </div>
-                    <div> Magic Pay </div>
+                    <div> Poem Pay </div>
                 </a>
                 <ul class="mt-6">
                     <li class="relative px-6 py-3">

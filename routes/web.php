@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('saved-posts', SavedPostController::class)->only(['store'])->names([
         'store' => 'saved_posts.store'
     ]);
-    Route::resource('posts',PostController::class)->only(['store','update','destroy']);
+    Route::resource('posts',PostController::class);
     
 });
 

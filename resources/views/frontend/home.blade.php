@@ -1,4 +1,4 @@
-@section('title', 'Magic Pay')
+@section('title', config('app.name'))
 <x-app-layout>
     <div>
         <x-posts.create-post-bar :user=$user></x-posts.create-post-bar>
