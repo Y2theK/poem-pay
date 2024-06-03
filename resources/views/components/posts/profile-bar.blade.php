@@ -9,7 +9,7 @@
               <div class='text-blue-700 font-base text-xs mr-1 cursor-pointer'>
                   UX Design
               </div>
-              <div class='text-gray-400 font-thin text-xs'>
+              <div class='text-gray-800 text-xs'>
                   • {{ $post->created_at->diffForHumans() }}
               </div>
           </div>

@@ -56,9 +56,9 @@
     
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    
 
-    @yield('script')
-    <script type="text/javascript">
+    <script>
    
         $('.back-btn').on('click', function() {
             window.history.go(-1);
@@ -77,31 +77,34 @@
         })
         	//setup csrf token for all ajax requests
         let token = document.head.querySelector('meta[name="csrf-token"]');
-
         if(token){
             $.ajaxSetup({
                 headers : {
-                    'X_CSRF_TOKEN' : token.content
+                    'X-CSRF-TOKEN' : token.content,
                 }
             });
         }
-        @if (session('created'))
+        
+    </script>
+
+    @if (session('created'))
             Toast.fire({
                 icon: 'success',
                 title: '{{ session('created') }}'
             })
-        @elseif (session('updated'))
-            Toast.fire({
-                icon: 'success',
-                title: '{{ session('updated') }}'
-            })
-        @elseif (session('saved'))
+    @elseif (session('updated'))
+        Toast.fire({
+            icon: 'success',
+            title: '{{ session('updated') }}'
+        })
+    @elseif (session('saved'))
         Toast.fire({
                 icon: 'success',
                 title: '{{ session('saved') }}'
             })
-        @endif
-    </script>
+    @endif
+
+    @yield('script')
 
 
 </body>
