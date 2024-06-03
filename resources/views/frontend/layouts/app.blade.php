@@ -57,14 +57,23 @@
     <script src="{{ asset('js/jscroll.min.js') }}"></script>
 
     {{-- tinymce editor --}}
-    <script src="https://cdn.tiny.cloud/1/wf8k5o3mso4q2c2nca7ssnvp8t130napv0t24475aog81h7s/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    {{-- <script src="https://cdn.tiny.cloud/1/wf8k5o3mso4q2c2nca7ssnvp8t130napv0t24475aog81h7s/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> --}}
+    
+    {{-- summernote --}}
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     
 
     <script>
-   
+        $('#summernote').summernote({
+            height: 300,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+        });
+
         $('.back-btn').on('click', function() {
             window.history.go(-1);
             return false;
@@ -80,20 +89,7 @@
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
-        //tinymce init
-        tinymce.init({
-            selector: '.tiny-textarea',
-            ui_mode: 'split',
-            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            mergetags_list: [
-            { value: 'First.Name', title: 'First Name' },
-            { value: 'Email', title: 'Email' },
-            ],
-            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-        });
+
         //setup csrf token for all ajax requests
         let token = document.head.querySelector('meta[name="csrf-token"]');
         if(token){

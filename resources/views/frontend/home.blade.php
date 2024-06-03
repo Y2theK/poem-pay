@@ -2,12 +2,13 @@
 <x-app-layout>
     <div>
         <x-posts.create-post-bar :user=$user></x-posts.create-post-bar>
-   
-        <div class="infinite-scroll">
+        <div>
             @include('backend.layouts.flash')
+        </div>
+        <div class="infinite-scroll">
             @foreach ($posts as $post)
                 <div class="">
-                <x-posts.post :post=$post :user=$user></x-posts.post>
+                    <x-posts.post :post=$post :user=$user></x-posts.post>
                 </div>
             @endforeach
             <ul class="pagination flex">
