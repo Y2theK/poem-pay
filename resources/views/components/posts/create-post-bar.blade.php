@@ -16,7 +16,7 @@
                     </span>
                     <input type="search"
                         class="w-full  py-2 pl-4 pr-10 text-sm bg-gray-100 border border-transparent appearance-none rounded-tg placeholder-gray-400 focus:bg-white focus:outline-none focus:border-purple-500 focus:text-gray-900 focus:shadow-outline-purple"
-                        style="border-radius: 25px" placeholder="Post a poem..." autocomplete="off">
+                        style="border-radius: 25px" placeholder="What’s been occupying your thoughts?" autocomplete="off">
                 </div>
             </div>
         </div>
