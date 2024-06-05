@@ -14,7 +14,7 @@
             <div class='text-gray-500 text-sm mb-6 mx-3 px-2 hidden' id="read-more-{{ $post->id }}">{!! $post->content !!}
             </div>
 
-            <span class='text-blue-500 text-sm mb-6 mx-3 px-2 cursor-pointer read-btn' data-id={{ $post->id }} id="read-btn-{{ $post->id }}">Read more..</span>
+            <span class='text-blue-500 text-sm mb-3 mx-3 px-2 cursor-pointer block read-btn' data-id={{ $post->id }} id="read-btn-{{ $post->id }}">Read more..</span>
            
             <div>
                 <x-posts.save-share-react-bar :post=$post />
@@ -29,6 +29,8 @@
         </div>
     </div>
 </div>
+
+
 @push('child-script')
     <script>
         // toggle excerpt and content

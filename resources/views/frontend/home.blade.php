@@ -8,7 +8,11 @@
         <div class="infinite-scroll">
             @foreach ($posts as $post)
                 <div class="">
-                    <x-posts.post :post=$post :user=$user></x-posts.post>
+                    @if ($post->is_shared == false)
+                        <x-posts.post :post=$post :user=$user></x-posts.post>
+                    @else
+                        <x-posts.share-post :post=$post :user=$user></x-posts.share-post>
+                    @endif
                 </div>
             @endforeach
             <ul class="pagination flex">

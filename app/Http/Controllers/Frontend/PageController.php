@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\Post;
+
 use App\Http\Controllers\Controller;
-use App\Http\Resources\frontend\PostResource;
+use App\Services\PostService;
 
 class PageController extends Controller
 {
-    public function home()
+    public function home(PostService $service)
     {
+
+        // $posts = Post::withCount(['reactions','comments','authUserReactions','authUserSavedPost'])
+        //                 ->with(['user:id,name,avatar'])
+        //                 ->latest()->paginate();
+        
+
         $user = auth()->user();
-        $posts = Post::withCount(['reactions','comments','authUserReactions','authUserSavedPost'])
-                        ->with(['user:id,name,avatar'])
-                        ->latest()->paginate();
-        // dd($posts);
-                        
+       
+        $posts = $service->getAll();
+        
         return view('frontend.home', compact('user','posts'));
     }
     

@@ -13,4 +13,28 @@ class SharePost extends Model
         'post_id',
         'title'
     ];
+
+    public function post(){
+        return $this->belongsTo(Post::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function reactions(){
+        return $this->hasManyThrough(Reaction::class , Post::class);
+    }
+
+    public function authUserReactions(){
+        return $this->hasOne(Reaction::class)->where('user_id',auth()->id());
+    }
+
+    public function authUserSavedPost(){
+        return $this->hasOne(SavedPost::class)->where('user_id',auth()->id());
+    }
+
+    public function comments(){
+        return $this->hasManyThrough(Comment::class,Post::class);
+    }
 }
