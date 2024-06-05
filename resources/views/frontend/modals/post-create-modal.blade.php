@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="col-span-2">
-                            <textarea id="excerpt" rows="3" name="excerpt"
+                            <textarea id="excerpt" rows="3" name="excerpt"  style="resize: none"
                                 class=" block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                                 placeholder="Write excerpt here"></textarea>
                         </div>

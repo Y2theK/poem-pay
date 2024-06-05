@@ -28,8 +28,8 @@ class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 
             <input type="hidden" name="post_id" value="{{ $post->id }}">
             <div class="grid gap-4 mb-4 grid-cols-2">
                 <div class="col-span-2">
-                    <textarea id="title" rows="3" name="title"
-                        class=" block p-2.5 w-full text-sm border-0 text-gray-900 bg-gray-50 rounded-lg   border-gray-300 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 focus:border-0"
+                    <textarea id="title" rows="3" name="title" style="resize: none"
+                        class="block p-2.5 w-full text-sm border-0 text-gray-900 bg-gray-50 rounded-lg   border-gray-300 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 focus:border-0"
                         placeholder="Write your thought here"></textarea>
                 </div>
             </div>
@@ -53,9 +53,9 @@ class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 
                                         <div class='flex w-full mt-1'>
                                             <div class='text-blue-700 font-base  mr-1 cursor-pointer'
                                                 style="font-size:10px;">
-                                                UX Design
+                                                #{{ $post->id }}
                                             </div>
-                                            <div class='text-gray-400 font-thin' style="font-size:10px;">
+                                            <div class='text-gray-400' style="font-size:10px;">
                                                 • {{ $post->created_at->diffForHumans() }}
                                             </div>
                                         </div>
@@ -66,7 +66,7 @@ class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 
                                     {{ $post->title }}</div>
                                 {{-- <div class='text-gray-400 font-medium text-sm mb-7 mt-3 mx-3 px-2'><img
                                         class="rounded" src="https://picsum.photos/536/354"></div> --}}
-                                <div class='text-gray-500 font-thin text-sm mb-6 mx-3 px-2'>
+                                <div class='text-gray-500 text-sm mb-6 mx-3 px-2'>
                                 {!! $post->excerpt !!}</div>
                             </div>
                         </div>
