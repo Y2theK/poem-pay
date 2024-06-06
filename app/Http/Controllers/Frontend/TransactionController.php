@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 
 class TransactionController extends Controller
 {
-    public function transaction()
+    public function index()
     {
         $user = Auth()->user();
         $transactions =  Transaction::with('source')

@@ -102,19 +102,6 @@
                 e.preventDefault();
                 this.closest('form').submit();
                 
-                //swal alert popup so ugly
-
-                // Swal.fire({
-                //     title: 'Are you sure to logout?',
-                //     showCancelButton: true,
-                //     reverseButtons : true,
-                //     confirmButtonColor: 'bg-purple-600',
-                //     confirmButtonText: 'Logout'
-                // }).then((result) => {
-                //     if (result.isConfirmed) {
-                //         this.closest('form').submit();
-                //     }
-                // });
             });
         });
     </script>

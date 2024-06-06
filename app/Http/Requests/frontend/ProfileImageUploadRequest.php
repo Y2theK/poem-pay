@@ -24,7 +24,7 @@ class ProfileImageUploadRequest extends FormRequest
     public function rules()
     {
         return [
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
         ];
     }
 }

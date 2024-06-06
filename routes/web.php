@@ -7,6 +7,7 @@ use App\Http\Controllers\SharePostController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\ProfileController;
+use App\Http\Controllers\Frontend\ExchangeController;
 use App\Http\Controllers\Frontend\ReactionController;
 use App\Http\Controllers\Frontend\TransferController;
 use App\Http\Controllers\Frontend\SavedPostController;
@@ -37,7 +38,7 @@ Route::middleware('auth')->group(function(){
         Route::get('/transfer/hash','hashTransfer')->name('transfer.hash');
     });
     Route::controller(TransactionController::class)->group(function(){
-        Route::get('/transactions','transaction')->name('transactions');
+        Route::get('/transactions','index')->name('transactions');
         Route::get('/transactions/{trx_id}','transactionDetail')->name('transactions.detail');
     
     });
@@ -48,10 +49,13 @@ Route::middleware('auth')->group(function(){
     });
     
     Route::resource('reactions', ReactionController::class)->only(['store']);
+    
     Route::resource('posts',PostController::class);
     Route::post('saved-posts', SavedPostController::class)->name('posts.save');
     Route::post('share-posts', SharePostController::class)->name('posts.share');
-    
+
+    Route::resource('exchange', ExchangeController::class)->only(['index','store']);
+
 });
 
 

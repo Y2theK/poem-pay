@@ -207,7 +207,6 @@
                             qrScanner.stop();
                             modal.hide();
                             const url = '{{ route('transfer',['to_phone' => '']) }}' + result;
-                            console.log(url);
                             return window.location.replace('/transfer?to_phone=' + result);
                         }
                     },
