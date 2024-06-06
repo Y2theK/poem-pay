@@ -5,7 +5,6 @@ namespace App\Datatables;
 use App\Models\User;
 use Jenssegers\Agent\Agent;
 use Yajra\DataTables\DataTables;
-use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
 use App\Datatables\Contract\DatatableInterface;
 

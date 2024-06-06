@@ -20,7 +20,6 @@
     
 	<link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel=" stylesheet">
 
-	<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
 	{{-- <link href="https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.min.css" rel="stylesheet"> --}}
 
@@ -33,6 +32,9 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Titillium+Web&display=swap" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
 	
 </head>
@@ -69,9 +71,25 @@
 	{{-- sweetalert 2 --}}
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	
-	
+	{{-- summernote --}}
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
 	<script type="text/javascript">
 	$(function ($) {
+		$('#summernote').summernote({
+            dialogsInBody: true,
+            height: 400,    
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+			callbacks: {
+			onInit: function() {
+				// Change background color on initialization
+					$('.note-editable').css('background-color', '#f0f0f0');
+					// $('.note-editable').css('color', '#f0f0f0');
+				}
+			}
+        });
+
 		$.extend($.fn.dataTable.defaults, {
 					responsive: true,
 					serverSide: true,
@@ -118,7 +136,7 @@
 		if(token){
 			$.ajaxSetup({
 				headers : {
-					'X_CSRF_TOKEN' : token.content
+					'X-CSRF-TOKEN' : token.content
 				}
 			});
 		}

@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Models\User;
+use App\Models\Post;
+use Illuminate\Http\Request;
+use App\Services\PostService;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\backend\UserStoreRequest;
-use App\Http\Requests\backend\UserUpdateRequest;
-use App\Services\UserService;
+use App\Http\Requests\backend\PostRequest;
 
-//use Yajra\DataTables\Facades\DataTables;
-class UserController extends Controller
+class PostController extends Controller
 {
-    public function __construct(protected UserService $userService)
+    public function __construct(protected PostService $postService)
     {
         
     }
@@ -23,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('backend.user.index');
+        return view('backend.post.index');
     }
 
     /**
@@ -33,7 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.user.create');
+        return view('backend.post.create');
     }
 
     /**
@@ -42,16 +40,15 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserStoreRequest $request)
+    public function store(PostRequest $request)
     {
         try {
             $data = $request->validated();
-            $data['password'] = Hash::make($request->password);
-            $user = $this->userService->store($data);
+            $post = $this->postService->store($data);
 
-            return redirect()->route('admin.users.index')->with('created', 'Created Successfully');
+            return redirect()->route('admin.posts.index')->with('created', 'Created Successfully');
         } catch (\Exception $e) {
-            return back()->withErrors(['failed' => 'Something Wrong'])->withInput();
+            return back()->withErrors(['failed' => 'Something Wrong.' .$e->getMessage()])->withInput();
         }
     }
 
@@ -74,8 +71,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        return view('backend.user.edit', compact('user'));
+        $post = Post::findOrFail($id);
+        return view('backend.post.edit', compact('post'));
     }
 
     /**
@@ -85,14 +82,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(PostRequest $request, $id)
     {
         try {
-            $user = User::findOrFail($id);
+            $post = Post::findOrFail($id);
             $data = $request->validated();
-            $data['password'] = $request->password ? Hash::make($request->password) : $user->password;
-            $user = $this->userService->update($user,$data);
-            return redirect()->route('admin.users.index')->with('updated', 'Successfully Updated');
+            $post = $this->postService->update($post,$data);
+            return redirect()->route('admin.posts.index')->with('updated', 'Successfully Updated');
 
         } catch (\Exception $e) {
             return back()->withErrors(['failed' => 'Something Wrong'])->withInput();
@@ -107,8 +103,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $this->userService->delete($user);
+        $post = Post::findOrFail($id);
+        $this->postService->delete($post);
         return 'success';
     }
+
 }

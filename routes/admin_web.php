@@ -1,11 +1,13 @@
 <?php
 
+use App\Datatables\PostDatatable;
 use App\Datatables\UserDatatable;
 use App\Datatables\StaffDatatable;
 use App\Datatables\WalletDatatable;
 use Illuminate\Support\Facades\Route;
 use App\Datatables\TransactionDatatable;
 use App\Http\Controllers\backend\PageController;
+use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\StaffController;
 use App\Http\Controllers\backend\WalletController;
@@ -15,6 +17,7 @@ Route::prefix('/admin')->name('admin.')->middleware('auth:admin_user')->group(fu
     Route::get('/', [PageController::class,'home'])->name('home');
     //put datatable routes before resource routes
     Route::get('users/datatable/ssd',[UserDatatable::class,'getUsers'])->name('users_ssd');
+    Route::get('posts/datatable/ssd',[PostDatatable::class,'getPosts'])->name('posts_ssd');
     Route::get('staffs/datatable/ssd',[StaffDatatable::class,'getStaffs'])->name('staffs_ssd');
     Route::get('wallets/datatable/ssd',[WalletDatatable::class,'getWallets'])->name('wallets_ssd');
     Route::get('transactions/datatable/ssd',[TransactionDatatable::class,'getTransactions'])->name('transactions_ssd');
@@ -30,6 +33,7 @@ Route::prefix('/admin')->name('admin.')->middleware('auth:admin_user')->group(fu
 
     Route::resources([
         'users' => UserController::class,
+        'posts' => PostController::class,
         'staffs' => StaffController::class,
     ]);
     

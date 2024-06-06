@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Post;
 use App\Models\SharePost;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class PostService{
@@ -23,20 +24,23 @@ class PostService{
                                         $query->withCount(['reactions','comments','authUserReactions','authUserSavedPost'])
                                               ->with(['user:id,name,avatar']);
                                     }])
+                                    ->whereHas('post')
                                     ->latest()
                                     ->paginate($perPage, ['*'], 'page', $page);
         
         // Extract the actual posts from the shared posts and tag them as 'shared'
         $sharedPosts = $sharePostsQuery->map(function($sharePost) {
-            $sharedPost = clone $sharePost->post; // Clone the post object to retain unique context
-            $sharedPost->is_shared = true;
-            $sharedPost->shared_id = $sharePost->id;
-            $sharedPost->shared_title = $sharePost->title;
-            $sharedPost->shared_by = $sharePost->user;
-            $sharedPost->date = $sharePost->created_at;
-            $sharedPost->shared_created_at = $sharePost->created_at;
-
-            return $sharedPost;
+            if($sharePost->post){
+                $sharedPost = clone $sharePost->post; // Clone the post object to retain unique context
+                $sharedPost->is_shared = true;
+                $sharedPost->shared_id = $sharePost->id;
+                $sharedPost->shared_title = $sharePost->title;
+                $sharedPost->shared_by = $sharePost->user;
+                $sharedPost->date = $sharePost->created_at;
+                $sharedPost->shared_created_at = $sharePost->created_at;
+                return $sharedPost;
+            }
+            
         });
 
         // Tag original posts as 'not shared'
@@ -63,5 +67,30 @@ class PostService{
             ['path' => request()->url(), 'query' => []]
         );
         return $posts;
+    }
+
+    public function store(array $data){
+        DB::beginTransaction();
+        try {
+            $post = Post::create($data);
+            DB::commit();
+            return $post;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+    public function update(Post $post,array $data){
+        DB::beginTransaction();
+        try {
+           $post->update($data);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+    public function delete(Post $post){
+        return $post->delete();
     }
 }

@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Helpers\UUIDGenerater;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class UserService{
     public function store(array $data){
