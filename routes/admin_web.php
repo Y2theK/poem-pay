@@ -12,6 +12,7 @@ use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\StaffController;
 use App\Http\Controllers\backend\WalletController;
 use App\Http\Controllers\backend\TransactionController;
+use App\Http\Controllers\backend\ExchangeConfigController;
 
 Route::prefix('/admin')->name('admin.')->middleware('auth:admin_user')->group(function(){
     Route::get('/', [PageController::class,'home'])->name('home');
@@ -36,6 +37,8 @@ Route::prefix('/admin')->name('admin.')->middleware('auth:admin_user')->group(fu
         'posts' => PostController::class,
         'staffs' => StaffController::class,
     ]);
+
+    Route::resource('exchange_config',ExchangeConfigController::class)->only('index','update');
     
 });
 

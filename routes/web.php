@@ -3,7 +3,6 @@
 use App\Models\Reaction;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Notifications\Notification;
-use App\Http\Controllers\SharePostController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\ProfileController;
@@ -11,6 +10,7 @@ use App\Http\Controllers\Frontend\ExchangeController;
 use App\Http\Controllers\Frontend\ReactionController;
 use App\Http\Controllers\Frontend\TransferController;
 use App\Http\Controllers\Frontend\SavedPostController;
+use App\Http\Controllers\Frontend\SharePostController;
 use App\Http\Controllers\Frontend\TransactionController;
 use App\Http\Controllers\Frontend\NotificationController;
 

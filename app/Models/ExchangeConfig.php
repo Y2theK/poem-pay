@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ExchangeConfig extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
 }
