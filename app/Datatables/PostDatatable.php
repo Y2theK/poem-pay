@@ -10,7 +10,7 @@ use App\Datatables\Contract\DatatableInterface;
 class PostDatatable implements DatatableInterface {
     public function getPosts()
     {
-        $data = Post::query();
+        $data = Post::with('user')->withCount(['reactions','comments','shares']);
         return $this->datatable($data);
     }
     

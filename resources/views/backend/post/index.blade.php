@@ -19,6 +19,9 @@
                         <th data-priority="1">ID</th>
                         <th data-priority="2">Title</th>
                         <th data-priority="3">User</th>
+                        <th data-priority="3">Reaction Count</th>
+                        <th data-priority="3">Comment Count</th>
+                        <th data-priority="3">Share Count</th>
                         <th data-priority="4">Is Exchanged</th>
                         <th data-priority="5">Posted date</th>
                         <th data-priority="8" class="no-sort">Action</th>
@@ -45,6 +48,9 @@
                         {data: 'id', name: 'id'},
                         {data: 'title', name: 'title'},
                         {data: 'user', name: 'user'},
+                        {data: 'reactions_count', name: 'reactions_count'},
+                        {data: 'comments_count', name: 'comments_count'},
+                        {data: 'shares_count', name: 'shares_count'},
                         {data: 'is_exchanged', name: 'is_exchanged'},
                         {data: 'created_at', name: 'created_at'},
                         {data: 'action', name: 'action',searchable: false},
