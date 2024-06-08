@@ -31,11 +31,19 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function exchange(){
+        $this->update(['is_exchanged' => true]);
+    }
+
     public function shares(){
         return $this->hasMany(SharePost::class);
     }
 
     public function tags(){
         return $this->belongsToMany(Tag::class,'post_tags');
+    }
+
+    public function exchangeLog(){
+        return $this->hasOne(ExchangeLog::class);
     }
 }

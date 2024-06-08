@@ -5,11 +5,9 @@
             <h1 class="text-2xl font-mono font-bold"> Exchange Rate </h1>
         </div>
         <div class="text-center mt-4 font-mono">
-            <span class="mx-3"> {{ __('1 Like : 10 MMK') }} </span> 
-            <span class="mx-3"> {{ __('1 Comment : 30 MMK') }} </span> 
-            <span class="mx-3"> {{ __('1 Share : 50 MMK') }} </span> 
-
-            
+            <span class="mx-3"> {{ __('1 Like : ') }} {{ $config->reaction_rate }} MMK</span> 
+            <span class="mx-3"> {{ __('1 Comment :') }} {{ $config->comment_rate }} MMK</span> 
+            <span class="mx-3"> {{ __('1 Share :') }} {{ $config->share_rate }} MMK</span> 
         </div>
     </div>
     {{-- Exchangable lists --}}
@@ -19,15 +17,16 @@
 
             @forelse ($posts as $post)
                 <div
-                    class="w-full  mb-2 py-5 px-5 max-w-5xl {{ $post->is_exchange ? 'bg-white' : 'bg-gray-100' }} border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-
+                    class="w-full  mb-2 py-5 px-5 max-w-5xl {{ $post->is_exchanged ? 'bg-white' : 'bg-gray-100' }} border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <a href="{{ $post->is_exchanged ? route('exchange.log', $post->id) : route('exchange.show', $post->id) }}"
+                        class="flex  cursor-pointer mt-2 items-center justify-between font-medium text-gray-900 dark:text-white">
                    
                         <div class="flex w-full justify-between items-center">
                             <?xml version="1.0" encoding="iso-8859-1"?>
                             <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
                             <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                             <svg class="d-none md:d-block w-6 h-6 mr-5 mt-2 text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500"
-                            fill="{{ $post->is_exchange ? 'none' : '#ef4444'  }}" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                            fill="{{ $post->is_exchanged ? '#4caf50' : '#9333ea'  }}" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                                 viewBox="0 0 182.026 182.026"
                                 xml:space="preserve">
                                 <g>
@@ -46,8 +45,7 @@
                                 </g>
                             </svg>
                             <div class="w-full flex justify-between items-center">
-                                <a href="{{ route('posts.show', $post->id) }}"
-                                    class="flex  cursor-pointer mt-2 items-center justify-between font-medium text-gray-900 dark:text-white">
+                              
                                     <div>
                                         <p class="font-bold p-0 text-sm md:text-md truncate mb-2">
                                             {{ $post->title }}
@@ -60,14 +58,18 @@
                                         <small class="text-gray-600 mx-3">Share : {{ $post->shares_count }}</small>
 
                                     </div>
-                                </a>
                                 <div class="flex items-center">
                                     <div class="">
-                                        
+                                            
+                                            @php
+                                                $totalExchangableRate = ($post->reactions_count * $config->reaction_rate) + 
+                                                                        ($post->comments_count * $config->comment_rate) + 
+                                                                        ($post->shares_count * $config->share_rate)
+                                            @endphp
                                             <x-button class="text-center" data-modal-target="exchange-modal" data-modal-toggle="exchange-modal" type="button">
-                                                {{ __('Exchange') }}
+                                                {{ $totalExchangableRate }} MMK  
                                             </x-button>
-                                            @include('frontend.modals.exchange-modal')
+                                        <span><i class="las la-angle-right"></i></span>
                                     </div>
                                     
                                 </div>
@@ -77,6 +79,7 @@
 
                         </div>
                    
+                    </a>
 
                 </div>
 
@@ -108,14 +111,6 @@
                         $('ul.pagination').remove();
                     }
                 });
-            });
-
-            $(document).on('click','.exchange',function(e){
-             
-                e.preventDefault();
-
-                this.closest('form').submit();
-             
             });
 
         </script>

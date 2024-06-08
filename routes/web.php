@@ -54,7 +54,9 @@ Route::middleware('auth')->group(function(){
     Route::post('saved-posts', SavedPostController::class)->name('posts.save');
     Route::post('share-posts', SharePostController::class)->name('posts.share');
 
-    Route::resource('exchange', ExchangeController::class)->only(['index','store']);
+    Route::resource('exchange', ExchangeController::class)->only(['index','store','show']);
+    Route::get('exchange/log/{id}', [ExchangeController::class , 'exchangeLog'])->name('exchange.log');
+
 
 });
 

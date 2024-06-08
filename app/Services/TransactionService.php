@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
+use App\Models\Post;
 use App\Models\User;
+use App\Models\Wallet;
 use App\Models\Transaction;
 use App\Helpers\UUIDGenerater;
-use App\Models\Wallet;
 use Illuminate\Support\Facades\DB;
 use App\Services\NotificationService;
 
@@ -100,6 +101,42 @@ class TransactionService{
             $to_account_noti_data = array();
             $to_account_noti_data['title'] = 'Wallet Amount Updated!';
             $to_account_noti_data['message'] = 'Your wallet amount is now ' . number_format($amount) . ' MMK. It is updated by by Admin. For more info, please contact admin team.';
+            $to_account_noti_data['sourceable_id'] = $to_account_transaction->id; 
+            $to_account_noti_data['sourceable_type'] = Transaction::class;
+            $to_account_noti_data['web_link'] = route('transactions.detail',$to_account_transaction->trx_id);
+            
+            $this->notificationService->sendGeneralNotification($to_account_noti_data,$wallet->user);
+
+            return $to_account_transaction;
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+           
+        }
+    }
+
+    public function postExchange(Wallet $wallet,float $amount,Post $post){
+        DB::beginTransaction();
+        try {
+            $wallet->amount += $amount;
+            $wallet->update();
+
+            $to_account_transaction = new Transaction();
+            $to_account_transaction->ref_no = UUIDGenerater::refNo();
+            $to_account_transaction->trx_id = UUIDGenerater::trxID();
+            $to_account_transaction->user_id = $wallet->user->id;
+            $to_account_transaction->source_id = $post->id;
+            $to_account_transaction->type = 1;  //income
+            $to_account_transaction->amount = $amount;
+            $to_account_transaction->description = 'Post Exchange';
+            $to_account_transaction->save();
+
+            DB::commit();
+
+            $to_account_noti_data = array();
+            $to_account_noti_data['title'] = 'Post Exchange Amount Collected!';
+            $to_account_noti_data['message'] = 'You have collected wallet amount ' . number_format($amount) . ' MMK from post - ' . $post->title;
             $to_account_noti_data['sourceable_id'] = $to_account_transaction->id; 
             $to_account_noti_data['sourceable_type'] = Transaction::class;
             $to_account_noti_data['web_link'] = route('transactions.detail',$to_account_transaction->trx_id);
