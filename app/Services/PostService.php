@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Post;
+use App\Models\SavedPost;
 use App\Models\User;
 use App\Models\SharePost;
 use Illuminate\Support\Facades\DB;
@@ -70,6 +71,54 @@ class PostService{
         return $posts;
     }
 
+    public function getUserSavedPosts(User $user){
+
+        $perPage = 15;
+        $page = request()->get('page', 1);
+
+
+        $sharePostsQuery = SavedPost::with(['user:id,name,avatar'])
+                                    ->with(['post' => function($query) {
+                                        $query->withCount(['reactions','comments','authUserReactions','authUserSavedPost'])
+                                              ->with(['user:id,name,avatar']);
+                                    }])
+                                    ->whereHas('post')
+                                    ->where('user_id',$user->id)
+                                    ->latest()
+                                    ->paginate($perPage, ['*'], 'page', $page);
+        
+        // Extract the actual posts from the shared posts and tag them as 'shared'
+        $sharedPosts = $sharePostsQuery->map(function($sharePost) {
+            if($sharePost->post){
+                $sharedPost = clone $sharePost->post; // Clone the post object to retain unique context
+                $sharedPost->is_shared = true;
+                $sharedPost->shared_id = $sharePost->id;
+                $sharedPost->shared_title = $sharePost->title;
+                $sharedPost->shared_by = $sharePost->user;
+                $sharedPost->date = $sharePost->created_at;
+                $sharedPost->shared_created_at = $sharePost->created_at;
+                return $sharedPost;
+            }
+            
+        });
+
+
+        // total posts count from posts and sharePosts table
+        $totalPostsCount = SavedPost::where('user_id',$user->id)->count();
+
+        $totalPerPage =  $sharePostsQuery->count();
+        
+        // Paginate combined results manually
+        $posts = new LengthAwarePaginator(
+            $sharedPosts->forPage(1,$totalPerPage),
+            $totalPostsCount,
+            $totalPerPage,
+            1,
+            ['path' => request()->url(), 'query' => []]
+        );
+        return $posts;
+
+    }
     public function getUserPosts(User $user){
         
         $perPage = 15;

@@ -31,6 +31,15 @@ class PageController extends Controller
         return view('frontend.me', compact('user','posts'));
         
     }
+
+    public function mySavedPosts(PostService $service){
+
+        $user = auth()->user();
+        
+        $posts = $service->getUserSavedPosts($user);
+        
+        return view('frontend.my_saved_posts', compact('user','posts'));
+    }
     
     public function receiveQR()
     {

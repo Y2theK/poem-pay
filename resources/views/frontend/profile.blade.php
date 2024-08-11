@@ -54,6 +54,11 @@
                 <span>Update Password</span> <span><i class="las la-angle-right"></i></span>
             </a>
             <hr>
+            <a href="{{ route('my_saved_posts') }}"
+                class="flex cursor-pointer my-4 px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
+                <span>Saved Posts</span> <span><i class="las la-angle-right"></i></span>
+            </a>
+            <hr>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <a data-modal-target="logout-modal" data-modal-toggle="logout-modal" 
