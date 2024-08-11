@@ -17,14 +17,14 @@ class PostService{
         $page = request()->get('page', 1);
 
         $postsQuery = Post::withCount(['reactions','comments','authUserReactions','authUserSavedPost'])
-                            ->with(['user:id,name,avatar'])
+                            ->with(['user:id,name,avatar','comments'])
                             ->latest()
                             ->paginate($perPage, ['*'], 'page', $page);
 
         $sharePostsQuery = SharePost::with(['user:id,name,avatar'])
                                     ->with(['post' => function($query) {
                                         $query->withCount(['reactions','comments','authUserReactions','authUserSavedPost'])
-                                              ->with(['user:id,name,avatar']);
+                                              ->with(['user:id,name,avatar','comments']);
                                     }])
                                     ->whereHas('post')
                                     ->latest()
@@ -68,6 +68,7 @@ class PostService{
             1,
             ['path' => request()->url(), 'query' => []]
         );
+
         return $posts;
     }
 

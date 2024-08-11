@@ -6,7 +6,9 @@
             </div>
             <div class="border-b border-gray-100"></div>
             <div class='text-gray-600 font-semibold text-lg mb-2 mt-3 mx-3 px-2'>
-                {{ $post->title }}
+                <a href="{{ route('posts.show',$post) }}">
+                    {{ $post->title }}
+                </a>
             </div>
             <div class='text-gray-500 text-sm mb-6 mx-3 px-2' id="read-less-{{ $post->id }}">{!! $post->excerpt !!}
             </div>

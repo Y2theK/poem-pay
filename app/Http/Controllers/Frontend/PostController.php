@@ -48,10 +48,18 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+   
     public function show($id)
     {
-        //
+        $post = Post::withCount(['reactions','comments','authUserReactions','authUserSavedPost'])
+                    ->with(['user:id,name,avatar','comments'])
+                    ->findOrFail($id);
+
+        $user = auth()->user();
+
+        return view('frontend.posts.show', compact('post','user'));
     }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -61,6 +69,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        abort_if($post->user_id !== auth()->id(),403);
+
         return view('frontend.posts.edit',compact('post'));
     }
 
@@ -73,7 +83,10 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+        abort_if($post->user_id !== auth()->id(),403);
+
         $post->update($request->validated());
+
         return redirect()->route('home')->with(['saved' => 'Post is Successfully Update.']);
     }
 
@@ -85,7 +98,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        abort_if($post->user_id !== auth()->id(),403);
+
+        $post->comments()->delete();
+        
         $post->delete();
+
         return redirect()->route('home')->with(['saved' => 'Post is Successfully Deleted.']);
 
     }

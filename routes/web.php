@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Notifications\Notification;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\PostController;
+use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\ExchangeController;
 use App\Http\Controllers\Frontend\ReactionController;
@@ -53,6 +54,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('reactions', ReactionController::class)->only(['store']);
     
     Route::resource('posts',PostController::class);
+    Route::resource('posts.comment',CommentController::class);
     Route::post('saved-posts', SavedPostController::class)->name('posts.save');
     Route::post('share-posts', SharePostController::class)->name('posts.share');
 
