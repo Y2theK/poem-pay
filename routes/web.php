@@ -17,6 +17,7 @@ use App\Http\Controllers\Frontend\NotificationController;
 Route::middleware('auth')->group(function(){
     Route::controller(PageController::class)->group(function(){
         Route::get ('/','home')->name('home');
+        Route::get ('/me','me')->name('me');
         Route::get('/wallet','wallet')->name('wallet');
         Route::get('/receive-qr','receiveQR')->name('receive_qr');
         Route::get('/scan-and-pay','scanAndPay')->name('scan_and_pay');

@@ -22,6 +22,15 @@ class PageController extends Controller
         
         return view('frontend.home', compact('user','posts'));
     }
+    public function me(PostService $service){
+    
+        $user = auth()->user();
+        
+        $posts = $service->getUserPosts($user);
+        
+        return view('frontend.me', compact('user','posts'));
+        
+    }
     
     public function receiveQR()
     {
