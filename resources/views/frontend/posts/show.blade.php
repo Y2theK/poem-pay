@@ -1,4 +1,4 @@
-@section('title', 'My Posts')
+@section('title', 'Poem Details')
 <x-app-layout>
     <div>
         <div class="">
