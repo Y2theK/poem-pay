@@ -7,9 +7,27 @@
             @else
                 <x-posts.share-post :post=$post :user=$user></x-posts.share-post>
             @endif
-            {{-- @foreach ($post->comments as $comment)
-                {{ $comment->content }}
-            @endforeach --}}
+           
+           
+        </div>
+        <div class='flex max-w-xl my-3 bg-white shadow-md rounded-lg overflow-hidden mx-auto'>
+            <div class='flex items-center w-full'>
+                <div class='w-full'>
+                    <div>
+                        @foreach ($post->comments as $comment)
+                        <div
+                            class="relative flex items-center self-center w-full max-w-xl p-4 overflow-hidden text-gray-600 focus-within:text-gray-400">
+                            <img class='w-10 h-10 object-cover rounded-full shadow mr-2 cursor-pointer' alt='User avatar'
+                                src={{ $comment->user->getAvatarPath() }}>
+                            <div class="px-3 bg-slate-400">
+                                {{ $comment->content }}
+                            </div>
+                        </div>
+                        <hr />
+                        @endforeach 
+                    </div>
+                </div>
+            </div>
         </div>
     <div>
 @section('script')

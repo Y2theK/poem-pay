@@ -52,7 +52,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::withCount(['reactions','comments','authUserReactions','authUserSavedPost'])
-                    ->with(['user:id,name,avatar','comments'])
+                    ->with(['user:id,name,avatar','comments.user:id,name,avatar'])
                     ->findOrFail($id);
 
         $user = auth()->user();

@@ -19,14 +19,3 @@
             style="border-radius: 25px" placeholder="Post a comment..." autocomplete="off">
     </form>
 </div>
-
-{{-- @foreach ($post->comments as $comment)
-<div
-    class="relative flex items-center self-center w-full max-w-xl p-4 overflow-hidden text-gray-600 focus-within:text-gray-400">
-    <img class='w-10 h-10 object-cover rounded-full shadow mr-2 cursor-pointer' alt='User avatar'
-        src={{ $comment->user->getAvatarPath() }}>
-    <div class="px-3 bg-slate-400">
-        {{ $comment->content }}
-    </div>
-</div>
-@endforeach --}}
