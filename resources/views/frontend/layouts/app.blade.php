@@ -116,6 +116,11 @@
                     icon: 'success',
                     title: '{{ session('saved') }}'
                 })
+        @elseif (session('deleted'))
+            Toast.fire({
+                    icon: 'error',
+                    title: '{{ session('deleted') }}'
+                })
         @endif
         
     </script>

@@ -19,8 +19,13 @@ class CommentController extends Controller
 
     public function destroy(Post $post,Comment $comment){
 
+        if($comment->user_id !== auth()->id()){
+            return redirect()->back()->with(['deleted' => 'This action is forbidden.']);
+        }
+
         $comment->delete();
 
-        return redirect()->route('posts.show')->with(['saved' => 'Comment is Successfully Deleted.']);
+        return redirect()->back()->with(['saved' => 'Comment is successfully deleted.']);
+
     }
 }

@@ -22,6 +22,18 @@
                             <div class="px-3 bg-slate-400">
                                 {{ $comment->content }}
                             </div>
+                            @if (auth()->id() === $comment->user_id)
+                                <div class="ml-auto">
+                                    <form action="{{ route('posts.comment.destroy',[$post,$comment]) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit">
+                                            <i class="las la-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            @endif
+                           
                         </div>
                         <hr />
                         @endforeach 
