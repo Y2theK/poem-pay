@@ -10,6 +10,7 @@ use App\Helpers\UUIDGenerater;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
@@ -55,7 +56,7 @@ class RegisteredUserController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
 
-            $registerPayAmount = 5000;
+            $registerPayAmount = Setting::first()->register_pay_amount;
             $wallet = Wallet::firstOrCreate(
                 [
                     'user_id' => $user->id

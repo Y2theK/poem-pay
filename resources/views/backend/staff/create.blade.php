@@ -40,7 +40,7 @@
             </label>
                 
                  <input value="Cancel" type="button"
-                  class="back-btn mr-3 px-4 py-2 text-sm font-medium leading-5 text-gray-700 dark:text-white transition-colors duration-150 bg-transparent border border-purple-600 rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                  class="mr-3 px-4 py-2 text-sm font-medium leading-5 text-gray-700 dark:text-white transition-colors duration-150 bg-transparent border border-purple-600 rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                 >
                 <input type="submit" value="Save"
                   class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"

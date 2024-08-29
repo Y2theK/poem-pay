@@ -17,6 +17,6 @@ class ExchangeConfigController extends Controller
     public function update(ExchangeConfigRequest $request){
         $config = ExchangeConfig::firstOrFail();
         $config->update($request->validated());
-        return redirect()->route('admin.exchange_config.index');
+        return redirect()->route('admin.exchange_config.index')->with('updated','Updated Successfully');;;
     }
 }
