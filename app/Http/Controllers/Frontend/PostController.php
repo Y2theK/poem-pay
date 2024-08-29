@@ -104,7 +104,7 @@ class PostController extends Controller
         
         $post->delete();
 
-        return redirect()->route('home')->with(['saved' => 'Post is Successfully Deleted.']);
+        return redirect()->route('home')->with(['saved' => 'Post is successfully deleted.']);
 
     }
 }
