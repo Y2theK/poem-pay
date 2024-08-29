@@ -6,7 +6,7 @@
             @include('backend.layouts.flash')
         </div>
         <div class="infinite-scroll">
-            @foreach ($posts as $post)
+            @forelse ($posts as $post)
                 <div class="">
                     @if ($post->is_shared == false)
                         <x-posts.post :post=$post :user=$user></x-posts.post>
@@ -14,7 +14,11 @@
                         <x-posts.share-post :post=$post :user=$user></x-posts.share-post>
                     @endif
                 </div>
-            @endforeach
+            @empty
+            <div class='flex max-w-xl my-3 bg-white shadow-md rounded-lg overflow-hidden mx-auto'>
+                <x-errors.not-found :message="'There is no posts yet. Try make one.'"></x-errors.not-found>
+            </div>
+            @endforelse
             <ul class="pagination flex">
                 {{ $posts->links() }}
             </ul>
