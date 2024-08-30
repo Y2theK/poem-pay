@@ -21,9 +21,9 @@ class PostSeeder extends Seeder
     public function run()
     {
 
-        $tags = Tag::factory(50)->create();
+        $tags = Tag::factory(10)->create();
 
-        Post::factory(500)->create()->each(function($poem) use($tags){
+        Post::factory(100)->create()->each(function($poem) use($tags){
             $poem->tags()->attach($tags->random(rand(2,5)));
         });
 

@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $users = \App\Models\User::factory(30)->create()->each(function($user){
+        $users = \App\Models\User::factory(10)->create()->each(function($user){
             \App\Models\Wallet::factory(1)->create([
                 'user_id' => $user->id
             ]);
