@@ -62,7 +62,7 @@ class PostService{
 
         $posts = Post::where('id',0)->paginate(); // just wanna get empty set with paginate // refactor this
 
-        if($totalPostsCount > 0){
+        if($totalPostsCount > 0 && $totalPerPage){
             // Paginate combined results manually
             $posts = new LengthAwarePaginator(
                 $combinedPosts->forPage(1,$totalPerPage),
@@ -81,7 +81,7 @@ class PostService{
         $page = request()->get('page', 1);
 
 
-        $sharePostsQuery = SavedPost::with(['user:id,name,avatar'])
+        $savePostsQuery = SavedPost::with(['user:id,name,avatar'])
                                     ->with(['post' => function($query) {
                                         $query->withCount(['reactions','comments','authUserReactions','authUserSavedPost'])
                                               ->with(['user:id,name,avatar']);
@@ -90,9 +90,8 @@ class PostService{
                                     ->where('user_id',$user->id)
                                     ->latest()
                                     ->paginate($perPage, ['*'], 'page', $page);
-        
         // Extract the actual posts from the shared posts and tag them as 'shared'
-        $sharedPosts = $sharePostsQuery->map(function($sharePost) {
+        $sharedPosts = $savePostsQuery->map(function($sharePost) {
             if($sharePost->post){
                 $sharedPost = clone $sharePost->post; // Clone the post object to retain unique context
                 $sharedPost->is_shared = true;
@@ -110,11 +109,11 @@ class PostService{
         // total posts count from posts and sharePosts table
         $totalPostsCount = SavedPost::where('user_id',$user->id)->count();
 
-        $totalPerPage =  $sharePostsQuery->count();
+        $totalPerPage =  $savePostsQuery->count();
        
         $posts = Post::where('id',0)->paginate(); // just wanna get empty set with paginate // refactor this
 
-        if($totalPostsCount > 0){
+        if($totalPostsCount > 0 && $totalPerPage){
             // Paginate combined results manually
             $posts = new LengthAwarePaginator(
                 $sharedPosts->forPage(1,$totalPerPage),
@@ -180,7 +179,7 @@ class PostService{
 
         $posts = Post::where('id',0)->paginate(); // just wanna get empty set with paginate // refactor this
 
-        if($totalPostsCount > 0){
+        if($totalPostsCount > 0 && $totalPerPage){
             // Paginate combined results manually
             $posts = new LengthAwarePaginator(
                 $combinedPosts->forPage(1,$totalPerPage),
