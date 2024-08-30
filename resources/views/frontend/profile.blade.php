@@ -51,12 +51,12 @@
             class="w-full  max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="{{ route('update_password') }}"
                 class="flex cursor-pointer my-4 px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
-                <span>Update Password</span> <span><i class="las la-angle-right"></i></span>
+                <span>Update password</span> <span><i class="las la-angle-right"></i></span>
             </a>
             <hr>
             <a href="{{ route('my_saved_posts') }}"
                 class="flex cursor-pointer my-4 px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
-                <span>Saved Posts</span> <span><i class="las la-angle-right"></i></span>
+                <span>Saved posts</span> <span><i class="las la-angle-right"></i></span>
             </a>
             <hr>
             <form method="POST" action="{{ route('logout') }}">

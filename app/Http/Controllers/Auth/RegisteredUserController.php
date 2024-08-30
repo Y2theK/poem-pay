@@ -66,7 +66,7 @@ class RegisteredUserController extends Controller
                     'amount' => $registerPayAmount
                 ]
             );
-            if($wallet){
+            if($wallet && $registerPayAmount > 0){
                 try {
         
                     $to_account_transaction = new Transaction();
