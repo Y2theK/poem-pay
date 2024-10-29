@@ -1,4 +1,4 @@
- <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+ <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
      <div class="flex justify-between h-16">
          <div class="flex items-center justify-center font-bold">
              <!-- Logo -->
@@ -16,7 +16,7 @@
              @endif
 
 
-             <div class="px-3">@yield('title')</div>
+             <div class="px-3 dark:text-white ">@yield('title')</div>
 
          </div>
 
@@ -24,7 +24,7 @@
          <!-- Notification Bell -->
          <div class="mr-4 flex items-center ">
              <a href="{{ route('notifications') }}"
-                 class="inline-flex items-center relative  justify-center p-0 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                 class="inline-flex items-center relative  justify-center p-0 rounded-md text-gray-400  focus:outline-none   transition duration-150 ease-in-out">
                  <svg class="w-6 h-6 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500"
                      viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <path fill-rule="evenodd" clip-rule="evenodd"

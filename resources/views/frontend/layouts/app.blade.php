@@ -16,17 +16,19 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     
     {{-- line awesome --}}
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    {{-- <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"> --}}
+    <link rel="stylesheet" href="{{ asset('css/line-awesome.css') }}">
+
     
     {{-- tailwind cdn --}}
-    <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    {{-- <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> --}}
 
 </head>
 
 <body class="antialiased text-sm md:text-md">
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
         <!-- Top Bar -->
-        <nav class="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <nav class="bg-white border-b border-gray-100 sticky top-0 z-50 dark:bg-gray-900 dark:border-gray-700">
            @include('frontend.layouts.partials.top-bar')
         </nav>
 
@@ -44,8 +46,9 @@
 
     @yield('modal')
     <!-- jQuery -->
-    <script  src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    
+    {{-- <script  src="https://code.jquery.com/jquery-3.4.1.min.js"></script> --}}
+    <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
+
     {{-- sweetalert 2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     

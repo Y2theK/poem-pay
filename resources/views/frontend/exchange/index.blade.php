@@ -1,7 +1,7 @@
 @section('title', 'Exchange')
 <x-app-layout>
     <div
-        class="mx-auto w-full py-14 px-10 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-10">
+        class="mx-auto w-full py-10 px-10 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-10">
         <div class="flex justify-center">
             <h1 class="text-2xl font-mono font-bold text-purple-500"> Exchange Rate </h1>
         </div>

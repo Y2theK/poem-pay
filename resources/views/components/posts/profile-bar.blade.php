@@ -6,12 +6,12 @@
                 src={{ $post->user?->getAvatarPath() }}>
         </div>
         <div class="flex flex-col mb-2 ml-4 mt-1">
-            <div class='text-gray-600 text-sm font-semibold'>{{ $post->user?->name }}</div>
+            <div class='text-gray-600 dark:text-gray-200 text-sm font-semibold'>{{ $post->user?->name }}</div>
             <div class='flex w-full mt-1'>
                 <div class='text-blue-700 font-base text-xs mr-1 cursor-pointer'>
                     #{{ $post->id }}
                 </div>
-                <div class='text-gray-800 text-xs'>
+                <div class='text-gray-800 dark:text-gray-100 text-xs'>
                     • {{ $post->created_at->diffForHumans() }}
                 </div>
             </div>

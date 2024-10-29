@@ -1,16 +1,16 @@
-<div class='flex max-w-xl my-3 bg-white shadow-md rounded-lg overflow-hidden mx-auto'>
+<div class='flex max-w-xl my-3 bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden mx-auto'>
     <div class='flex items-center w-full'>
         <div class='w-full'>
             <div>
                 <x-posts.profile-bar :post=$post/>
             </div>
-            <div class="border-b border-gray-100"></div>
-            <div class='text-gray-600 font-semibold text-lg mb-2 mt-3 mx-3 px-2'>
+            <div class="border-b border-gray-100 dark:border-gray-900"></div>
+            <div class='text-gray-600 dark:text-gray-400  font-semibold text-lg mb-2 mt-3 mx-3 px-2'>
                 <a href="{{ route('posts.show',$post) }}">
                     {{ $post->title }}
                 </a>
             </div>
-            <div class='text-gray-500 text-sm mb-6 mx-3 px-2' id="read-less-{{ $post->id }}">{!! $post->excerpt !!}
+            <div class='text-gray-500 dark:text-gray-400 text-sm mb-6 mx-3 px-2' id="read-less-{{ $post->id }}">{!! $post->excerpt !!}
             </div>
 
             <div class='text-gray-500 text-sm mb-6 mx-3 px-2 hidden' id="read-more-{{ $post->id }}">{!! $post->content !!}

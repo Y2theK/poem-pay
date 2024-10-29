@@ -46,7 +46,7 @@
                     {{-- <hr> --}}
                     <div class=" flex my-4  justify-between text-md font-medium text-gray-900 dark:text-white">
                         <span>{{ __('Type') }}</span> 
-                        <span class="px-2 py-1 rounded-md  text-xs font-bold text-white bg-{{ config('transaction_types.typeColors')[$transaction->type] }}">{{ config('transaction_types.typeTexts')[$transaction->type]
+                        <span class="px-2 py-1 rounded-md  text-xs font-bold text-dark bg-{{ config('transaction_types.typeColors')[$transaction->type] }}">{{ config('transaction_types.typeTexts')[$transaction->type]
                         }}</span>
                     </div>
                     <hr>

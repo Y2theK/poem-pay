@@ -115,7 +115,7 @@ c0.5,1.5,1.4,13.5,1.4,13.5c-16.4,3.3-33,5.3-49.7,5.8c-6.4,0.2-12.6,0.1-18.5-0.1c
                 d="M678.8,122.7l-89.4-0.8c0,0,30.2,0.2,59.7-5.3c28.4-0.2,32.7-5.3,35.3-1.9S678.8,122.7,678.8,122.7z" />
         </svg>
     </div>
-    <div class="text-center font-semibold">
+    <div class="text-center font-semibold text-dark dark:text-white">
         {{ $message }}
     </div>
 </div>

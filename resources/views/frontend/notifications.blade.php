@@ -36,7 +36,7 @@
                                 </div>
                                 <div>
                                     <p class="text-right">
-                                        <small class="text-gray-600">{{ $notification->created_at->diffForHumans() }}</small>
+                                        <small class="text-gray-600 dark:text-gray-300">{{ $notification->created_at->diffForHumans() }}</small>
                                     </p>
                                 </div>
                             </div>

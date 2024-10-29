@@ -15,7 +15,7 @@
     <form action="{{ route('posts.comment.store',$post) }}" method="post" class="w-full">
         @csrf
         <input type="text" name="content"
-            class="w-full  block py-2 pl-4 pr-10 text-sm bg-gray-100 border border-transparent appearance-none rounded-tg placeholder-gray-400 focus:bg-white focus:outline-none focus:border-purple-500 focus:text-gray-900 focus:shadow-outline-purple"
+            class="w-full  block py-2 pl-4 pr-10 text-sm bg-gray-100 dark:bg-gray-900 border border-transparent appearance-none rounded-tg placeholder-gray-400 focus:bg-white focus:outline-none focus:border-purple-500 focus:text-gray-900 focus:shadow-outline-purple"
             style="border-radius: 25px" placeholder="Post a comment..." autocomplete="off">
     </form>
 </div>

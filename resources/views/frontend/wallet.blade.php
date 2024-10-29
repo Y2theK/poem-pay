@@ -1,11 +1,11 @@
 @section('title', 'Wallet')
 <x-app-layout>
-    <div class="flex justify-center px-0 sm:px-7">
+    <div class="flex justify-center px-0 ">
         {{-- <div class="flex flex-col space-y-8 w-full px-16 max-w-xl"> --}}
 
         <!-- card -->
         <div
-            class="bg-gradient-to-tl  max-w-5xl  w-full from-gray-800 to-gray-700 text-white h-56 p-6 rounded-xl shadow-md">
+            class="bg-gradient-to-tl  max-w-5xl  w-full from-gray-800 to-gray-700  text-white h-56 p-6 rounded-xl shadow-md">
             <div class="h-full flex flex-col justify-between">
                 <div class="flex items-start justify-between space-x-4">
                     <div class=" text-xl font-semibold tracking-tigh uppercase font-mono">
@@ -67,29 +67,19 @@
     </div>
     {{-- Horizontal Menu Action --}}
     <div class="flex justify-center">
-        <div class="w-full max-w-5xl bg-transparent mt-10 dark:bg-gray-800 dark:border-gray-700">
-
-
-
-
+        <div class="w-full max-w-5xl bg-transparent mt-10">
             <div class="grid grid-flow-col space-x-3 grid-cols-2">
                 <a href="{{ route('scan_and_pay') }}"
-                    class="flex p-5 cursor-pointer  bg-white border border-gray-200 rounded-lg shadow items-center justify-center text-md font-medium text-gray-900 dark:text-white  group">
+                    class="flex p-5 cursor-pointer  bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow items-center justify-center text-md font-medium text-gray-900 dark:text-white  group">
                     <img src="{{ asset('image/logo/scanQR.png') }}" alt="Scan QR" class="w-5 h-5">
                     <span class="ml-5">{{ __('Scan & Pay') }}</span>
                 </a>
                 <a href="{{ route('receive_qr') }}"
-                    class="flex p-5 cursor-pointer  bg-white border border-gray-200 rounded-lg shadow items-center justify-center text-md font-medium text-gray-900 dark:text-white  group">
+                    class="flex p-5 cursor-pointer  bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow items-center justify-center text-md font-medium text-gray-900 dark:text-white  group">
                     <img src="{{ asset('image/logo/myQR.png') }}" alt="My QR" class="w-6 h-6">
                     <span class="ml-5">{{ __('Receive QR') }}</span>
                 </a>
-
-
-
-
-
             </div>
-
         </div>
     </div>
     {{-- Vertical Menu Actions --}}
