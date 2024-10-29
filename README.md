@@ -58,7 +58,7 @@ The Poem Platform is dedicated to fostering a vibrant community of poets and poe
 ### Installation
 
 ```shell
-git clone https://github.com/Y2theK/magic_pay.git
+git clone https://github.com/Y2theK/poem-pay.git
 ```
 
 ```shell
