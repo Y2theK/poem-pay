@@ -16,10 +16,10 @@
                     <div>
                         @foreach ($post->comments as $comment)
                         <div
-                            class="relative border-b dark:border-gray-900 flex items-center self-center w-full max-w-xl p-4 overflow-hidden text-gray-600 dark:text-gray-200 focus-within:text-gray-400">
+                            class="relative border dark:border-gray-700  dark:bg-gray-900 flex items-center self-center w-full max-w-xl p-4 overflow-hidden text-gray-600 dark:text-gray-200 focus-within:text-gray-400">
                             <img class='w-10 h-10 object-cover rounded-full shadow mr-2 cursor-pointer' alt='User avatar'
                                 src={{ $comment->user->getAvatarPath() }}>
-                            <div class="px-3 bg-slate-400">
+                            <div class="px-3">
                                 {{ $comment->content }}
                             </div>
                             @if (auth()->id() === $comment->user_id)

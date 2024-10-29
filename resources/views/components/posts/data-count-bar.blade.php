@@ -1,4 +1,4 @@
-<div class="flex w-full border-t border-gray-100 dark:border-gray-900 text-gray-700 dark:text-gray-100">
+<div class="flex w-full border-t border-gray-100 dark:border-gray-800 text-gray-700 dark:text-gray-100">
     <div class="mt-3 ml-5 flex flex-row">
         <div class='flex  font-normal text-ms rounded-md mb-2 mr-4 items-center'>
             Comments:<div class="ml-1 text-gray-400 text-ms">

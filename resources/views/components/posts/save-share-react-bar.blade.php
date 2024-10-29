@@ -1,8 +1,8 @@
- <div class="flex justify-start mb-4 border-t border-gray-100 dark:border-gray-900">
+ <div class="flex justify-start mb-4 border-t border-gray-100 dark:border-gray-800">
      <div class="flex w-full mt-1 pt-2 pl-5">
          {{-- react btn --}}
          <span data-id={{ $post->id }} id="reaction-{{ $post->id }}"
-             class="reaction-btn bg-white dark:bg-gray-900 transition ease-out duration-300 hover:text-red-500  border border-gray-500 dark:border-gray-600 w-8 h-8 px-2 pt-2 text-center rounded-full text-gray-400 cursor-pointer mr-2">
+             class="reaction-btn bg-white dark:bg-gray-900 transition ease-out duration-300 hover:text-red-500  border border-gray-200 dark:border-gray-600 w-8 h-8 px-2 pt-2 text-center rounded-full text-gray-400 cursor-pointer mr-2">
              <svg xmlns="http://www.w3.org/2000/svg" fill="{{ $post->auth_user_reactions_count ? 'red' : 'none' }}"
                  width="15px" viewBox="0 0 24 24" stroke-width="1.5"
                  stroke="{{ $post->auth_user_reactions_count ? 'red' : 'currentColor' }}">

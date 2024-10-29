@@ -1,10 +1,10 @@
-<div class='flex max-w-xl my-3 bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden mx-auto'>
+<div class='flex max-w-xl my-3 border dark:border-gray-700  shadow-md rounded-lg overflow-hidden mx-auto'>
     <div class='flex items-center w-full'>
         <div class='w-full'>
             <div>
                 <x-posts.profile-bar :post=$post/>
             </div>
-            <div class="border-b border-gray-100 dark:border-gray-900"></div>
+            <div class="border-b border-gray-100 dark:border-gray-800"></div>
             <div class='text-gray-600 dark:text-gray-400  font-semibold text-lg mb-2 mt-3 mx-3 px-2'>
                 <a href="{{ route('posts.show',$post) }}">
                     {{ $post->title }}
