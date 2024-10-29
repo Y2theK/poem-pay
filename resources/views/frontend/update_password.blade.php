@@ -4,7 +4,7 @@
     <div class="flex justify-center">
 
         <div
-            class="w-full py-5 px-10 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            class="w-full py-5 px-10 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700">
             <div class="flex justify-center">
                 {{-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="406" height="306"
                 class="illustration styles_illustrationTablet__1DWOa">

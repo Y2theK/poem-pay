@@ -9,7 +9,7 @@
             <div class='text-blue-700 font-base text-xs mr-1 cursor-pointer'>
                 #{{ $post->shared_id }}
             </div>
-            <div class='text-gray-800 text-xs'>
+            <div class='text-gray-800 text-xs dark:text-gray-100'>
                 • {{ $post->shared_created_at->diffForHumans() }}
             </div>
         </div>

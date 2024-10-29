@@ -6,7 +6,7 @@
         <div class="flex justify-center flex-col items-center">
             @forelse ($notifications as $notification)
                 <div
-                    class="w-full  mb-2 py-5 px-5 max-w-5xl {{ $notification->read_at ? 'bg-white' : 'bg-gray-100' }} border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    class="w-full  mb-2 py-5 px-5 max-w-5xl {{ $notification->read_at ? 'bg-white' : 'bg-gray-100' }} border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700">
 
                     <a href="{{ route('notifications.detail', $notification->id) }}"
                         class="flex cursor-pointer mt-2 items-center justify-between font-medium text-gray-900 dark:text-white">

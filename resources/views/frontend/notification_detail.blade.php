@@ -4,9 +4,9 @@
     <div class="flex justify-center">
 
         <div
-            class="w-full py-5 px-10 max-w-5xl bg-white  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            class="w-full py-5 px-10 max-w-5xl bg-white  border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700">
             <div class="flex justify-center">
-                <img src="{{ asset('image/logo/animation_notification.gif') }}" alt="Noti Noti" class="" >
+                <img src="{{ asset('image/logo/animation_notification.gif') }}" alt="Notification" class="" >
             </div>
             <div class="flex justify-center flex-col items-center text-gray-900 dark:text-white">
                <p class="font-bold text-md mt-2 text-center">{{ $notification->data['title'] }}</p> 

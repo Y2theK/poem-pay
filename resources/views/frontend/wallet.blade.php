@@ -5,7 +5,7 @@
 
         <!-- card -->
         <div
-            class="bg-gradient-to-tl  max-w-5xl  w-full from-gray-800 to-gray-700  text-white h-56 p-6 rounded-xl shadow-md">
+            class="bg-gradient-to-tl  max-w-5xl  w-full from-gray-800 to-gray-700 text-white h-56 p-6 rounded-xl shadow-md">
             <div class="h-full flex flex-col justify-between">
                 <div class="flex items-start justify-between space-x-4">
                     <div class=" text-xl font-semibold tracking-tigh uppercase font-mono">
@@ -70,12 +70,12 @@
         <div class="w-full max-w-5xl bg-transparent mt-10">
             <div class="grid grid-flow-col space-x-3 grid-cols-2">
                 <a href="{{ route('scan_and_pay') }}"
-                    class="flex p-5 cursor-pointer  bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow items-center justify-center text-md font-medium text-gray-900 dark:text-white  group">
+                    class="flex p-5 cursor-pointer  bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow items-center justify-center text-md font-medium text-gray-900 dark:text-white  group">
                     <img src="{{ asset('image/logo/scanQR.png') }}" alt="Scan QR" class="w-5 h-5">
                     <span class="ml-5">{{ __('Scan & Pay') }}</span>
                 </a>
                 <a href="{{ route('receive_qr') }}"
-                    class="flex p-5 cursor-pointer  bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow items-center justify-center text-md font-medium text-gray-900 dark:text-white  group">
+                    class="flex p-5 cursor-pointer  bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow items-center justify-center text-md font-medium text-gray-900 dark:text-white  group">
                     <img src="{{ asset('image/logo/myQR.png') }}" alt="My QR" class="w-6 h-6">
                     <span class="ml-5">{{ __('Receive QR') }}</span>
                 </a>
@@ -85,7 +85,7 @@
     {{-- Vertical Menu Actions --}}
     <div class="flex justify-center mt-5">
         <div
-            class="w-full px-5 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            class="w-full px-5 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700">
             <a href="{{ route('transfer') }}"
                 class="flex cursor-pointer my-4 py-2 px-5 items-center justify-between text-md font-medium text-gray-900 dark:text-white">
                 <div class="flex justify-center items-center">
@@ -128,11 +128,15 @@
                     </svg>
                     <span class="ml-5">{{ __('Transfer') }}</span>
                 </div>
-                <span><i class="las la-angle-right"></i></span>
+                <div class="shrink-0  w-4 back-btn cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                      </svg>                      
+                 </div>
             </a>
-            <hr />
+           
             <a href="{{ route('wallet') }}"
-                class="flex cursor-pointer  items-center my-4 py-2 px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
+                class="flex cursor-pointer border-t border-gray-200 dark:border-gray-700   items-center py-6 px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
                 <div class="flex justify-center items-center">
                     <?xml version="1.0" encoding="iso-8859-1"?>
                     <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
@@ -179,12 +183,16 @@
                     </svg>
                     <span class="ml-5">{{ __('Wallet') }}</span>
                 </div>
-                <span><i class="las la-angle-right"></i></span>
+                <div class="shrink-0  w-4 back-btn cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                      </svg>                      
+                 </div>
             </a>
-            <hr />
+          
 
             <a href="{{ route('transactions') }}"
-                class="flex  cursor-pointer items-center my-4 py-2 px-5  justify-between text-md font-medium text-gray-900 dark:text-white  group">
+                class="flex  cursor-pointer border-t border-gray-200 dark:border-gray-700  items-center py-6 px-5  justify-between text-md font-medium text-gray-900 dark:text-white  group">
                 <div class="flex justify-center items-center">
                     <svg fill="#000000"
                         class="w-5 h-5 text-gray-500  dark:text-gray-400  {{ areActiveRoutes(['transactions', 'transactions.detail'], 'text-purple-600') }} group-hover:text-purple-600 dark:group-hover:text-purple-500"
@@ -223,7 +231,11 @@
                     </svg>
                     <span class="ml-5">{{ __('Transactions') }}</span>
                 </div>
-                <span><i class="las la-angle-right"></i></span>
+                <div class="shrink-0  w-4 back-btn cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                      </svg>                      
+                 </div>
             </a>
 
 

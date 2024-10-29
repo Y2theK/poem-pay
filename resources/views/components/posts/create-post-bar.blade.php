@@ -1,6 +1,6 @@
 <!-- This is an create post component -->
 <div class="" data-modal-target="post-create-modal" data-modal-toggle="post-create-modal">
-    <div class='flex max-w-xl bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden mx-auto'>
+    <div class='flex max-w-xl border dark:border-gray-700  shadow-md rounded-lg overflow-hidden mx-auto'>
         <div class='flex items-center w-full'>
             <div class='w-full'>
 
@@ -15,7 +15,7 @@
                         </button>
                     </span>
                     <input type="search"
-                        class="w-full  py-2 pl-4 pr-10 text-sm bg-gray-100 dark:bg-gray-900 border border-transparent appearance-none rounded-tg placeholder-gray-400 focus:bg-white focus:outline-none focus:border-purple-500 focus:text-gray-900 focus:shadow-outline-purple"
+                        class="w-full  py-2 pl-4 pr-10 text-sm bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-900  appearance-none rounded-tg placeholder-gray-400 focus:bg-white focus:outline-none focus:border-purple-500 focus:text-gray-900 focus:shadow-outline-purple"
                         style="border-radius: 25px" placeholder="What’s been occupying your thoughts?" autocomplete="off">
                 </div>
             </div>

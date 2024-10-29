@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 
-use App\Http\Controllers\Controller;
+use App\Models\Post;
 use App\Services\PostService;
+use App\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
@@ -19,8 +20,10 @@ class PageController extends Controller
         $user = auth()->user();
        
         $posts = $service->getAll();
+
+        $randomPost = Post::inRandomOrder()->first();
         
-        return view('frontend.home', compact('user','posts'));
+        return view('frontend.home', compact('user','posts','randomPost'));
     }
     public function me(PostService $service){
     
