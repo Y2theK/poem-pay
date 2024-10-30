@@ -18,8 +18,6 @@ use App\Http\Controllers\Frontend\NotificationController;
 Route::middleware('auth')->group(function(){
     Route::controller(PageController::class)->group(function(){
         Route::get ('/','home')->name('home');
-        Route::get ('/me','me')->name('me');
-        Route::get ('/my-saved-posts','mySavedPosts')->name('my_saved_posts');
         Route::get('/wallet','wallet')->name('wallet');
         Route::get('/receive-qr','receiveQR')->name('receive_qr');
         Route::get('/scan-and-pay','scanAndPay')->name('scan_and_pay');
@@ -40,27 +38,30 @@ Route::middleware('auth')->group(function(){
         Route::get('/transfer/to-account-verify','toAccountVerify')->name('to_account_verify');
         Route::get('/transfer/hash','hashTransfer')->name('transfer.hash');
     });
+
     Route::controller(TransactionController::class)->group(function(){
         Route::get('/transactions','index')->name('transactions');
         Route::get('/transactions/{trx_id}','transactionDetail')->name('transactions.detail');
-    
     });
+
     Route::controller(NotificationController::class)->group(function(){
         Route::get('/notifications','notification')->name('notifications');
         Route::get('/notifications/{id}','notificationDetail')->name('notifications.detail');
-    
     });
     
     Route::resource('reactions', ReactionController::class)->only(['store']);
     
+    Route::get ('/me',[PostController::class,'me'])->name('me');
     Route::resource('posts',PostController::class);
     Route::resource('posts.comment',CommentController::class);
-    Route::post('saved-posts', SavedPostController::class)->name('posts.save');
+
+    Route::get ('my-saved-posts',[SavedPostController::class,'mySavedPosts'])->name('my_saved_posts');
+    Route::post('saved-posts', [SavedPostController::class,'save'])->name('posts.save');
+
     Route::post('share-posts', SharePostController::class)->name('posts.share');
 
     Route::resource('exchange', ExchangeController::class)->only(['index','store','show']);
     Route::get('exchange/log/{id}', [ExchangeController::class , 'exchangeLog'])->name('exchange.log');
-
 
 });
 

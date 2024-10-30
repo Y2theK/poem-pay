@@ -4,31 +4,21 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Services\PostService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\frontend\PostRequest;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function me(PostService $service){
+    
+        $user = auth()->user();
+        
+        $posts = $service->getUserPosts($user);
+        
+        return view('frontend.posts.me', compact('user','posts'));
+        
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *

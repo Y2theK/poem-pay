@@ -16,7 +16,7 @@ class TransactionController extends Controller
                                     ->latest()
                                     ->paginate(5);
        
-        return view('frontend.transaction', compact('user', 'transactions'));
+        return view('frontend.transactions.index', compact('user', 'transactions'));
     }
 
     public function transactionDetail($trx_id)
@@ -26,7 +26,7 @@ class TransactionController extends Controller
                                     ->where('trx_id', $trx_id)
                                     ->firstOrFail();
                                     
-        return view('frontend.transaction_detail', compact('user', 'transaction'));
+        return view('frontend.transactions.show', compact('user', 'transaction'));
     }
 
 }

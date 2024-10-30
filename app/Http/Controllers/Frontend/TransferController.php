@@ -21,7 +21,7 @@ class TransferController extends Controller
             }
         }
 
-        return view('frontend.transfer', compact('user', 'to_account'));
+        return view('frontend.transfer.show', compact('user', 'to_account'));
     }
 
     public function transferConfirm(TransferConfirmRequest $request)
@@ -55,7 +55,7 @@ class TransferController extends Controller
             return redirect()->back()->withErrors(['to_phone' => 'Invalid Account.'])->withInput();
         }
 
-        return view('frontend.transfer_confirm', compact('from_account_user', 'to_account_user', 'amount', 'description', 'hash_value'));
+        return view('frontend.transfer.confirm', compact('from_account_user', 'to_account_user', 'amount', 'description', 'hash_value'));
     }
 
     public function transferComplete(TransferConfirmRequest $request,TransactionService $transactionService)

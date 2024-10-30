@@ -1,4 +1,4 @@
-@section('title', 'My Posts')
+@section('title', 'My Saved Posts')
 <x-app-layout>
     <div>
         <x-posts.create-post-bar :user=$user></x-posts.create-post-bar>
@@ -81,16 +81,16 @@
             })
         });
 
-        // $(document).on('click','.read-btn',function(e){
-        //     let id = $(this).data('id');
-        //     $("#read-more-" + id).toggle();
-        //     $("#read-less-" + id).toggle();
-        //     if($("#read-btn-" + id).text() == "Read more..")
-        //         $("#read-btn-" + id).text("Read less..");
-        //     else
-        //         $("#read-btn-" + id).text("Read more..");
+        $(document).on('click','.read-btn',function(e){
+            let id = $(this).data('id');
+            $("#read-more-" + id).toggle();
+            $("#read-less-" + id).toggle();
+            if($("#read-btn-" + id).text() == "Read more..")
+                $("#read-btn-" + id).text("Read less..");
+            else
+                $("#read-btn-" + id).text("Read more..");
 
-        // });
+        });
     </script>
 
 @endsection

@@ -17,7 +17,7 @@ class ProfileController extends Controller
 {
     public function profile()
     {
-        return view('frontend.profile', ['user' => auth()->user()]);
+        return view('frontend.profile.profile', ['user' => auth()->user()]);
     }
     public function uploadProfileImage(ProfileImageUploadRequest $request,ImageUploadService $imageService){
 
@@ -51,7 +51,7 @@ class ProfileController extends Controller
 
     public function updatePasswordCreate()
     {
-        return view('frontend.update_password');
+        return view('frontend.profile.update-password');
 
     }
 
