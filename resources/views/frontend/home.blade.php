@@ -1,7 +1,7 @@
 @section('title', config('app.name'))
 <x-app-layout>
-    <div class="">
-        {{-- <div class=''>
+    <div class="flex flex-row">
+        {{-- <div class='flex flex-col lg:flex-row lg:w-[325px]'>
             <div class="">
                 <div
                     class='flex max-w-xl my-3 shadow-lg border dark:border-gray-700 rounded-lg overflow-hidden mx-auto'>
@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div> --}}
-        <div class="">
+        <div class="w-full lg:flex-1 lg:mx-13">
             <x-posts.create-post-bar :user=$user></x-posts.create-post-bar>
             <div>
                 @include('backend.layouts.flash')
@@ -58,7 +58,7 @@
                 </ul>
             </div>
         </div>
-        {{-- <div class=''>
+        {{-- <div class='flex flex-col lg:flex-row lg:w-[325px]'>
             <div class="">
                 <div
                     class='flex max-w-xl my-3 shadow-lg border dark:border-gray-700 rounded-lg overflow-hidden mx-auto'>

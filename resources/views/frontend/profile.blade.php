@@ -50,7 +50,7 @@
             <a href="{{ route('update_password') }}"
                 class="flex cursor-pointer border-b py-4  border-gray-200 dark:border-gray-700 px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
                 <span>Update password</span>
-                <div class="shrink-0  w-4 back-btn cursor-pointer">
+                <div class="shrink-0  w-4  cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                       </svg>                      
@@ -60,7 +60,7 @@
             <a href="{{ route('my_saved_posts') }}"
                 class="flex cursor-pointer border-b py-4 border-gray-200 dark:border-gray-700  px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
                 <span>Saved posts</span>
-                <div class="shrink-0  w-4 back-btn cursor-pointer">
+                <div class="shrink-0  w-4  cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                       </svg>                      
@@ -72,7 +72,7 @@
                 <a data-modal-target="logout-modal" data-modal-toggle="logout-modal" 
                     class="flex cursor-pointer py-4 px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
                     <span>Logout</span> 
-                    <div class="shrink-0  w-4 back-btn cursor-pointer">
+                    <div class="shrink-0  w-4  cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                           </svg>                      
