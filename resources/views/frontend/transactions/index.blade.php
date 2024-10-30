@@ -7,7 +7,7 @@
 
             @forelse ($transactions as $transaction)
                 <div
-                    class="w-full  mb-2 py-2 px-5 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    class="w-full  mb-2 py-2 px-5 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700">
 
                     <a href="{{ route('transactions.detail', $transaction->trx_id) }}"
                         class="flex cursor-pointer mt-2 items-center justify-between font-medium text-gray-900 dark:text-white">

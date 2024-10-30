@@ -5,7 +5,7 @@
     <div class="flex justify-center text-sm ">
       
         <div
-            class="w-full px-5 py-5 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            class="w-full px-5 py-5 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700">
             
             <div class="flex flex-col items-center py-4">
                 <div class="flex justify-center flex-col mb-4 items-center">
@@ -36,32 +36,32 @@
                 @endif
 
                 <div class="w-full px-5 ">
-                    <div class=" flex my-4 justify-between text-md font-medium text-gray-900 dark:text-white">
+                    <div class=" flex py-4 border-gray-200 dark:border-gray-700 border-b  justify-between text-md font-medium text-gray-900 dark:text-white">
                         <span>{{ __('ID') }}</span> <span>{{ $transaction->trx_id }}</span>
                     </div>
-                    <hr>
+                    {{-- <hr> --}}
                     {{-- <div class=" flex my-4 px-5 justify-between text-md font-medium text-gray-900 dark:text-white">
                         <span>{{ __('Reference ID') }}</span> <span>{{ $transaction->ref_no }}</span>
                     </div> --}}
                     {{-- <hr> --}}
-                    <div class=" flex my-4  justify-between text-md font-medium text-gray-900 dark:text-white">
+                    <div class=" flex py-4 border-gray-200 dark:border-gray-700 border-b  justify-between text-md font-medium text-gray-900 dark:text-white">
                         <span>{{ __('Type') }}</span> 
                         <span class="px-2 py-1 rounded-md  text-xs font-bold text-dark bg-{{ config('transaction_types.typeColors')[$transaction->type] }}">{{ config('transaction_types.typeTexts')[$transaction->type]
                         }}</span>
                     </div>
-                    <hr>
-                    <div class=" flex my-4 justify-between text-md font-medium text-gray-900 dark:text-white">
+                    {{-- <hr> --}}
+                    <div class=" flex py-4 border-gray-200 dark:border-gray-700 border-b  justify-between text-md font-medium text-gray-900 dark:text-white">
                         <span>{{ __('Amount') }}</span> <span>{{ number_format($transaction->amount) }} <small>MMK</small> </span>
                     </div>
-                    <hr>
-                    <div class=" flex my-4  justify-between text-md font-medium text-gray-900 dark:text-white">
+                    {{-- <hr> --}}
+                    <div class=" flex py-4 border-gray-200 dark:border-gray-700 border-b  justify-between text-md font-medium text-gray-900 dark:text-white">
                         <span>{{ __('Date') }}</span> <span>{{ $transaction->created_at->format('Y/m/d H:i:s') }}</span>
                     </div>
-                    <hr>
-                    <div class=" flex my-4 justify-between text-md font-medium text-gray-900 dark:text-white">
+                    {{-- <hr> --}}
+                    <div class=" flex py-4 border-gray-200 dark:border-gray-700 border-b justify-between text-md font-medium text-gray-900 dark:text-white">
                         <span>{{  config('transaction_types.typeTitles')[$transaction->type] }}</span> <span>{{ $transaction->source ? $transaction->source->phone : config('mail.from.address') }}</span>
                     </div>
-                    <hr>
+                    {{-- <hr> --}}
                     <div class=" flex mt-4 mb-0  justify-between text-md font-medium text-gray-900 dark:text-white">
                         <span>{{ __('Note') }}</span> <span>{{ $transaction->description }}</span>
                     </div>

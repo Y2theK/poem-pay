@@ -6,13 +6,13 @@
         <div class="flex justify-center flex-col items-center">
             @forelse ($notifications as $notification)
                 <div
-                    class="w-full  mb-2 py-5 px-5 max-w-5xl {{ $notification->read_at ? 'bg-white' : 'bg-gray-100' }} border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700">
+                    class="w-full  mb-2 py-5 px-5 max-w-5xl {{ $notification->read_at ? 'bg-white dark:bg-gray-900' : 'bg-gray-50 dark:bg-gray-900' }} border border-gray-200 rounded-lg shadow  dark:border-gray-700">
 
                     <a href="{{ route('notifications.detail', $notification->id) }}"
                         class="flex cursor-pointer mt-2 items-center justify-between font-medium text-gray-900 dark:text-white">
                         <div class="flex w-full">
                             <svg class="d-none md:d-block w-6 h-6 mr-5 mt-2 text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-500"
-                                viewBox="0 0 24 24" fill="{{ $notification->read_at ? 'none' : '#ef4444'  }}" xmlns="http://www.w3.org/2000/svg">
+                                viewBox="0 0 24 24" fill="{{ $notification->read_at ? 'none' : '#9333ea'  }}" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M6.31317 12.463C6.20006 9.29213 8.60976 6.6252 11.701 6.5C14.7923 6.6252 17.202 9.29213 17.0889 12.463C17.0889 13.78 18.4841 15.063 18.525 16.383C18.525 16.4017 18.525 16.4203 18.525 16.439C18.5552 17.2847 17.9124 17.9959 17.0879 18.029H13.9757C13.9786 18.677 13.7404 19.3018 13.3098 19.776C12.8957 20.2372 12.3123 20.4996 11.701 20.4996C11.0897 20.4996 10.5064 20.2372 10.0923 19.776C9.66161 19.3018 9.42346 18.677 9.42635 18.029H6.31317C5.48869 17.9959 4.84583 17.2847 4.87602 16.439C4.87602 16.4203 4.87602 16.4017 4.87602 16.383C4.91795 15.067 6.31317 13.781 6.31317 12.463Z"
                                     stroke="#9333ea" stroke-width="1.5" stroke-linecap="round"

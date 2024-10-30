@@ -18,7 +18,7 @@
 
             @forelse ($posts as $post)
                 <div
-                    class="w-full  mb-2 py-5 px-3 max-w-5xl {{ $post->is_exchanged ? 'bg-white' : 'bg-gray-100' }} border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative orderflow-hidden">
+                    class="w-full  mb-2 py-5 px-3 max-w-5xl {{ $post->is_exchanged ? 'bg-white' : 'bg-gray-100' }} border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 relative orderflow-hidden">
 
                    
                     <a href="{{ $post->is_exchanged ? route('exchange.log', $post->id) : route('exchange.show', $post->id) }}"
@@ -78,7 +78,7 @@
                                                 $post->shares_count * $config->share_rate;
                                         @endphp
                                         <x-button class="text-center"  type="button">
-                                            {{ $post->is_exchanged ? 'Exchanged - ' : '' }}
+                                            {{ $post->is_exchanged ? 'Exchanged ' : '' }}
                                             {{ $totalExchangableRate }} MMK
                                             <span><i class="las la-angle-right"></i></span>
                                         </x-button>

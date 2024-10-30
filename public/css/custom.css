@@ -20,7 +20,7 @@ td:has(> .amount-group):hover .amount-edit-btn{
 }
 
 /* button & input box focus none */
-button:focus , input:focus{
+button:focus , input:focus, textarea:focus{
     outline-offset: none !important; 
     box-shadow: none !important;
 }

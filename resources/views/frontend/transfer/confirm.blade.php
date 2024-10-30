@@ -4,7 +4,7 @@
     <div class="flex justify-center">
 
         <div
-            class="w-full py-5 px-10 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            class="w-full py-5 px-10 max-w-5xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700">
 
             <form method="POST" action="{{ route('transfer.complete') }}" class="transfer-confirm-form">
                 @csrf
@@ -13,10 +13,10 @@
                 <div class="mt-4">
                     <x-label for="to_phone" :value="__('From')" class="mb-2  font-bold" />
 
-                    <label class='block font-medium text-sm  text-gray-700'>
+                    <label class='block font-medium text-sm  text-gray-700  dark:text-gray-100'>
                         {{ $from_account_user->name }}
                     </label>
-                    <label class='block font-medium  text-sm text-gray-700'>
+                    <label class='block font-medium  text-sm text-gray-700  dark:text-gray-100'>
                         {{ $from_account_user->phone }}
                     </label>
 
@@ -31,23 +31,23 @@
                 <input type="hidden" name="description" value="{{ $description }}">
                 <div class="mt-4">
                     <x-label for="to_phone" :value="__('To')" class="font-bold " />
-                    <label class='block font-semibold text-sm text-gray-700 text-muted'>
+                    <label class='block font-semibold text-sm text-gray-700 text-muted  dark:text-gray-100'>
                         {{ $to_account_user->name }}
                     </label>
-                    <label class='block  font-semibold text-sm text-gray-700 text-muted'>
+                    <label class='block  font-semibold text-sm text-gray-700 text-muted  dark:text-gray-100'>
                         {{ $to_account_user->phone }}
                     </label>
 
                     <x-label for="to_phone" :value="__('Amount')" class="font-bold mt-4" />
 
-                    <label class='block font-medium text-sm text-gray-700 text-muted'>
+                    <label class='block font-medium text-sm text-gray-700 text-muted  dark:text-gray-100'>
                         {{ $amount }} <span class="text-xs">MMK</span>
                     </label>
 
 
                     @if ($description)
-                        <x-label for="to_phone" :value="__('Description')" class="font-bold mt-4" />
-                        <label class='block font-medium text-sm text-gray-700 text-muted'>
+                        <x-label for="to_phone" :value="__('Description')" class="font-bold mt-4 " />
+                        <label class='block font-medium text-sm text-gray-700 text-muted  dark:text-gray-100'>
                             {{ $description }}
                         </label>
                     @endif
@@ -76,9 +76,9 @@
         class="fixed top-40 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-md max-h-full">
             <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-900 border border-gray-100 dark:border-gray-700">
                 <button type="button"
-                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-800 dark:hover:text-white"
                     data-modal-hide="password-modal">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 14 14">
@@ -93,15 +93,15 @@
 
                         <div>
                             <label for="password"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-200">Enter your
                                 password</label>
                             <input type="password" name="password" id="password" placeholder="••••••••"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 dark:bg-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 text-center dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 required>
                         </div>
                         <div class="text-right">
                         <button data-modal-hide="password-modal" type="button"
-                            class="text-gray-500 bg-white mr-2 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No,
+                            class="text-gray-500 bg-white mr-2 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-800 dark:focus:ring-gray-600">No,
                             cancel</button>
                             <button data-modal-hide="password-modal" type="button"
                             class="password-check-btn text-white bg-purple-600 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
