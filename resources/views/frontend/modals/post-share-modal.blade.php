@@ -3,7 +3,7 @@
 class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-full  max-h-full">
 <div class="relative p-4 w-full max-w-md max-h-full">
     <!-- Modal content -->
-    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+    <div class="relative bg-white rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 ">
         <!-- Modal header -->
         <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
@@ -29,7 +29,7 @@ class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 
             <div class="grid gap-4 mb-4 grid-cols-2">
                 <div class="col-span-2">
                     <textarea id="title" rows="3" name="title" style="resize: none"
-                        class="block p-2.5 w-full text-sm border-0 text-gray-900 bg-gray-50 rounded-lg   border-gray-300 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 focus:border-0"
+                        class="block p-2.5 w-full text-sm border-0 text-gray-900  bg-gray-50 rounded-lg   border-gray-300 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 focus:border-0"
                         placeholder="Write your thought here"></textarea>
                 </div>
             </div>
@@ -37,11 +37,11 @@ class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 
             {{-- share post --}}
             <div class='share-post mb-2 mt-3 '>
                 <div class="">
-                    <div class='flex max-w-xl my-3 bg-white shadow-md rounded-lg overflow-hidden mx-auto'>
+                    <div class='flex max-w-xl my-3 bg-white shadow-md rounded-lg overflow-hidden mx-auto dark:bg-gray-900 dark:border-gray-800'>
                         <div class='flex items-center w-full'>
                             <div class='w-full'>
 
-                                <div class="border-b border-gray-100"></div>
+                                <div class="border-b border-gray-100 dark:border-gray-800"></div>
                                 <div class="flex flex-row mt-2 px-2 py-3 mx-3">
                                     <div class="w-auto h-auto">
                                         <img class='w-10 h-10 object-cover rounded-full shadow cursor-pointer'
@@ -61,7 +61,7 @@ class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="border-b border-gray-100"></div>
+                                <div class="border-b border-gray-100 dark:border-gray-800"></div>
                                 <div class='text-gray-600 font-semibold text-lg mb-2 mt-3 mx-3 px-2'>
                                     {{ $post->title }}</div>
                                 {{-- <div class='text-gray-400 font-medium text-sm mb-7 mt-3 mx-3 px-2'><img
